@@ -1,5 +1,5 @@
 import RestClient, { HTTPMethod } from "../restClient.ts";
-import { ChargePayload, SetAddressPayload } from "../types/clients/charge.ts";
+import type { ChargePayload, SetAddressPayload } from "../types/clients/charge.ts";
 
 export default class ChargeClient {
   client: RestClient;
@@ -33,7 +33,7 @@ export default class ChargeClient {
   }
 
   submitAddress(payload: SetAddressPayload){
-    return this.charge.call('/charge/submit_address', HTTPMethod.POST, payload)
+    return this.client.call('/charge/submit_address', HTTPMethod.POST, payload)
   }
 
   checkPendingCharge(reference: string){
