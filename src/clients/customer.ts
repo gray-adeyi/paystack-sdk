@@ -20,7 +20,7 @@ export default class CustomerClient {
     return this.client.call("/customer/", HTTPMethod.POST, payload);
   }
 
-  getCustomers(options: GetCustomersOptions) {
+  getCustomers(options?: GetCustomersOptions) {
     return this.client.call("/customer/", HTTPMethod.GET, null, options);
   }
 

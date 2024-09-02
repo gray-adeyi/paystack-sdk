@@ -28,7 +28,7 @@ export default class BulkChargeClient {
     return this.client.call(`/bulkcharge/${idOrCode}`, HTTPMethod.GET);
   }
 
-  getChargesInBatch(idOrCode: string, options: GetChargesInBatchOptions) {
+  getChargesInBatch(idOrCode: string, options?: GetChargesInBatchOptions) {
     return this.client.call(
       `/bulkcharge/${idOrCode}/charges`,
       HTTPMethod.GET,

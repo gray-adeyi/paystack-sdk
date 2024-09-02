@@ -18,7 +18,7 @@ export default class ApplePayClient {
     });
   }
 
-  getDomains(options: GetDomainsOptions) {
+  getDomains(options?: GetDomainsOptions) {
     return this.client.call("/apple-pay/domain", HTTPMethod.GET, null, options);
   }
 
