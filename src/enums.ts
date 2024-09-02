@@ -19,18 +19,28 @@ export enum Country {
 }
 
 export enum AccountType {
-  PERSONAL = 'personal',
-  BUSINESS = 'business'
+  PERSONAL = "personal",
+  BUSINESS = "business",
 }
 
-export enum Document{
-  IDENTITY_NUMBER = 'identityNumber',
-  PASSPORT_NUMBER = 'passportNumber',
-  BUSINESS_REGISTRATION_NUMBER = 'businessRegistrationNumber'
+export enum Document {
+  IDENTITY_NUMBER = "identityNumber",
+  PASSPORT_NUMBER = "passportNumber",
+  BUSINESS_REGISTRATION_NUMBER = "businessRegistrationNumber",
 }
 
-export enum Reason{
-  RESEND_OTP = 'resend_otp',
-  TRANSFER = 'transfer',
-  DISABLE_OTP = 'disable_otp'
+export enum Reason {
+  RESEND_OTP = "resend_otp",
+  TRANSFER = "transfer",
+  DISABLE_OTP = "disable_otp",
+}
+
+export enum Currency {
+  NGN = "NGN",
+  GHS = "GHS",
+  ZAR = "ZAR",
+  USD = "USD",
+  KES = "KES",
+  XOF = "XOF",
+  EGP = "EGP",
 }
