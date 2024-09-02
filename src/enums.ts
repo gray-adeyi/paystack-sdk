@@ -28,3 +28,9 @@ export enum Document{
   PASSPORT_NUMBER = 'passportNumber',
   BUSINESS_REGISTRATION_NUMBER = 'businessRegistrationNumber'
 }
+
+export enum Reason{
+  RESEND_OTP = 'resend_otp',
+  TRANSFER = 'transfer',
+  DISABLE_OTP = 'disable_otp'
+}
