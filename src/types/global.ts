@@ -6,13 +6,13 @@ export type PaystackResponse = {
 };
 
 export type PaginationOptions = {
-  readonly page: number;
-  readonly perPage: number;
+  readonly page?: number;
+  readonly perPage?: number;
 };
 
 export type DateFilterOptions = {
-  readonly from: string;
-  readonly to: string;
+  readonly from?: string;
+  readonly to?: string;
 };
 
 export type PaginationAndDateFilterOptions =

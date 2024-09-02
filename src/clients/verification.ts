@@ -12,17 +12,18 @@ export default class VerificationClient {
     }
   }
 
-  resolveAccountNumber(accountNumber: string, bankCode: string){
-    return this.client.call(`/bank/resolve?account_number=${accountNumber}&bank_code=${bankCode}`, HTTPMethod.GET)
+  resolveAccountNumber(accountNumber: string, bankCode: string) {
+    return this.client.call(
+      `/bank/resolve?account_number=${accountNumber}&bank_code=${bankCode}`,
+      HTTPMethod.GET,
+    );
   }
 
-
-  validateAccount(payload: ValidateAccountPayload){
-    return this.client.call('/bank/validate', HTTPMethod.POST, payload)
+  validateAccount(payload: ValidateAccountPayload) {
+    return this.client.call("/bank/validate", HTTPMethod.POST, payload);
   }
 
-  resolveCardBin(bin: string){
-    return this.client.call(`/decision/bin/${bin}`,HTTPMethod.GET)
+  resolveCardBin(bin: string) {
+    return this.client.call(`/decision/bin/${bin}`, HTTPMethod.GET);
   }
 }
-
