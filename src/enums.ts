@@ -44,3 +44,9 @@ export enum Currency {
   XOF = "XOF",
   EGP = "EGP",
 }
+
+export enum RecipientType {
+  NUBAN = "nuban",
+  MOBILE_MONEY = "mobile_money",
+  BASA = "basa",
+}
