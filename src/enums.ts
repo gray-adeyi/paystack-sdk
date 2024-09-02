@@ -17,3 +17,14 @@ export enum Country {
   COTE_D_IVOIRE = "CI",
   EGYPT = "EG",
 }
+
+export enum AccountType {
+  PERSONAL = 'personal',
+  BUSINESS = 'business'
+}
+
+export enum Document{
+  IDENTITY_NUMBER = 'identityNumber',
+  PASSPORT_NUMBER = 'passportNumber',
+  BUSINESS_REGISTRATION_NUMBER = 'businessRegistrationNumber'
+}
