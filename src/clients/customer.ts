@@ -2,7 +2,7 @@ import RestClient, { HTTPMethod } from "../restClient.ts";
 import type {
   CreateCustomerPayload,
   GetCustomersOptions,
-  UpdatePayload,
+  UpdateCustomerPayload,
 } from "../types/clients/customer.ts";
 
 export default class CustomerClient {
@@ -28,9 +28,9 @@ export default class CustomerClient {
     return this.client.call(`/customer/${emailOrCode}`, HTTPMethod.GET);
   }
 
-  update(code: string, payload: UpdatePayload) {
+  update(code: string, payload: UpdateCustomerPayload) {
     return this.client.call(`/customer/${code}`, HTTPMethod.PUT, payload);
   }
 
-  validate(emailOrCode: string, payload: UpdatePayload) {}
+  validate(emailOrCode: string, payload: UpdateCustomerPayload) {}
 }
