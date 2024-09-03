@@ -1,6 +1,6 @@
 import RestClient, { HTTPMethod } from "../restClient.ts";
 import type {
-  CreatePayload,
+  CreateCustomerPayload,
   GetCustomersOptions,
   UpdatePayload,
 } from "../types/clients/customer.ts";
@@ -16,7 +16,7 @@ export default class CustomerClient {
     }
   }
 
-  create(payload: CreatePayload) {
+  create(payload: CreateCustomerPayload) {
     return this.client.call("/customer/", HTTPMethod.POST, payload);
   }
 

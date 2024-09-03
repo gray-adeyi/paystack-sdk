@@ -1,7 +1,7 @@
 import type { Country, Identification } from "../../enums.ts";
 import type { PaginationAndDateFilterOptions } from "../global.ts";
 
-export type CreatePayload = {
+export type CreateCustomerPayload = {
   readonly email: string;
   readonly firstName?: string;
   readonly lastName?: string;
