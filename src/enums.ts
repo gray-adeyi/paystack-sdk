@@ -50,3 +50,25 @@ export enum RecipientType {
   MOBILE_MONEY = "mobile_money",
   BASA = "basa",
 }
+
+export enum Channel {
+  CARD = "card",
+  BANK = "bank",
+  USSD = "ussd",
+  QR = "qr",
+  MOBILE_MONEY = "mobile_money",
+  BANK_TRANSFER = "bank_transfer",
+}
+
+export enum Bearer {
+  ACCOUNT = "account",
+  SUB_ACCOUNT = "subaccount",
+  ALL_PROPORTIONAL = "all-proportional",
+  ALL = "all",
+}
+
+export enum TransactionStatus {
+  FAILED = "failed",
+  SUCCESS = "success",
+  ABANDONED = "abandoned",
+}
