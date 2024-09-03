@@ -90,3 +90,8 @@ export enum Schedule {
   MONTHLY = "monthly",
   MANUAL = "manual",
 }
+
+export enum TxSplit {
+  PERCENTAGE = "percentage",
+  FLAT = "flat",
+}
