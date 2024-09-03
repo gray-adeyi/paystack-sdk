@@ -1,8 +1,11 @@
 import RestClient, { HTTPMethod } from "../restClient.ts";
 import type {
   CreateCustomerPayload,
+  deactivatePayload,
+  flagPayload,
   GetCustomersOptions,
   UpdatePayload,
+  ValidatePayload,
 } from "../types/clients/customer.ts";
 
 export default class CustomerClient {
@@ -32,5 +35,15 @@ export default class CustomerClient {
     return this.client.call(`/customer/${code}`, HTTPMethod.PUT, payload);
   }
 
-  validate(emailOrCode: string, payload: UpdatePayload) {}
-}
+  validate(emailOrCode: string, payload: ValidatePayload) {
+    return this.client.call(`/customer/${emailOrCode}`, HTTPMethod.POST, payload);
+  };
+
+  flag (payload: flagPayload) {
+    return this.client.call("/customer/set_risk_action", HTTPMethod.POST, payload);
+  };
+
+  deactivate(payload: deactivatePayload) {
+    return this.client.call("/customer/deactivate_authorization", HTTPMethod.POST, payload);
+  };
+};
