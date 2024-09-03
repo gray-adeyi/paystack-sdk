@@ -27,14 +27,5 @@ export type ValidatePayload = {
   readonly identificationNumber?: string;
   readonly bankCode?: string;
   readonly accountNumber?: string;
-  readonly middleName?: string; 
-};
-
-export type flagPayload = {
-  readonly customer: string;
-  readonly authCode: string;
-};
-
-export type deactivatePayload = {
-  readonly authCode: string;
+  readonly middleName?: string;
 };

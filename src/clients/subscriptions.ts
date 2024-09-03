@@ -1,5 +1,8 @@
 import RestClient, { HTTPMethod } from "../restClient.ts";
-import type { CreateSubscriptionPayload, GetSubscriptionsOptions } from "../types/clients/subscriptions.ts";
+import type {
+  CreateSubscriptionPayload,
+  GetSubscriptionsOptions,
+} from "../types/clients/subscriptions.ts";
 
 export default class SubscriptionClient {
   client: RestClient;
@@ -16,27 +19,39 @@ export default class SubscriptionClient {
     return this.client.call("/subscription", HTTPMethod.POST, payload);
   }
 
-  getSubscriptions(options?: GetSubscriptionsOptions){
-    return this.client.call('/subscription', HTTPMethod.GET,null,options)
+  getSubscriptions(options?: GetSubscriptionsOptions) {
+    return this.client.call("/subscription", HTTPMethod.GET, null, options);
   }
 
-  getSubscription(idOrCode: string){
-    return this.client.call(`/subscription/${idOrCode}`, HTTPMethod.GET)
+  getSubscription(idOrCode: string) {
+    return this.client.call(`/subscription/${idOrCode}`, HTTPMethod.GET);
   }
 
-  enable(code: string, token: string){
-    return this.client.call('/subscription/enable',HTTPMethod.POST,{code,token})
+  enable(code: string, token: string) {
+    return this.client.call("/subscription/enable", HTTPMethod.POST, {
+      code,
+      token,
+    });
   }
 
-  disable(code: string, token: string){
-    return this.client.call('/subscription/disable',HTTPMethod.POST,{code, token})
+  disable(code: string, token: string) {
+    return this.client.call("/subscription/disable", HTTPMethod.POST, {
+      code,
+      token,
+    });
   }
 
-  getUpdateLink(code: string){
-    return this.client.call(`/subscription/${code}/manage/link`, HTTPMethod.GET)
+  getUpdateLink(code: string) {
+    return this.client.call(
+      `/subscription/${code}/manage/link`,
+      HTTPMethod.GET,
+    );
   }
 
-  sendUpdateLink(code: string){
-    return this.client.call(`/subscription/${code}/manage/email/`,HTTPMethod.POST)
+  sendUpdateLink(code: string) {
+    return this.client.call(
+      `/subscription/${code}/manage/email/`,
+      HTTPMethod.POST,
+    );
   }
 }

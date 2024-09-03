@@ -8,6 +8,6 @@ export type CreateSubscriptionPayload = {
 };
 
 export type GetSubscriptionsOptions = PaginationOptions & {
- readonly customer?: string;
- readonly plan?: string;
-}
+  readonly customer?: string;
+  readonly plan?: string;
+};

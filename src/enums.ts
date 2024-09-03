@@ -83,3 +83,9 @@ export enum TerminalEventAction {
   VIEW = "view",
   PRINT = "print",
 }
+
+export enum RiskAction {
+  DEFAULT = "default",
+  WHITELIST = "allow",
+  BLACKLIST = "deny",
+}
