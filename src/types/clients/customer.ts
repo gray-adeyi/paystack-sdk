@@ -11,7 +11,7 @@ export type CreateCustomerPayload = {
 
 export type GetCustomersOptions = PaginationAndDateFilterOptions & {};
 
-export type UpdatePayload = {
+export type UpdateCustomerPayload = {
   readonly firstName?: string;
   readonly lastName?: string;
   readonly phone?: string;

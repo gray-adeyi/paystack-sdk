@@ -84,6 +84,27 @@ export enum TerminalEventAction {
   PRINT = "print",
 }
 
+export enum Schedule {
+  AUTO = "auto",
+  WEEKLY = "weekly",
+  MONTHLY = "monthly",
+  MANUAL = "manual",
+}
+
+export enum TxSplit {
+  PERCENTAGE = "percentage",
+  FLAT = "flat",
+}
+
+export enum Interval {
+  HOURLY = "hourly",
+  DAILY = "daily",
+  WEEKLY = "weekly",
+  MONTHLY = "monthly",
+  QUARTERLY = "quarterly",
+  BIANNUALLY = "biannually",
+  ANNUALLY = "annually",
+}
 export enum RiskAction {
   DEFAULT = "default",
   WHITELIST = "allow",
