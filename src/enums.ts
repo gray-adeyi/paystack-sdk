@@ -83,3 +83,10 @@ export enum TerminalEventAction {
   VIEW = "view",
   PRINT = "print",
 }
+
+export enum Schedule {
+  AUTO = "auto",
+  WEEKLY = "weekly",
+  MONTHLY = "monthly",
+  MANUAL = "manual",
+}
