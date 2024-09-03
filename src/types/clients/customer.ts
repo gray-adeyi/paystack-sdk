@@ -23,4 +23,18 @@ export type ValidatePayload = {
   readonly lastName: string;
   readonly identificationType: Identification;
   readonly country: Country;
+  readonly bvn: string;
+  readonly identificationNumber?: string;
+  readonly bankCode?: string;
+  readonly accountNumber?: string;
+  readonly middleName?: string; 
+};
+
+export type flagPayload = {
+  readonly customer: string;
+  readonly authCode: string;
+};
+
+export type deactivatePayload = {
+  readonly authCode: string;
 };
