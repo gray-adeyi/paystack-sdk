@@ -1,8 +1,10 @@
+import type { RiskAction } from "../enums.ts";
 import RestClient, { HTTPMethod } from "../restClient.ts";
 import type {
   CreateCustomerPayload,
   GetCustomersOptions,
   UpdateCustomerPayload,
+  ValidatePayload,
 } from "../types/clients/customer.ts";
 
 export default class CustomerClient {
@@ -32,5 +34,26 @@ export default class CustomerClient {
     return this.client.call(`/customer/${code}`, HTTPMethod.PUT, payload);
   }
 
-  validate(emailOrCode: string, payload: UpdateCustomerPayload) {}
+  validate(emailOrCode: string, payload: ValidatePayload) {
+    return this.client.call(
+      `/customer/${emailOrCode}/identification`,
+      HTTPMethod.POST,
+      payload,
+    );
+  }
+
+  flag(customer: string, riskAction: RiskAction) {
+    return this.client.call("/customer/set_risk_action", HTTPMethod.POST, {
+      customer,
+      riskAction,
+    });
+  }
+
+  deactivate(authCode: string) {
+    return this.client.call(
+      "/customer/deactivate_authorization",
+      HTTPMethod.POST,
+      { authCode },
+    );
+  }
 }

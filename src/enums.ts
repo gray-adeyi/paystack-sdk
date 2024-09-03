@@ -105,3 +105,8 @@ export enum Interval {
   BIANNUALLY = "biannually",
   ANNUALLY = "annually",
 }
+export enum RiskAction {
+  DEFAULT = "default",
+  WHITELIST = "allow",
+  BLACKLIST = "deny",
+}
