@@ -8,7 +8,7 @@ export type Recipient = {
   readonly bankCode?: string;
 };
 
-export type CreatePayload = Recipient & {
+export type CreateTransferRecipientPayload = Recipient & {
   readonly description?: string;
   readonly currency?: Currency;
   readonly authCode?: string;
