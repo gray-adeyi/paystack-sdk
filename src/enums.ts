@@ -72,3 +72,14 @@ export enum TransactionStatus {
   SUCCESS = "success",
   ABANDONED = "abandoned",
 }
+
+export enum TerminalEvent {
+  TRANSACTION = "transaction",
+  INVOICE = "invoice",
+}
+
+export enum TerminalEventAction {
+  PROCESS = "process",
+  VIEW = "view",
+  PRINT = "print",
+}
