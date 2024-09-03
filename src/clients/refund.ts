@@ -1,5 +1,8 @@
 import RestClient, { HTTPMethod } from "../restClient.ts";
-import type { CreateRefundPayload, GetRefundsOptions } from "../types/clients/refund.ts";
+import type {
+  CreateRefundPayload,
+  GetRefundsOptions,
+} from "../types/clients/refund.ts";
 
 export default class RefundClient {
   client: RestClient;
@@ -12,15 +15,15 @@ export default class RefundClient {
     }
   }
 
-  create(payload: CreateRefundPayload){
-    return this.client.call('/refund',HTTPMethod.POST,payload)
+  create(payload: CreateRefundPayload) {
+    return this.client.call("/refund", HTTPMethod.POST, payload);
   }
 
-  getRefunds(options: GetRefundsOptions){
-    return this.client.call('/refund',HTTPMethod.GET,null,options)
+  getRefunds(options: GetRefundsOptions) {
+    return this.client.call("/refund", HTTPMethod.GET, null, options);
   }
 
-  getRefund(reference: string){
-    return this.client.call(`/refund/${reference}`, HTTPMethod.GET)
+  getRefund(reference: string) {
+    return this.client.call(`/refund/${reference}`, HTTPMethod.GET);
   }
 }

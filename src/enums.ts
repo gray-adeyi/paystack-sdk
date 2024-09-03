@@ -95,3 +95,13 @@ export enum TxSplit {
   PERCENTAGE = "percentage",
   FLAT = "flat",
 }
+
+export enum Interval {
+  HOURLY = "hourly",
+  DAILY = "daily",
+  WEEKLY = "weekly",
+  MONTHLY = "monthly",
+  QUARTERLY = "quarterly",
+  BIANNUALLY = "biannually",
+  ANNUALLY = "annually",
+}

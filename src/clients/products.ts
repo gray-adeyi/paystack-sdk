@@ -1,5 +1,8 @@
 import RestClient, { HTTPMethod } from "../restClient.ts";
-import type { CreateProductPayload, GetProductsOptions } from "../types/clients/products.ts";
+import type {
+  CreateProductPayload,
+  GetProductsOptions,
+} from "../types/clients/products.ts";
 
 export default class ProductClient {
   client: RestClient;
@@ -12,20 +15,19 @@ export default class ProductClient {
     }
   }
 
-  create(payload: CreateProductPayload){
-    return this.client.call('/product',HTTPMethod.POST,payload)
+  create(payload: CreateProductPayload) {
+    return this.client.call("/product", HTTPMethod.POST, payload);
   }
 
-  getProducts(options?: GetProductsOptions){
-    return this.client.call('/product',HTTPMethod.GET,null,options)
+  getProducts(options?: GetProductsOptions) {
+    return this.client.call("/product", HTTPMethod.GET, null, options);
   }
 
-  getProduct(id: string){
-    return this.client.call(`/product/${id}`,HTTPMethod.GET)
+  getProduct(id: string) {
+    return this.client.call(`/product/${id}`, HTTPMethod.GET);
   }
 
-  update(id: string, payload: CreateProductPayload){
-    return this.client.call(`/product/${id}`, HTTPMethod.PUT,payload)
+  update(id: string, payload: CreateProductPayload) {
+    return this.client.call(`/product/${id}`, HTTPMethod.PUT, payload);
   }
 }
-
