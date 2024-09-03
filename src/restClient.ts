@@ -42,11 +42,12 @@ export default class RestClient {
     );
   }
 
-  // deno-lint-ignore no-explicit-any
   async call(
     endpoint: string,
     method: HTTPMethod,
+    // deno-lint-ignore no-explicit-any
     data?: any,
+    // deno-lint-ignore no-explicit-any
     params?: Record<string, any>,
   ) {
     const handler = this.getMethodHandler(method);

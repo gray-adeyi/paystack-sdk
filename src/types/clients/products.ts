@@ -1,5 +1,5 @@
 import type { Currency } from "../../enums.ts";
-import { PaginationAndDateFilterOptions } from "../global.ts";
+import type { PaginationAndDateFilterOptions } from "../global.ts";
 
 export type CreateProductPayload = {
   readonly name: string;

@@ -6,15 +6,17 @@ export type CreateCustomerPayload = {
   readonly firstName?: string;
   readonly lastName?: string;
   readonly phone?: string;
+  // deno-lint-ignore no-explicit-any
   readonly metadata?: Record<string, any>;
 };
 
-export type GetCustomersOptions = PaginationAndDateFilterOptions & {};
+export type GetCustomersOptions = PaginationAndDateFilterOptions;
 
 export type UpdateCustomerPayload = {
   readonly firstName?: string;
   readonly lastName?: string;
   readonly phone?: string;
+  // deno-lint-ignore no-explicit-any
   readonly metadata?: Record<string, any>;
 };
 

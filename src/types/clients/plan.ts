@@ -1,5 +1,5 @@
 import type { Currency, Interval, Status } from "../../enums.ts";
-import { PaginationOptions } from "../global.ts";
+import type { PaginationOptions } from "../global.ts";
 
 export type CreatePlanPayload = {
   readonly name: string;

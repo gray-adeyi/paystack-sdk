@@ -4,6 +4,4 @@ export type GetSettlementsOptions = PaginationAndDateFilterOptions & {
   readonly subaccount?: string;
 };
 
-export type GetSettlementTransactionsOptions =
-  & PaginationAndDateFilterOptions
-  & {};
+export type GetSettlementTransactionsOptions = PaginationAndDateFilterOptions;

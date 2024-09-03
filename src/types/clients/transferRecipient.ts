@@ -16,4 +16,4 @@ export type CreateTransferRecipientPayload = Recipient & {
   readonly metadata?: Record<string, any>;
 };
 
-export type GetTransferRecipientsOptions = PaginationAndDateFilterOptions & {};
+export type GetTransferRecipientsOptions = PaginationAndDateFilterOptions;

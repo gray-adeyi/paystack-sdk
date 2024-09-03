@@ -1,5 +1,5 @@
-import { Status } from "../../enums.ts";
-import { PaginationAndDateFilterOptions } from "../global.ts";
+import type { Status } from "../../enums.ts";
+import type { PaginationAndDateFilterOptions } from "../global.ts";
 
 export type BulkChargeInstruction = {
   readonly authorization: string;
@@ -7,7 +7,7 @@ export type BulkChargeInstruction = {
   readonly reference: string;
 };
 
-export type GetBatchesOptions = PaginationAndDateFilterOptions & {};
+export type GetBatchesOptions = PaginationAndDateFilterOptions;
 
 export type GetChargesInBatchOptions = PaginationAndDateFilterOptions & {
   readonly status: Status;
