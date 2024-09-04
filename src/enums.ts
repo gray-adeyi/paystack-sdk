@@ -110,3 +110,13 @@ export enum RiskAction {
   WHITELIST = "allow",
   BLACKLIST = "deny",
 }
+
+export enum Gateway {
+  EMANDATE = "emandate",
+  DIGITALBANKMANDATE = "digitalbankmandate",
+}
+
+export enum BankType {
+  GHIPPS = "ghipps",
+  MOBILE_MONEY = "mobile_money",
+}

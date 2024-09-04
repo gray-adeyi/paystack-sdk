@@ -32,11 +32,14 @@ export default class PaymentPageClient {
     return this.client.call(`/page/${idOrSlug}`, HTTPMethod.PUT, payload);
   }
 
-  checkSlugAvailable(slug: string){
-    return this.client.call(`/page/check_slug_availability/${slug}`, HTTPMethod.GET)
+  checkSlugAvailable(slug: string) {
+    return this.client.call(
+      `/page/check_slug_availability/${slug}`,
+      HTTPMethod.GET,
+    );
   }
 
-  addProducts(id: string, products: string[]){
-    return this.client.call(`/page/${id}/product`,HTTPMethod.POST, products)
+  addProducts(id: string, products: string[]) {
+    return this.client.call(`/page/${id}/product`, HTTPMethod.POST, products);
   }
 }
