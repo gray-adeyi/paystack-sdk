@@ -89,3 +89,15 @@ export enum RiskAction {
   WHITELIST = "allow",
   BLACKLIST = "deny",
 }
+
+export enum DisputeStatus {
+  PENDING = "pending",
+  RESOLVED = "resolved",
+  AWAITING_BANK_FEEDBACK = "awaiting-bank-feedback",
+  AWAITING_MERCHANT_FEEDBACK = "awaiting-merchant-feedback",
+}
+
+export enum Resolution {
+  MERCHANT_ACCEPTED = "merchant-accepted",
+  DECLINED = "declined",
+}
