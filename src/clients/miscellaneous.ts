@@ -1,6 +1,6 @@
-import { Country } from "../enums.ts";
+import type { Country } from "../enums.ts";
 import RestClient, { HTTPMethod } from "../restClient.ts";
-import { GetBanksOptions } from "../types/clients/miscellaneous.ts";
+import type { GetBanksOptions } from "../types/clients/miscellaneous.ts";
 
 export default class MiscellaneousClient {
   client: RestClient;
