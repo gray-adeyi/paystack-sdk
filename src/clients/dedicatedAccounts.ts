@@ -1,87 +1,90 @@
 import RestClient, { HTTPMethod } from "../restClient.ts";
-import type { 
-    assignPayload, 
-    createPayload,
-    removeSplitPayload,
-    requeryPayload,
-    splitPayload, 
+import type {
+  AssignDedicatedAccountPayload,
+  CreateDedicatedAccountPayload,
+  GetDedicatedAccountsOptions,
+  SplitPayload,
 } from "../types/clients/dedicatedAccounts.ts";
 
-export default class dedicatedAccountsClient {
-    client: RestClient;
+export default class DedicatedAccountClient {
+  client: RestClient;
 
-    constructor(secretKey?: string, client?: RestClient) {
-        if (client) {
-          this.client = client;
-        } else {
-          this.client = new RestClient(secretKey);
-        }
-    };
+  constructor(secretKey?: string, client?: RestClient) {
+    if (client) {
+      this.client = client;
+    } else {
+      this.client = new RestClient(secretKey);
+    }
+  }
 
-    create(payload: createPayload) {
-        return this.client.call(
-            "/dedicated_account",
-            HTTPMethod.POST,
-            payload,
-        );
-    };
+  create(payload: CreateDedicatedAccountPayload) {
+    return this.client.call(
+      "/dedicated_account",
+      HTTPMethod.POST,
+      payload,
+    );
+  }
 
-    assign(payload: assignPayload) {
-        return this.client.call (
-            "/dedicated_account/assign",
-            HTTPMethod.POST,
-            payload,
-        );
-    };
+  assign(payload: AssignDedicatedAccountPayload) {
+    return this.client.call(
+      "/dedicated_account/assign",
+      HTTPMethod.POST,
+      payload,
+    );
+  }
 
-    getDedicatedAccounts(active?: boolean) {
-        return this.client.call (
-            `dedicated_account?active=${active}`,
-            HTTPMethod.GET,
-        );
-    };
+  getDedicatedAccounts(options: GetDedicatedAccountsOptions) {
+    return this.client.call(
+      "/dedicated_account",
+      HTTPMethod.GET,
+      null,
+      options,
+    );
+  }
 
-    getDedicatedAccount(dedicatedAccountId: number) {
-        return this.client.call(
-            `/dedicated_account/${dedicatedAccountId}`,
-            HTTPMethod.GET
-        );
-    };
+  getDedicatedAccount(dedicatedAccountId: string) {
+    return this.client.call(
+      `/dedicated_account/${dedicatedAccountId}`,
+      HTTPMethod.GET,
+    );
+  }
 
-    requery(accountNumber: string) {
-        return this.client.call(
-            `dedicated_account?account_number=${accountNumber}`,
-            HTTPMethod.GET,
-        );
-    };
+  requery(accountNumber: string, providerSlug: string, date?: string) {
+    return this.client.call(
+      "dedicated_account",
+      HTTPMethod.GET,
+      null,
+      { accountNumber, providerSlug, date },
+    );
+  }
 
-    deactivate(dedicatedAccountId: number) {
-        return this.client.call(
-            `dedicated_account/${dedicatedAccountId}`,
-            HTTPMethod.DELETE,
-        );
-    };
+  deactivate(dedicatedAccountId: string) {
+    return this.client.call(
+      `dedicated_account/${dedicatedAccountId}`,
+      HTTPMethod.DELETE,
+    );
+  }
 
-    split(payload: splitPayload) {
-        return this.client.call(
-            "/dedicated_account/split",
-            HTTPMethod.POST,
-            payload,
-        );
-    };
-    
-    removeSplit(payload: removeSplitPayload) {
-        return this.client.call(
-            "/dedicated_account/split",
-            HTTPMethod.DELETE,
-            payload,
-        );
-    };
+  split(payload: SplitPayload) {
+    return this.client.call(
+      "/dedicated_account/split",
+      HTTPMethod.POST,
+      payload,
+    );
+  }
 
-    getProviders() {
-        return this.client.call(
-            "/dedicated_account/available_providers",
-            HTTPMethod.GET,
-        );
-    };
-};
+  removeSplit(accountNumber: string) {
+    return this.client.call(
+      "/dedicated_account/split",
+      HTTPMethod.DELETE,
+      { accountNumber },
+    );
+  }
+
+  getProviders() {
+    return this.client.call(
+      "/dedicated_account/available_providers",
+      HTTPMethod.GET,
+    );
+  }
+}

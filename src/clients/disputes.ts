@@ -1,5 +1,5 @@
 import RestClient, { HTTPMethod } from "../restClient.ts";
-import {
+import type {
   AddEvidencePayload,
   ExportDisputesOptions,
   GetDisputesOptions,
