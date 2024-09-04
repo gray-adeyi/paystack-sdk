@@ -1,6 +1,6 @@
 import RestClient, { HTTPMethod } from "../restClient.ts";
 import type {
-  CreatePayload,
+  CreateTransferRecipientPayload,
   GetTransferRecipientsOptions,
   Recipient,
 } from "../types/clients/transferRecipient.ts";
@@ -16,7 +16,7 @@ export default class TransferRecipientClient {
     }
   }
 
-  create(payload: CreatePayload) {
+  create(payload: CreateTransferRecipientPayload) {
     return this.client.call("/transferrecipient", HTTPMethod.POST, payload);
   }
 

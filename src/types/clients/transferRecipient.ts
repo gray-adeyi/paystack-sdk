@@ -8,7 +8,7 @@ export type Recipient = {
   readonly bankCode?: string;
 };
 
-export type CreatePayload = Recipient & {
+export type CreateTransferRecipientPayload = Recipient & {
   readonly description?: string;
   readonly currency?: Currency;
   readonly authCode?: string;
@@ -16,4 +16,4 @@ export type CreatePayload = Recipient & {
   readonly metadata?: Record<string, any>;
 };
 
-export type GetTransferRecipientsOptions = PaginationAndDateFilterOptions & {};
+export type GetTransferRecipientsOptions = PaginationAndDateFilterOptions;

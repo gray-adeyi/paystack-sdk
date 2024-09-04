@@ -84,10 +84,43 @@ export enum TerminalEventAction {
   PRINT = "print",
 }
 
+export enum Schedule {
+  AUTO = "auto",
+  WEEKLY = "weekly",
+  MONTHLY = "monthly",
+  MANUAL = "manual",
+}
+
+export enum TxSplit {
+  PERCENTAGE = "percentage",
+  FLAT = "flat",
+}
+
+export enum Interval {
+  HOURLY = "hourly",
+  DAILY = "daily",
+  WEEKLY = "weekly",
+  MONTHLY = "monthly",
+  QUARTERLY = "quarterly",
+  BIANNUALLY = "biannually",
+  ANNUALLY = "annually",
+}
 export enum RiskAction {
   DEFAULT = "default",
   WHITELIST = "allow",
   BLACKLIST = "deny",
+}
+
+
+
+export enum Gateway {
+  EMANDATE = "emandate",
+  DIGITALBANKMANDATE = "digitalbankmandate",
+}
+
+export enum BankType {
+  GHIPPS = "ghipps",
+  MOBILE_MONEY = "mobile_money",
 }
 
 export enum DisputeStatus {

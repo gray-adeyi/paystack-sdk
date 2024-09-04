@@ -2,6 +2,7 @@ export type PaystackResponse = {
   readonly statusCode: number;
   readonly status: boolean;
   readonly message: string;
+  // deno-lint-ignore no-explicit-any
   readonly data: Record<string, any> | Record<string, any>[] | null;
 };
 
