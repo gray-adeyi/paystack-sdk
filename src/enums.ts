@@ -120,3 +120,15 @@ export enum BankType {
   GHIPPS = "ghipps",
   MOBILE_MONEY = "mobile_money",
 }
+
+export enum DisputeStatus {
+  PENDING = "pending",
+  RESOLVED = "resolved",
+  AWAITING_BANK_FEEDBACK = "awaiting-bank-feedback",
+  AWAITING_MERCHANT_FEEDBACK = "awaiting-merchant-feedback",
+}
+
+export enum Resolution {
+  MERCHANT_ACCEPTED = "merchant-accepted",
+  DECLINED = "declined",
+}

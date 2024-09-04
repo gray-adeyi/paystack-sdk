@@ -11,11 +11,18 @@ export default class IntegrationClient {
     }
   }
 
-  getPaymentSessionTimeout(){
-    return this.client.call('/integration/payment_session_timeout', HTTPMethod.GET)
+  getPaymentSessionTimeout() {
+    return this.client.call(
+      "/integration/payment_session_timeout",
+      HTTPMethod.GET,
+    );
   }
 
-  updatePaymentSessionTimeout(timeout: number){
-    return this.client.call('/integration/payment_session_timeout', HTTPMethod.PUT, {timeout})
+  updatePaymentSessionTimeout(timeout: number) {
+    return this.client.call(
+      "/integration/payment_session_timeout",
+      HTTPMethod.PUT,
+      { timeout },
+    );
   }
 }
