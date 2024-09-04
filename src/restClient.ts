@@ -105,7 +105,6 @@ export default class RestClient {
   ) {
     config.data = RestClient.camelToSnakeCaseTransformer(config.data);
     config.params = RestClient.camelToSnakeCaseTransformer(config.params);
-    console.log(config);
     return config;
   }
 
