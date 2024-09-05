@@ -4,7 +4,7 @@ import type { GetBanksOptions } from "../types/clients/miscellaneous.ts";
 import { PaystackResponse } from "../types/global.ts";
 
 /**
- * MiscellaneousClient provides methods tha lets you interface with Paystack's
+ * MiscellaneousClient provides methods that lets you interface with Paystack's
  * Miscellaneous API are supporting APIs that can be used to provide more
  * details to other APIs. https://paystack.com/docs/api/miscellaneous/
  */
