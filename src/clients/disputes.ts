@@ -5,7 +5,7 @@ import type {
   GetDisputesOptions,
   ResolveDisputePayload,
 } from "../types/clients/disputes.ts";
-import { PaystackResponse } from "../types/global.ts";
+import type { PaystackResponse } from "../types/global.ts";
 
 /**
  * DisputeClient provides methods that lets you interface with Paystack's
