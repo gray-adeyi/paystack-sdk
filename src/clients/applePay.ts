@@ -1,9 +1,24 @@
 import RestClient, { HTTPMethod } from "../restClient.ts";
-import { GetDomainsOptions } from "../types/clients/applePay.ts";
+import type { GetDomainsOptions } from "../types/clients/applePay.ts";
+import type { PaystackResponse } from "../types/global.ts";
 
+/**
+ * ApplePayClient provides methods that lets you interface with Paystack's
+ * ApplePay API which allows you to register your application's top-level domain or subdomain.
+ * see https://paystack.com/docs/api/apple-pay/
+ *
+ * @remark This feature is available to businesses in all markets except South Africa.
+ */
 export default class ApplePayClient {
-  client: RestClient;
+  private client: RestClient;
 
+  /**
+   * @constructor Instantiate an ApplePayClient
+   *
+   * @param secretKey - Your paystack integration secret key.
+   * @param client - A custom rest client to use for making api calls to paystack's instead
+   * of creating a new one with the secretKey
+   */
   constructor(secretKey?: string, client?: RestClient) {
     if (client) {
       this.client = client;
@@ -12,17 +27,44 @@ export default class ApplePayClient {
     }
   }
 
-  registerDomain(domainName: string) {
+  /**
+   * Register a top-level domain or subdomain for your Apple Pay integration.
+   *
+   * @remarks This feature is available to businesses in all markets except South Africa.
+   * This method can only be called with one domain or subdomain at a time.
+   *
+   * @param domainName : Domain name to be registered.
+   *
+   * @returns A promise containing a {@link PaystackResponse}
+   */
+  registerDomain(domainName: string): Promise<PaystackResponse> {
     return this.client.call("/apple-pay/domain", HTTPMethod.POST, {
       domainName,
     });
   }
 
-  getDomains(options?: GetDomainsOptions) {
+  /**
+   * Fetch all registered domains on your integration.
+   *
+   * @remarks This feature is available to businesses in all markets except South Africa.
+   *
+   * @param options : {@link GetDomainsOptions} let's you customize the data in the response to
+   * be returned.
+   * @returns A promise containing a {@link PaystackResponse}
+   */
+  getDomains(options?: GetDomainsOptions): Promise<PaystackResponse> {
     return this.client.call("/apple-pay/domain", HTTPMethod.GET, null, options);
   }
 
-  unregisterDomain(domainName: string) {
+  /**
+   * Unregister a top-level domain or subdomain previously used for Apple Pay integration.
+   *
+   * @remark This feature is available to businesses in all markets except South Africa.
+   *
+   * @param domainName : The domain name to be unregistered.
+   * @returns A promise containing a {@link PaystackResponse}
+   */
+  unregisterDomain(domainName: string): Promise<PaystackResponse> {
     return this.client.call("/apple-pay/domain", HTTPMethod.DELETE, {
       domainName,
     });
