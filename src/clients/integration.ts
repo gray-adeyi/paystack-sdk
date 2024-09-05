@@ -10,7 +10,7 @@ export default class IntegrationClient {
   private client: RestClient;
 
   /**
-   * @constructor Instantiate a CustomerClient
+   * @constructor Instantiate a IntegrationClient
    *
    * @param secretKey - Your paystack integration secret key.
    * @param client - A custom rest client to use for making api calls to paystack's instead
