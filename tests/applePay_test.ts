@@ -15,8 +15,8 @@ describe("PaystackClient.applePay", () => {
   it("PaystackClient.applePay.getDomains", async () => {
     const response = await client.applePay.getDomains();
     assertEquals(response.statusCode, 200);
-    assertEquals(response.message,'Apple Pay registered domains retrieved')
-    assertEquals(response.data,{domainNames:[]})
+    assertEquals(response.message, "Apple Pay registered domains retrieved");
+    assertEquals(response.data, { domainNames: [] });
   });
   it("PaystackClient.applePay.unregisterDomain", () => {});
 });

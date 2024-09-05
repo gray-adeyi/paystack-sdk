@@ -17,7 +17,7 @@ export type ChargePayload = {
   readonly deviceId?: string;
 };
 
-export type SetAddressPayload = {
+export type SubmitAddressPayload = {
   readonly address: string;
   readonly reference: string;
   readonly city: string;
