@@ -12,7 +12,7 @@ import type { PaystackResponse } from "../types/global.ts";
  * payments from your customers. https://paystack.com/docs/api/bulk-charge/
  */
 export default class BulkChargeClient {
-  client: RestClient;
+  private client: RestClient;
 
   /**
    * @constructor Instantiate a BulkChargeClient
