@@ -17,7 +17,7 @@ export default class CustomerClient {
   private client: RestClient;
 
   /**
-   * @constructor Instantiate a BulkChargeClient
+   * @constructor Instantiate a CustomerClient
    *
    * @param secretKey - Your paystack integration secret key.
    * @param client - A custom rest client to use for making api calls to paystack's instead
