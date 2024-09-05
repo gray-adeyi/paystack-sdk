@@ -3,7 +3,7 @@ import type {
   CreateRefundPayload,
   GetRefundsOptions,
 } from "../types/clients/refund.ts";
-import { PaystackResponse } from "../types/global.ts";
+import type { PaystackResponse } from "../types/global.ts";
 
 /**
  * RefundClient provides methods that lets you interface with Paystack's
@@ -11,7 +11,7 @@ import { PaystackResponse } from "../types/global.ts";
     https://paystack.com/docs/api/refund/
  */
 export default class RefundClient {
-  client: RestClient;
+  private client: RestClient;
 
   /**
    * @constructor Instantiate a RefundClient
