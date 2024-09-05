@@ -9,7 +9,7 @@ import type { PaystackResponse } from "../types/global.ts";
 export default class IntegrationClient {
   private client: RestClient;
 
-/**
+  /**
    * @constructor Instantiate a CustomerClient
    *
    * @param secretKey - Your paystack integration secret key.
@@ -26,8 +26,8 @@ export default class IntegrationClient {
 
   /**
    * Fetch the payment session timeout on your integration
-   * 
-   * @returns A promise containing a {@link PaystackResponse}  
+   *
+   * @returns A promise containing a {@link PaystackResponse}
    */
   getPaymentSessionTimeout(): Promise<PaystackResponse> {
     return this.client.call(
@@ -38,8 +38,8 @@ export default class IntegrationClient {
 
   /**
    * Update the payment session timeout on your integration
-   * 
-   * @param timeout : Time before stopping session (in seconds). Set to 0 to 
+   *
+   * @param timeout : Time before stopping session (in seconds). Set to 0 to
    * cancel session timeouts
    * @returns A promise containing a {@link PaystackResponse}
    */
