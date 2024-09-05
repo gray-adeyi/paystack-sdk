@@ -1,7 +1,7 @@
 import type { Country } from "../enums.ts";
 import RestClient, { HTTPMethod } from "../restClient.ts";
 import type { GetBanksOptions } from "../types/clients/miscellaneous.ts";
-import { PaystackResponse } from "../types/global.ts";
+import type { PaystackResponse } from "../types/global.ts";
 
 /**
  * MiscellaneousClient provides methods that lets you interface with Paystack's
