@@ -10,4 +10,14 @@ describe("PaystackClient.bulkCharges", () => {
   });
 
   it("PaystackClient.bulkCharges.initiate", () => {});
+
+  it("PaystackClient.bulkCharges.getBatches", () => {});
+
+  it("PaystackClient.bulkCharges.getBatch", () => {});
+
+  it("PaystackClient.bulkCharges.getChargesInBatch", () => {});
+
+  it("PaystackClient.bulkCharges.pauseBatch", () => {});
+
+  it("PaystackClient.bulkCharges.resumeBatch", () => {});
 });
