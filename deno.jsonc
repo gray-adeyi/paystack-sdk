@@ -2,17 +2,20 @@
   "name": "@gray-adeyi/paystack-sdk",
   "description": "A paystack client SDK for the javascript runtime.",
   "version": "0.1.0",
-  "author":"Gbenga Adeyi <adeyigbenga005@gmail.com>",
+  "author": "Gbenga Adeyi <adeyigbenga005@gmail.com>",
   "exports": "./mod.ts",
   "license": "MIT",
   "imports": {
+    "@deno/dnt": "jsr:@deno/dnt@^0.41.3",
     "axios": "npm:axios@^1.7.6",
     "lodash-es": "npm:lodash-es@^4.17.21"
   },
-  "keywords":["paystack"],
+  "keywords": [
+    "paystack"
+  ],
   "homepage": "https://gray-adeyi.github.io/paystack-sdk",
-  "repository":{
-    "type":"git",
-    "url":"https://github.com/gray-adeyi/paystack-sdk"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gray-adeyi/paystack-sdk"
   }
 }
