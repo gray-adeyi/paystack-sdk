@@ -20,7 +20,7 @@ npm i @gray-adeyi/paystack-sdk
 
 ```bash
 
-yarn i @gray-adeyi/paystack-sdk
+yarn add @gray-adeyi/paystack-sdk
 ```
 
 #### **Pnpm**
