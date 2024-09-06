@@ -47,7 +47,7 @@ deno add @gray-adeyi/paystack-sdk
 
 ## Usage
 
-`PaystackClient` from the `@gray-adeyi/paystack-sdk` package provides all that you need to interface with paystack in you Js/Ts project. it provides
+`PaystackClient` from the `@gray-adeyi/paystack-sdk` package provides all that you need to interface with paystack in your JS/TS project. it provides
 properties to other clients that models how the offical [paystack api reference](https://paystack.com/docs/api/) is structured. i.e. `PaystackClient.miscellaneous` provides
 methods to match all endpoints in [https://paystack.com/docs/api/miscellaneous/](https://paystack.com/docs/api/miscellaneous/). so `PaystackClient.miscellaneous.getBanks` mirrors the [List Banks](https://paystack.com/docs/api/miscellaneous/#bank) endpoint. All client methods return a promise containing a `PaystackResponse` which is essentially an
 object containing the following as it's properties. `statusCode`,`status`,
