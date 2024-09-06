@@ -55,7 +55,10 @@ object containing the following as it's properties. `statusCode`,`status`,
 snake case to camelCase for a more friendly experience.
 
 ```ts
-import {PaystackClient,Country, type ChargePayload, type PaystackResponse} from '@gray-adeyi/pastack-sdk'
+import {
+    PaystackClient,Country, 
+    type ChargePayload, 
+    type PaystackResponse} from '@gray-adeyi/pastack-sdk'
 
 // assumes your PAYSTACK_SECRET_KEY is set in your environmental
 // variables. Your secret key can be passed in explicitly on the
