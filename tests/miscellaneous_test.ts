@@ -11,11 +11,13 @@ describe("PaystackClient.miscellaneous", () => {
     client = new PaystackClient();
   });
 
-  it("PaystackClient.miscellaneous.getBanks",async () => {
-    const response = await client.miscellaneous.getBanks({country: Country.COTE_D_IVOIRE})
-    assertEquals(response.statusCode,200)
-    assertEquals(response.status,true)
-    assertEquals(response.message,'Banks retrieved')
+  it("PaystackClient.miscellaneous.getBanks", async () => {
+    const response = await client.miscellaneous.getBanks({
+      country: Country.COTE_D_IVOIRE,
+    });
+    assertEquals(response.statusCode, 200);
+    assertEquals(response.status, true);
+    assertEquals(response.message, "Banks retrieved");
   });
 
   it("PaystackClient.miscellaneous.getCountries", () => {});
