@@ -57,7 +57,11 @@ snake case to camelCase for a more friendly experience.
 ```ts
 import {PaystackClient,Country, type ChargePayload, type PaystackResponse} from '@gray-adeyi/pastack-sdk'
 
-const client = new PaystackClient(); // assumes your PAYSTACK_SECRET_KEY is set in your environmental variables. Your secret key can be passed in explicitly on the instantiation with overrides the secret key set in the environmental variables.
+// assumes your PAYSTACK_SECRET_KEY is set in your environmental
+// variables. Your secret key can be passed in explicitly on the
+// instantiation with overrides the secret key set in the environmental
+// variables.
+const client = new PaystackClient();
 client.miscellaneous.getBanks({country: Country.NIGERIA }).then((response: PaystackResponse) => {
     console.log(`The response status code is ${response.statusCode}`);
     console.log(`The response status is ${response.status}`);
