@@ -1,7 +1,7 @@
 import type { Currency } from "../../enums.ts";
 import type { PaginationAndDateFilterOptions } from "../global.ts";
 
-export type InitiatePayload = {
+export type InitiateTransferPayload = {
   readonly amount: number;
   readonly recipient: string;
   readonly reason?: string;
