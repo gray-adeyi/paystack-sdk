@@ -82,7 +82,7 @@ client.charge.charge(payload).then((response: PaystackResponse) => {
 });
 ```
 
-See the Project's [Documentation](https://gray-adeyi.gitbhub.io/paystack-sdk) for more
+See the Project's [Documentation](https://gray-adeyi.github.io/paystack-sdk) for more
 
 ## Limitations
 
