@@ -7,7 +7,7 @@ describe("PaystackClient.applePay", () => {
   let client: PaystackClient;
 
   beforeAll(async () => {
-    await load({ envPath: "./.env", export: true });
+    await load({ envPath: "../.env", export: true });
     client = new PaystackClient();
   });
 
