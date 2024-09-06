@@ -62,7 +62,7 @@ export default class RestClient {
 
   private get baseHeaders() {
     return {
-      "User-Agent": "@gray-adeyi/paystack-sdk 0.1.0",
+      "User-Agent": "@gray-adeyi/paystack-sdk 0.1.1",
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: "",
@@ -116,13 +116,13 @@ export default class RestClient {
   // deno-lint-ignore no-explicit-any
   static camelToSnakeCaseTransformer(data: any): any {
     if (Array.isArray(data)) {
-      return data.map(this.camelToSnakeCaseTransformer);
+      return data.map(RestClient.camelToSnakeCaseTransformer);
     } else if (data !== null && typeof data === "object") {
       // deno-lint-ignore no-explicit-any
       return Object.keys(data).reduce((acc: Record<string, any>, key) => {
         const skipKey = IGNORE_KEYS.includes(key);
         const snakeKey: string = skipKey ? key : snakeCase(key);
-        acc[snakeKey] = this.camelToSnakeCaseTransformer(data[key]);
+        acc[snakeKey] = RestClient.camelToSnakeCaseTransformer(data[key]);
         return acc;
       }, {});
     }
@@ -132,13 +132,13 @@ export default class RestClient {
   // deno-lint-ignore no-explicit-any
   static snakeToCamelCaseTransformer(data: any): any {
     if (Array.isArray(data)) {
-      return data.map(this.snakeToCamelCaseTransformer);
+      return data.map(RestClient.snakeToCamelCaseTransformer);
     } else if (data !== null && typeof data === "object") {
       // deno-lint-ignore no-explicit-any
       return Object.keys(data).reduce((acc: Record<string, any>, key) => {
         const skipKey = IGNORE_KEYS.includes(key);
         const camelKey = skipKey ? key : camelCase(key);
-        acc[camelKey] = this.snakeToCamelCaseTransformer(data[key]);
+        acc[camelKey] = RestClient.snakeToCamelCaseTransformer(data[key]);
         return acc;
       }, {});
     }
