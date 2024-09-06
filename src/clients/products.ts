@@ -47,7 +47,7 @@ export default class ProductClient {
    * the response.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getProducts(options?: GetProductsOptions) {
+  getProducts(options?: GetProductsOptions):Promise<PaystackResponse> {
     return this.client.call("/product", HTTPMethod.GET, null, options);
   }
 
@@ -58,7 +58,7 @@ export default class ProductClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getProduct(id: string) {
+  getProduct(id: string): Promise<PaystackResponse> {
     return this.client.call(`/product/${id}`, HTTPMethod.GET);
   }
 
@@ -68,7 +68,7 @@ export default class ProductClient {
    * the product.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  update(id: string, payload: UpdateProductPayload) {
+  update(id: string, payload: UpdateProductPayload):Promise<PaystackResponse> {
     return this.client.call(`/product/${id}`, HTTPMethod.PUT, payload);
   }
 }

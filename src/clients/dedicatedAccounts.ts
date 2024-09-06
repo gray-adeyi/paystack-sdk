@@ -154,7 +154,7 @@ export default class DedicatedAccountClient {
    * @param payload : {@link SplitPayload}
    * @returns A promise containing a {@link PaystackResponse}
    */
-  split(payload: SplitPayload) {
+  split(payload: SplitPayload): Promise<PaystackResponse> {
     return this.client.call(
       "/dedicated_account/split",
       HTTPMethod.POST,

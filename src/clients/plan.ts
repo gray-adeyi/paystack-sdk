@@ -59,7 +59,7 @@ export default class PlanClient {
    * @param idOrCode : The plan ID or code.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getPlan(idOrCode: string) {
+  getPlan(idOrCode: string): Promise<PaystackResponse> {
     return this.client.call(`/plan/${idOrCode}`, HTTPMethod.GET);
   }
 
@@ -71,7 +71,7 @@ export default class PlanClient {
    * the plan.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  update(idOrCode: string, payload: UpdatePlanPayload) {
+  update(idOrCode: string, payload: UpdatePlanPayload): Promise<PaystackResponse> {
     return this.client.call(`/plan/${idOrCode}`, HTTPMethod.PUT, payload);
   }
 }

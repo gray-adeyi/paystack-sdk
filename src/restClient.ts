@@ -49,7 +49,7 @@ export default class RestClient {
     data?: any,
     // deno-lint-ignore no-explicit-any
     params?: Record<string, any>,
-  ) {
+  ): Promise<PaystackResponse> {
     const handler = this.getMethodHandler(method);
     let response: AxiosResponse;
     if ([HTTPMethod.GET, HTTPMethod.DELETE].includes(method)) {

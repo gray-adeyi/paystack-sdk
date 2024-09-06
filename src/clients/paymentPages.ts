@@ -47,7 +47,7 @@ export default class PaymentPageClient {
    * returned in the response
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getPages(options?: GetPagesOptions) {
+  getPages(options?: GetPagesOptions): Promise<PaystackResponse> {
     return this.client.call("/page", HTTPMethod.GET, null, options);
   }
 
@@ -96,7 +96,7 @@ export default class PaymentPageClient {
    * @param products : An array of the IDs of the products to be added.
    * @returns
    */
-  addProducts(id: string, products: string[]) {
+  addProducts(id: string, products: string[]): Promise<PaystackResponse> {
     return this.client.call(`/page/${id}/product`, HTTPMethod.POST, products);
   }
 }

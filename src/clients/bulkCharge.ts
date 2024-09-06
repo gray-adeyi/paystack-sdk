@@ -102,7 +102,7 @@ export default class BulkChargeClient {
    * @param batchCode : The batch code for the bulk charge you want to resume.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  resumeBatch(batchCode: string) {
+  resumeBatch(batchCode: string): Promise<PaystackResponse> {
     return this.client.call(`/bulkcharge/resume/${batchCode}`, HTTPMethod.GET);
   }
 }
