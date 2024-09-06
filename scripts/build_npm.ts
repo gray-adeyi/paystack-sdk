@@ -18,7 +18,7 @@ await build({
         description: "A paystack client SDK for the javascript runtime.",
         author: "Gbenga Adeyi <adeyigbenga005@gmail.com>",
         license: "MIT",
-        keywords: ["paystack"],
+        keywords: ["paystack","payment","naira","API","transaction","Gateway","paystackcli"],
         dependencies: {
             axios: "^1.7.6",
             "lodash-es": "^4.17.21",
