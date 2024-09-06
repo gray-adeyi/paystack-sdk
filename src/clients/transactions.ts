@@ -7,7 +7,7 @@ import type {
   PartialDebitPayload,
   TotalsOptions,
 } from "../types/clients/transactions.ts";
-import { PaystackResponse } from "../types/global.ts";
+import type { PaystackResponse } from "../types/global.ts";
 
 /**
  * TransactionClient provides methods that lets you interface with Paystack's
