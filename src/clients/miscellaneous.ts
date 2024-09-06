@@ -16,7 +16,7 @@ export default class MiscellaneousClient {
    *
    * @param secretKey - Your paystack integration secret key.
    * @param client - A custom rest client to use for making api calls to paystack's instead
-   * of creating a new one with the secretKey
+   *    of creating a new one with the secretKey
    */
   constructor(secretKey?: string, client?: RestClient) {
     if (client) {
@@ -29,7 +29,7 @@ export default class MiscellaneousClient {
   /**
    * Get a list of all supported banks and their properties
    *
-   * @param options : {@link GetBanksOptions} let's you customize the data in the
+   * @param options {@link GetBanksOptions} let's you customize the data in the
    * response to be returned. the country property is required to retrieve banks
    * in that country supported by Paystack
    * @returns A promise containing a {@link PaystackResponse}
