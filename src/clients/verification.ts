@@ -1,9 +1,22 @@
 import RestClient, { HTTPMethod } from "../restClient.ts";
 import type { ValidateAccountPayload } from "../types/clients/verification.ts";
+import type { PaystackResponse } from "../types/global.ts";
 
+/**
+ * VerificationClient provides methods that lets you interface with Paystack's
+ * Verification API which allows you to perform KYC processes.
+    https://paystack.com/docs/api/verification/
+ */
 export default class VerificationClient {
-  client: RestClient;
+  private client: RestClient;
 
+  /**
+   * @constructor Instantiate a VerificationClient
+   *
+   * @param secretKey - Your paystack integration secret key.
+   * @param client - A custom rest client to use for making api calls to paystack's instead
+   * of creating a new one with the secretKey
+   */
   constructor(secretKey?: string, client?: RestClient) {
     if (client) {
       this.client = client;
@@ -12,18 +25,42 @@ export default class VerificationClient {
     }
   }
 
-  resolveAccountNumber(accountNumber: string, bankCode: string) {
+  /**
+   * Confirm an account belongs to the right customer
+   *
+   * @param accountNumber : Account number
+   * @param bankCode : You can get the list of bank codes by calling
+   * `PaystackClient.miscellaneous.getBanks` method.
+   * @returns A promise containing a {@link PaystackResponse}
+   */
+  resolveAccountNumber(
+    accountNumber: string,
+    bankCode: string,
+  ): Promise<PaystackResponse> {
     return this.client.call(
       `/bank/resolve?account_number=${accountNumber}&bank_code=${bankCode}`,
       HTTPMethod.GET,
     );
   }
 
-  validateAccount(payload: ValidateAccountPayload) {
+  /**
+   * Confirm the authenticity of a customer's account number before sending money
+   *
+   * @param payload : {@link ValidateAccountPayload} is the data sent to paystack
+   * to validate the account
+   * @returns A promise containing a {@link PaystackResponse}
+   */
+  validateAccount(payload: ValidateAccountPayload): Promise<PaystackResponse> {
     return this.client.call("/bank/validate", HTTPMethod.POST, payload);
   }
 
-  resolveCardBin(bin: string) {
+  /**
+   * Get more information about a customer's card
+   *
+   * @param bin : First 6 characters of card
+   * @returns  A promise containing a {@link PaystackResponse}
+   */
+  resolveCardBin(bin: string): Promise<PaystackResponse> {
     return this.client.call(`/decision/bin/${bin}`, HTTPMethod.GET);
   }
 }

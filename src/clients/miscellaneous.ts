@@ -5,7 +5,7 @@ import type { PaystackResponse } from "../types/global.ts";
 
 /**
  * MiscellaneousClient provides methods that lets you interface with Paystack's
- * Miscellaneous API are supporting APIs that can be used to provide more
+ * Miscellaneous API which are supporting APIs that can be used to provide more
  * details to other APIs. https://paystack.com/docs/api/miscellaneous/
  */
 export default class MiscellaneousClient {
