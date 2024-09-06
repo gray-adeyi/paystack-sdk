@@ -1,4 +1,4 @@
-import type { Country } from "../enums.ts";
+import { Country } from "../enums.ts";
 import RestClient, { HTTPMethod } from "../restClient.ts";
 import type { GetBanksOptions } from "../types/clients/miscellaneous.ts";
 import type { PaystackResponse } from "../types/global.ts";
@@ -35,7 +35,16 @@ export default class MiscellaneousClient {
    * @returns A promise containing a {@link PaystackResponse}
    */
   getBanks(options: GetBanksOptions): Promise<PaystackResponse> {
-    return this.client.call("/bank", HTTPMethod.GET, null, options);
+    const countryFullNameMap: Record<Country, string> = {
+      [Country.NIGERIA]: "nigeria",
+      [Country.GHANA]: "ghana",
+      [Country.SOUTH_AFRICA]: "south africa",
+      [Country.KENYA]: "kenya",
+      [Country.COTE_D_IVOIRE]: "côte d'ivoire",
+      [Country.EGYPT]: "egypt",
+    };
+    const params = { ...options, country: countryFullNameMap[options.country] };
+    return this.client.call("/bank", HTTPMethod.GET, null, params);
   }
 
   /**
