@@ -49,7 +49,7 @@ export type UpdateCustomerPayload = {
    * The customer's phone number
    */
   readonly phone?: string;
-/**
+  /**
    * An object that you can attach to the customer. It can be used
    * to store additional information in a structured format.
    */
@@ -58,7 +58,7 @@ export type UpdateCustomerPayload = {
 };
 
 /**
- * A representation of the data sent to paystack for validating a 
+ * A representation of the data sent to paystack for validating a
  * customer
  */
 export type ValidatePayload = {
@@ -88,7 +88,7 @@ export type ValidatePayload = {
   readonly identificationNumber?: string;
   /**
    * You can get the list of Bank Codes by calling
-   * `PaystackClient.miscellaneous.getBanks` method. 
+   * `PaystackClient.miscellaneous.getBanks` method.
    * (required if identificationType is Identification.BANK_ACCOUNT)
    */
   readonly bankCode?: string;

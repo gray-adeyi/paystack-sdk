@@ -5,9 +5,9 @@
 export type ChargePayload = {
   /** customer's email address */
   readonly email: string;
-  /** 
+  /**
    * Amount should be in kobo if currency is NGN, pesewas, if currency is GHS,
-   * and cents, if currency is ZAR 
+   * and cents, if currency is ZAR
    */
   readonly amount: number;
   /**

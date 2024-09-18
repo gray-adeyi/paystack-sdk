@@ -48,7 +48,7 @@ export default class SubAccountClient {
    * data that is returned in the response.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getSubAccounts(options?: GetSubAccountsOptions):Promise<PaystackResponse> {
+  getSubAccounts(options?: GetSubAccountsOptions): Promise<PaystackResponse> {
     return this.client.call("/subaccount", HTTPMethod.GET, null, options);
   }
 
@@ -70,7 +70,10 @@ export default class SubAccountClient {
    * the subaccount
    * @returns A promise containing a {@link PaystackResponse}
    */
-  update(idOrCode: string, payload: UpdateSubAccountPayload): Promise<PaystackResponse> {
+  update(
+    idOrCode: string,
+    payload: UpdateSubAccountPayload,
+  ): Promise<PaystackResponse> {
     return this.client.call(`/subaccount/${idOrCode}`, HTTPMethod.PUT, payload);
   }
 }

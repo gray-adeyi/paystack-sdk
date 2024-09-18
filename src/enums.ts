@@ -170,7 +170,6 @@ export enum Gateway {
   DIGITALBANKMANDATE = "digitalbankmandate",
 }
 
-
 /**
  * Enum of bank types
  */
