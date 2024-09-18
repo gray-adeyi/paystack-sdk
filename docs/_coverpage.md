@@ -1,6 +1,5 @@
 ![logo](_media/icon.svg)
 
-
 # @gray-adeyi/paystack-sdk <small>0.1.0</small>
 
 > A [Paystack](https://www.paystack.com/) client SDK for the javascript runtime.
