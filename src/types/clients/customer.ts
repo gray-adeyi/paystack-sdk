@@ -33,6 +33,7 @@ export type CreateCustomerPayload = {
  * Lets you customize how the customers are retrieved by filtering
  * by date or adjusting how much data should be returned or which
  * sets of data to be returned by pagination.
+ * @see {@link PaginationAndDateFilterOptions}
  */
 export type GetCustomersOptions = PaginationAndDateFilterOptions;
 

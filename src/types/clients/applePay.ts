@@ -11,7 +11,7 @@ export type GetDomainsOptions = {
   /**
    * A cursor that indicates your place in the list.
    * It should be used to fetch the previous page of
-   * the list after an intial next request
+   * the list after an initial next request
    */
   readonly previous?: string;
 };

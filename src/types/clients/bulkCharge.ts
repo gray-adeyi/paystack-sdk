@@ -17,6 +17,7 @@ export type BulkChargeInstruction = {
  * Lets you customize how the batches are retrieved by filtering
  * by date or adjusting how much data should be returned or which
  * sets of data to be returned by pagination.
+ * @see {@link PaginationAndDateFilterOptions}
  */
 export type GetBatchesOptions = PaginationAndDateFilterOptions;
 
@@ -24,6 +25,7 @@ export type GetBatchesOptions = PaginationAndDateFilterOptions;
  * Lets you customize how the batches are retrieved by filtering
  * by date or adjusting how much data should be returned or which
  * sets of data to be returned by pagination.
+ * @see {@link PaginationAndDateFilterOptions}
  */
 export type GetChargesInBatchOptions = PaginationAndDateFilterOptions & {
   /** Lets you filter by the charge status */
