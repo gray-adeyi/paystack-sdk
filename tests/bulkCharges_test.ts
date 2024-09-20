@@ -42,7 +42,8 @@ describe("PaystackClient.bulkCharges", () => {
   });
 
   it("PaystackClient.bulkCharges.getChargesInBatch", async () => {
-    const response = await client.bulkCharges.getChargesInBatch();
+    const response = await client.bulkCharges.getChargesInBatch("BCH_u5wt90cm016uy1b");
+    assertEquals(response.statusCode, 200);
   });
 
   it("PaystackClient.bulkCharges.pauseBatch", () => {});
