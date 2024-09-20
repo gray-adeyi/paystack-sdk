@@ -7,7 +7,7 @@
   "license": "MIT",
   "imports": {
     "@deno/dnt": "jsr:@deno/dnt@^0.41.3",
-    "axios": "npm:axios@^1.7.6",
+    "axios": "npm:axios@^1.7.7",
     "lodash-es": "npm:lodash-es@^4.17.21"
   },
   "keywords": [
