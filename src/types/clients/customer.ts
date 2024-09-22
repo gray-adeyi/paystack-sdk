@@ -73,8 +73,9 @@ export type ValidatePayload = {
   readonly lastName: string;
   /**
    * Enum of Identification e.g `Identification.BVN`
+   * Only `Identification.BANK_ACCOUNT` is supported at the moment
    */
-  readonly identificationType: Identification;
+  readonly type: Identification.BANK_ACCOUNT;
   /**
    * Customer's Country e.g `Country.NIGERIA`
    */
