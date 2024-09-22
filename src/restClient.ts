@@ -17,7 +17,7 @@ export enum HTTPMethod {
   DELETE,
 }
 
-const IGNORE_KEYS = ["domainName"];
+const IGNORE_KEYS = ["domainName",'perPage'];
 
 export default class RestClient {
   static BASE_URL = "https://api.paystack.co";
