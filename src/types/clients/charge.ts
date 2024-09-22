@@ -81,5 +81,5 @@ export type SubmitAddressPayload = {
   /**
    * Zipcode submitted by user
    */
-  readonly zipcode: string;
+  readonly zipCode: string;
 };
