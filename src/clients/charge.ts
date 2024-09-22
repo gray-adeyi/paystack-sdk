@@ -61,7 +61,7 @@ export default class ChargeClient {
    * @returns A promise containing a {@link PaystackResponse}
    */
   submitOtp(otp: string, reference: string): Promise<PaystackResponse> {
-    return this.client.call("/charge/submit_pin", HTTPMethod.POST, {
+    return this.client.call("/charge/submit_otp", HTTPMethod.POST, {
       otp,
       reference,
     });
