@@ -113,14 +113,14 @@ export default class CustomerClient {
   /**
    * Deactivate an authorization when the card needs to be forgotten
    *
-   * @param authCode : Authorization code to be deactivated.
+   * @param authorizationCode : Authorization code to be deactivated.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  deactivate(authCode: string): Promise<PaystackResponse> {
+  deactivate(authorizationCode: string): Promise<PaystackResponse> {
     return this.client.call(
       "/customer/deactivate_authorization",
       HTTPMethod.POST,
-      { authCode },
+      { authorizationCode },
     );
   }
 }
