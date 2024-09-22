@@ -1,7 +1,7 @@
 {
   "name": "@gray-adeyi/paystack-sdk",
   "description": "A paystack client SDK for the javascript runtime.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "Gbenga Adeyi <adeyigbenga005@gmail.com>",
   "exports": "./mod.ts",
   "license": "MIT",

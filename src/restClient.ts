@@ -62,7 +62,7 @@ export default class RestClient {
 
   private get baseHeaders() {
     return {
-      "User-Agent": "@gray-adeyi/paystack-sdk 0.1.3",
+      "User-Agent": "@gray-adeyi/paystack-sdk 0.1.4",
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: "",
