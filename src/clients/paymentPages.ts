@@ -97,6 +97,6 @@ export default class PaymentPageClient {
    * @returns
    */
   addProducts(id: string, products: string[]): Promise<PaystackResponse> {
-    return this.client.call(`/page/${id}/product`, HTTPMethod.POST, products);
+    return this.client.call(`/page/${id}/product`, HTTPMethod.POST, {products});
   }
 }
