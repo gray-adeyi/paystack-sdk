@@ -10,7 +10,7 @@ describe("PaystackClient.terminals", () => {
 
   beforeAll(async () => {
     await load({ envPath: "../.env", export: true });
-    client = new PaystackClient()
+    client = new PaystackClient();
   });
 
   it.skip("PaystackClient.terminals.sendEvent", async () => {
@@ -20,10 +20,10 @@ describe("PaystackClient.terminals", () => {
 
   it.skip("PaystackClient.terminals.getTerminalStatus", () => {});
 
-  it("PaystackClient.terminals.getTerminals", async() => {
-    const response = await client.terminals.getTerminals()
-    assertEquals(response.statusCode, HttpStatusCode.Ok)
-    assertEquals(response.message, 'Terminals retrieved successfully')
+  it("PaystackClient.terminals.getTerminals", async () => {
+    const response = await client.terminals.getTerminals();
+    assertEquals(response.statusCode, HttpStatusCode.Ok);
+    assertEquals(response.message, "Terminals retrieved successfully");
   });
 
   it.skip("PaystackClient.terminals.getTerminal", () => {});

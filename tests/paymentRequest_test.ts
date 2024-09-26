@@ -113,6 +113,6 @@ describe("PaystackClient.paymentRequest", () => {
       (createResponse.data as DataOfInterest).requestCode,
     );
     assertEquals(response.statusCode, HttpStatusCode.Ok);
-    assertEquals(response.message, 'Payment request has been archived');
+    assertEquals(response.message, "Payment request has been archived");
   });
 });

@@ -15,14 +15,16 @@ describe("PaystackClient.settlements", () => {
   });
 
   it("PaystackClient.settlements.getSettlements", async () => {
-    const response =await client.settlements.getSettlements({perPage: 1})
+    const response = await client.settlements.getSettlements({ perPage: 1 });
     assertEquals(response.statusCode, HttpStatusCode.Ok);
-    assertEquals(response.message, 'Settlements retrieved')
+    assertEquals(response.message, "Settlements retrieved");
   });
 
   it("PaystackClient.settlements.getSettlementTransactions", async () => {
-    const err =await assertRejects(() => client.settlements.getSettlementTransactions(''))
-    assertInstanceOf(err, PaystackClientError)
-    assertEquals(err.status, HttpStatusCode.NotFound)
+    const err = await assertRejects(() =>
+      client.settlements.getSettlementTransactions("")
+    );
+    assertInstanceOf(err, PaystackClientError);
+    assertEquals(err.status, HttpStatusCode.NotFound);
   });
 });
