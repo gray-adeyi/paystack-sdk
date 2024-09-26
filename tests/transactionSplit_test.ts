@@ -10,7 +10,6 @@ import {
 import { load } from "@std/dotenv";
 import { assertEquals } from "@std/assert/equals";
 import { HttpStatusCode } from "axios";
-import { assertRejects } from "@std/assert/rejects";
 
 describe("PaystackClient.transactionSplit", () => {
   let client: PaystackClient;
