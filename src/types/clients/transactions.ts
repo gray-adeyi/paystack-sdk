@@ -99,7 +99,7 @@ export type GetTransactionsOptions = PaginationAndDateFilterOptions & {
 /**
  * A representation of the data sent to paystack to charge a customer
  */
-export type ChargePayload = {
+export type TransactionChargePayload = {
   /**
    * The amount to charge
    */
@@ -111,7 +111,7 @@ export type ChargePayload = {
   /**
    * Valid authorization code to charge
    */
-  readonly authCode: string;
+  readonly authorizationCode: string;
   /**
    * Unique transaction reference. Only ``-, ., =`` and alphanumeric
    * characters allowed.
@@ -218,7 +218,7 @@ export type PartialDebitPayload = {
   /**
    * Authorization code.
    */
-  readonly authCode: string;
+  readonly authorizationCode: string;
   /**
    * Specify the currency you want to debit. Any value
    * from the {@link Currency} enum.

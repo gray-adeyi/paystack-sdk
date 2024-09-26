@@ -1,6 +1,6 @@
 import RestClient, { HTTPMethod } from "../restClient.ts";
 import type {
-  ChargePayload,
+  TransactionChargePayload,
   ExportOptions,
   GetTransactionsOptions,
   InitializeTransactionPayload,
@@ -82,11 +82,11 @@ export default class TransactionClient {
    * All authorizations marked as reusable can be charged with this
    * method whenever you need to receive payments.
    *
-   * @param payload: {@link ChargePayload} is the data used to charge the
+   * @param payload: {@link TransactionChargePayload} is the data used to charge the
    * customer.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  charge(payload: ChargePayload): Promise<PaystackResponse> {
+  charge(payload: TransactionChargePayload): Promise<PaystackResponse> {
     return this.client.call(
       "/transaction/charge_authorization",
       HTTPMethod.POST,
