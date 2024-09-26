@@ -39,7 +39,7 @@ export type TransactionSplitCreatePayload = {
   /**
    * Subaccount code
    */
-  readonly bearerSubaccount: string;
+  readonly bearerSubaccount?: string;
 };
 
 /**
@@ -50,7 +50,7 @@ export type GetSplitsOptions = PaginationAndDateFilterOptions & {
   /**
    * The name of the split
    */
-  readonly name: string;
+  readonly name?: string;
   /**
    * Sort by name, defaults to createdAt date
    */
@@ -69,11 +69,11 @@ export type UpdateTxSplitPayload = {
   /**
    * The name of the transaction split
    */
-  readonly name: string;
+  readonly name?: string;
   /**
    * Flag for active
    */
-  readonly active: boolean;
+  readonly active?: boolean;
   /**
    * Any value from the {@link Bearer} enum
    */
