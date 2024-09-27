@@ -78,7 +78,7 @@ export default class DedicatedAccountClient {
    * @returns A promise containing a {@link PaystackResponse}
    */
   getDedicatedAccounts(
-    options: GetDedicatedAccountsOptions,
+    options?: GetDedicatedAccountsOptions,
   ): Promise<PaystackResponse> {
     return this.client.call(
       "/dedicated_account",

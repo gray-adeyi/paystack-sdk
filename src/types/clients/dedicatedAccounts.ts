@@ -96,7 +96,7 @@ export type GetDedicatedAccountsOptions = {
   /**
    * Status of the dedicated virtual account
    */
-  readonly active: boolean;
+  readonly active?: boolean;
   /**
    * The currency of the dedicated virtual account. Only ``Currency.NGN`` is currently allowed
    */

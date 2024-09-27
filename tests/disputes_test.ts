@@ -4,6 +4,7 @@ import { load } from "@std/dotenv";
 import { assertEquals } from "@std/assert/equals";
 import { HttpStatusCode } from "axios";
 
+// Insufficient data to test DisputeClient
 describe("PaystackClient.disputes", () => {
   let client: PaystackClient;
 
@@ -18,17 +19,17 @@ describe("PaystackClient.disputes", () => {
     assertEquals(response.message, "Disputes retrieved");
   });
 
-  it.only("PaystackClient.disputes.getDispute", async () => {});
+  it.skip("PaystackClient.disputes.getDispute", async () => {});
 
-  it("PaystackClient.disputes.getTransactionDisputes", () => {});
+  it.skip("PaystackClient.disputes.getTransactionDisputes", async () => {});
 
-  it("PaystackClient.disputes.updateDispute", () => {});
+  it.skip("PaystackClient.disputes.updateDispute", async () => {});
 
-  it("PaystackClient.disputes.addEvidence", () => {});
+  it.skip("PaystackClient.disputes.addEvidence", async () => {});
 
-  it("PaystackClient.disputes.getUploadUrl", () => {});
+  it.skip("PaystackClient.disputes.getUploadUrl", async () => {});
 
-  it("PaystackClient.disputes.resolveDispute", () => {});
+  it.skip("PaystackClient.disputes.resolveDispute", async () => {});
 
-  it("PaystackClient.disputes.exportDisputes", () => {});
+  it.skip("PaystackClient.disputes.exportDisputes",async () => {});
 });
