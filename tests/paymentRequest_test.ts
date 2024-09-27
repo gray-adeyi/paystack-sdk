@@ -70,7 +70,6 @@ describe("PaystackClient.paymentRequest", () => {
     };
     const createResponse = await client.paymentRequests.create(createPayload);
     assertEquals(createResponse.statusCode, HttpStatusCode.Ok);
-    console.log(createResponse);
     type DataOfInterest = { id: string; requestCode: string };
     const err = await assertRejects(() =>
       client.paymentRequests.finalize(
