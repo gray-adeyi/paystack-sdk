@@ -47,7 +47,7 @@ export default class TransactionSplitClient {
    * to be returned in the response.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getSplits(options: GetSplitsOptions): Promise<PaystackResponse> {
+  getSplits(options?: GetSplitsOptions): Promise<PaystackResponse> {
     return this.client.call("/split", HTTPMethod.GET, null, options);
   }
 
@@ -70,7 +70,7 @@ export default class TransactionSplitClient {
    * @returns A promise containing a {@link PaystackResponse}
    */
   update(id: string, payload: UpdateTxSplitPayload): Promise<PaystackResponse> {
-    return this.client.call(`/split/${id}`, HTTPMethod.POST, payload);
+    return this.client.call(`/split/${id}`, HTTPMethod.PUT, payload);
   }
 
   /**

@@ -14,6 +14,7 @@ export * from "./settlements.ts";
 export * from "./subAccount.ts";
 export * from "./subscriptions.ts";
 export * from "./terminals.ts";
+export * from './transactions.ts'
 export * from "./transactionSplit.ts";
 export * from "./transferRecipient.ts";
 export * from "./transfers.ts";

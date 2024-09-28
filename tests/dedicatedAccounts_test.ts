@@ -2,28 +2,31 @@ import { beforeAll, describe, it } from "@std/testing/bdd";
 import { PaystackClient } from "../mod.ts";
 import { load } from "@std/dotenv";
 
+// An advanced account is needed to test DedicatedAccountClient
 describe("PaystackClient.dedicatedAccounts", () => {
   let client: PaystackClient;
 
   beforeAll(async () => {
-    await load({ envPath: "./.env", export: true });
+    await load({ envPath: "../.env", export: true });
+    client = new PaystackClient()
   });
 
-  it("PaystackClient.dedicatedAccounts.create", () => {});
+  it.skip("PaystackClient.dedicatedAccounts.create", async () => {});
 
-  it("PaystackClient.dedicatedAccounts.assign", () => {});
+  it.skip("PaystackClient.dedicatedAccounts.assign", async () => {});
 
-  it("PaystackClient.dedicatedAccounts.getDedicatedAccounts", () => {});
+  it.skip("PaystackClient.dedicatedAccounts.getDedicatedAccounts",async () => {
+  });
 
-  it("PaystackClient.dedicatedAccounts.getDedicatedAccount", () => {});
+  it.skip("PaystackClient.dedicatedAccounts.getDedicatedAccount", async () => {});
 
-  it("PaystackClient.dedicatedAccounts.requery", () => {});
+  it.skip("PaystackClient.dedicatedAccounts.requery", async () => {});
 
-  it("PaystackClient.dedicatedAccounts.deactivate", () => {});
+  it.skip("PaystackClient.dedicatedAccounts.deactivate", async () => {});
 
-  it("PaystackClient.dedicatedAccounts.split", () => {});
+  it.skip("PaystackClient.dedicatedAccounts.split", async () => {});
 
-  it("PaystackClient.dedicatedAccounts.removeSplit", () => {});
+  it.skip("PaystackClient.dedicatedAccounts.removeSplit", async () => {});
 
-  it("PaystackClient.dedicatedAccounts.getProviders", () => {});
+  it.skip("PaystackClient.dedicatedAccounts.getProviders", async () => {});
 });

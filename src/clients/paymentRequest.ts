@@ -50,7 +50,7 @@ export default class PaymentRequestClient {
   getPaymentRequests(
     options?: GetPaymentRequestsOptions,
   ): Promise<PaystackResponse> {
-    return this.client.call("/paymentrequest", HTTPMethod.POST, null, options);
+    return this.client.call("/paymentrequest", HTTPMethod.GET, null, options);
   }
 
   /**

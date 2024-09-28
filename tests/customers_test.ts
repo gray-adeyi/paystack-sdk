@@ -80,21 +80,27 @@ describe("PaystackClient.customers", () => {
       payload,
     );
     assertEquals(response.statusCode, HttpStatusCode.Accepted);
-    assertEquals(response.message,'Customer Identification in progress')
+    assertEquals(response.message, "Customer Identification in progress");
   });
 
-  it("PaystackClient.customers.flag",async () => {
-    const response = await client.customers.flag("CUS_x1hp1dli4mdo1v0", RiskAction.DEFAULT)
+  it("PaystackClient.customers.flag", async () => {
+    const response = await client.customers.flag(
+      "CUS_x1hp1dli4mdo1v0",
+      RiskAction.DEFAULT,
+    );
     assertEquals(response.statusCode, HttpStatusCode.Ok);
-    assertEquals(response.message,'Customer updated')
+    assertEquals(response.message, "Customer updated");
   });
 
-  it("PaystackClient.customers.deactivate",async () => {
-    const err = await assertRejects(() => client.customers.deactivate("AUTH_72btv547"))
-    assertInstanceOf(err, PaystackClientError)
-    type DataOfInterest = {status: boolean; message: string}
-    const response = ((err.wrappedError as AxiosError).response?.data as DataOfInterest)
-    assertEquals(response.status, false)
-    assertEquals(response.message,'Authorization code not found.')
+  it("PaystackClient.customers.deactivate", async () => {
+    const err = await assertRejects(() =>
+      client.customers.deactivate("AUTH_72btv547")
+    );
+    assertInstanceOf(err, PaystackClientError);
+    type DataOfInterest = { status: boolean; message: string };
+    const response = (err.wrappedError as AxiosError).response
+      ?.data as DataOfInterest;
+    assertEquals(response.status, false);
+    assertEquals(response.message, "Authorization code not found.");
   });
 });

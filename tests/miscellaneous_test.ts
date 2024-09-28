@@ -2,6 +2,7 @@ import { beforeAll, describe, it } from "@std/testing/bdd";
 import { Country, PaystackClient } from "../mod.ts";
 import { load } from "@std/dotenv";
 import { assertEquals } from "@std/assert/equals";
+import { HttpStatusCode } from "axios";
 
 describe("PaystackClient.miscellaneous", () => {
   let client: PaystackClient;
@@ -20,7 +21,15 @@ describe("PaystackClient.miscellaneous", () => {
     assertEquals(response.message, "Banks retrieved");
   });
 
-  it("PaystackClient.miscellaneous.getCountries", () => {});
+  it("PaystackClient.miscellaneous.getCountries", async () => {
+    const response = await client.miscellaneous.getCountries();
+    assertEquals(response.statusCode, HttpStatusCode.Ok);
+    assertEquals(response.message, "Countries retrieved");
+  });
 
-  it("PaystackClient.miscellaneous.getStates", () => {});
+  it("PaystackClient.miscellaneous.getStates", async () => {
+    const response = await client.miscellaneous.getStates("CA" as Country);
+    assertEquals(response.statusCode, HttpStatusCode.Ok);
+    assertEquals(response.message, "States retrieved");
+  });
 });

@@ -53,9 +53,9 @@ export type GetPagesOptions = PaginationAndDateFilterOptions;
  */
 export type UpdatePaymentPagePayload = {
   /** Name of page */
-  readonly name: string;
+  readonly name?: string;
   /** A description for the page */
-  readonly description: string;
+  readonly description?: string;
   /**
    * Default amount you want to accept using this page.
    * If none is set, customer is free to provide any amount
