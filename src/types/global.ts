@@ -14,13 +14,6 @@ export type PaystackResponse = {
    */
   // deno-lint-ignore no-explicit-any
   readonly data: Record<string, any> | Record<string, any>[] | null;
-  //The Additional information about the response.
-  readonly meta?: Record<string, any>;
-  // In cases where the response has a status of `False`
-  // or the status code is an error status code. the `type` field indicates the type of error e.g. `api_error
-  readonly type?: string;
-  //
-  readonly code?: string;
 };
 
 /**
@@ -49,5 +42,6 @@ export type DateFilterOptions = {
  * A representation of options that allows pagination and filtering
  * by date. @see {@link PaginationOptions} and {@link DateFilterOptions}
  */
-export type PaginationAndDateFilterOptions = PaginationOptions &
-  DateFilterOptions;
+export type PaginationAndDateFilterOptions =
+  & PaginationOptions
+  & DateFilterOptions;
