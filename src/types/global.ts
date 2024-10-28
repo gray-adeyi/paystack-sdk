@@ -2,7 +2,9 @@
  * A representation of the response returned from Paystack from calling any of
  * the client methods that makes an API call
  */
-export type PaystackResponse = {
+export type PaystackResponse<
+  T = Record<string, any> | Record<string, any>[] | null
+> = {
   /** The http status code of the response */
   readonly statusCode: number;
   /** Status denotes if the request that led to this response was successful */
@@ -13,7 +15,7 @@ export type PaystackResponse = {
    * The keys of the data are transformed to camel case.
    */
   // deno-lint-ignore no-explicit-any
-  readonly data: Record<string, any> | Record<string, any>[] | null;
+  readonly data: T;
   //The Additional information about the response.
   readonly meta?: Record<string, any>;
   // In cases where the response has a status of `False`
