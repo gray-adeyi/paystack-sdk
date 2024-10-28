@@ -28,7 +28,7 @@ await build({
       "paystackcli",
     ],
     dependencies: {
-      axios: "^1.7.6",
+      axios: "^1.7.7",
       "lodash-es": "^4.17.21",
     },
     devDependencies: {

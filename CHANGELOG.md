@@ -8,9 +8,12 @@ with the exception of the ISO date format (I find myself trying too hard to gues
 
 ## [Unreleased]
 
+## [0.1.4] - 28-Sep-2024
+
 ### Added
 
 - Test all clients
+- Add more docs to github pages
 
 ### Fixed
 
