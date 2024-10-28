@@ -15,7 +15,19 @@ export type PaystackResponse<
    * The keys of the data are transformed to camel case.
    */
   // deno-lint-ignore no-explicit-any
+
   readonly data: T;
+
+  readonly data: Record<string, any> | Record<string, any>[] | null;
+  // Additional information about the response.
+  readonly meta?: Record<string, any>;
+  //In cases where the response has a status of `False` or the status code
+  //is an error status code. the `type` field indicates the type of error e.g. `api_error
+  readonly type?: string;
+  //In cases where the response has a status of `False` or the status code
+  //is an error status code. the `type` field indicates the type of error e.g. `api_error`
+  readonly code?: string;
+
 };
 
 /**
