@@ -25,7 +25,7 @@ export type ChargePayload = {
    * An authorization code to charge (don't send if charging a bank account)
    * pin: 4-digit PIN (send with a non-reusable authorization code)
    */
-  readonly authCode?: string;
+  readonly authorizationCode?: string;
   /**
    * 4-digit PIN (send with a non-reusable authorization code)
    */
