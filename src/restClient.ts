@@ -97,9 +97,9 @@ export default class RestClient {
       status: response.data["status"] || false,
       message: response.data["message"],
       data: response.data["data"],
-      meta: response.meta["meta"],
-      type: response.type["type"],
-      code: response.code["code"],
+      meta: response.data["meta"],
+      type: response.data["type"],
+      code: response.data["code"],
     };
   }
 
