@@ -4,9 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-with the exception of the ISO date format (I find myself trying too hard to guess the months)
+except the ISO date format (I find myself trying too hard to guess the months)
 
 ## [Unreleased]
+
+## [0.1.5] - 09-Nov-2024
+
+### Fixed
+
+- Rename incorrect `authCode` parameter to `authorizationCode` parameter for `ChargePayload`
 
 ## [0.1.4] - 28-Sep-2024
 
@@ -80,6 +86,7 @@ with the exception of the ISO date format (I find myself trying too hard to gues
 - Documentation for all the sub-client classes
 
 [unreleased]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.1.4...HEAD
+[0.1.5]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.1.1...v0.1.2
