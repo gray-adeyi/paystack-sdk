@@ -186,6 +186,7 @@ export enum DisputeStatus {
   RESOLVED = "resolved",
   AWAITING_BANK_FEEDBACK = "awaiting-bank-feedback",
   AWAITING_MERCHANT_FEEDBACK = "awaiting-merchant-feedback",
+  ARCHIVED = "archived",
 }
 
 /**
