@@ -1,6 +1,7 @@
 import RestClient, { HTTPMethod } from "../restClient.ts";
-import type { ValidateAccountPayload } from "../types/clients/verification.ts";
+import type { ValidateAccountPayload } from "../types/clients/index.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import type { CardBin } from "../types/models.ts";
 
 /**
  * VerificationClient provides methods that lets you interface with Paystack's
@@ -36,11 +37,16 @@ export default class VerificationClient {
   resolveAccountNumber(
     accountNumber: string,
     bankCode: string,
-  ): Promise<PaystackResponse> {
+  ) {
     return this.client.call(
       `/bank/resolve?account_number=${accountNumber}&bank_code=${bankCode}`,
       HTTPMethod.GET,
-    );
+    ) as Promise<
+      PaystackResponse<{
+        readonly accountNumber: string;
+        readonly accountName: string;
+      }>
+    >;
   }
 
   /**
@@ -50,8 +56,17 @@ export default class VerificationClient {
    * to validate the account
    * @returns A promise containing a {@link PaystackResponse}
    */
-  validateAccount(payload: ValidateAccountPayload): Promise<PaystackResponse> {
-    return this.client.call("/bank/validate", HTTPMethod.POST, payload);
+  validateAccount(payload: ValidateAccountPayload) {
+    return this.client.call(
+      "/bank/validate",
+      HTTPMethod.POST,
+      payload,
+    ) as Promise<
+      PaystackResponse<{
+        readonly verified: boolean;
+        readonly verificationMessage: string;
+      }>
+    >;
   }
 
   /**
@@ -60,7 +75,9 @@ export default class VerificationClient {
    * @param bin : First 6 characters of card
    * @returns  A promise containing a {@link PaystackResponse}
    */
-  resolveCardBin(bin: string): Promise<PaystackResponse> {
-    return this.client.call(`/decision/bin/${bin}`, HTTPMethod.GET);
+  resolveCardBin(bin: string) {
+    return this.client.call(`/decision/bin/${bin}`, HTTPMethod.GET) as Promise<
+      PaystackResponse<CardBin>
+    >;
   }
 }
