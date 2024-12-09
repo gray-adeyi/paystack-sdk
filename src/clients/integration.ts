@@ -29,11 +29,13 @@ export default class IntegrationClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getPaymentSessionTimeout(): Promise<PaystackResponse> {
+  getPaymentSessionTimeout() {
     return this.client.call(
       "/integration/payment_session_timeout",
       HTTPMethod.GET,
-    );
+    ) as Promise<PaystackResponse<{
+      readonly paymentSessionTimeout: number;
+    }>>;
   }
 
   /**
@@ -43,11 +45,13 @@ export default class IntegrationClient {
    * cancel session timeouts
    * @returns A promise containing a {@link PaystackResponse}
    */
-  updatePaymentSessionTimeout(timeout: number): Promise<PaystackResponse> {
+  updatePaymentSessionTimeout(timeout: number) {
     return this.client.call(
       "/integration/payment_session_timeout",
       HTTPMethod.PUT,
       { timeout },
-    );
+    ) as Promise<PaystackResponse<{
+      readonly paymentSessionTimeout: number;
+    }>>;
   }
 }
