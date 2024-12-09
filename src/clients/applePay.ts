@@ -2,6 +2,8 @@ import RestClient, { HTTPMethod } from "../restClient.ts";
 import type { GetDomainsOptions } from "../types/clients/applePay.ts";
 import type { PaystackResponse } from "../types/global.ts";
 
+import type {ApplePayDomains} from "../types/models.ts";
+
 /**
  * ApplePayClient provides methods that lets you interface with Paystack's
  * ApplePay API which allows you to register your application's top-level domain or subdomain.
@@ -37,10 +39,10 @@ export default class ApplePayClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  registerDomain(domainName: string): Promise<PaystackResponse> {
+  registerDomain(domainName: string) {
     return this.client.call("/apple-pay/domain", HTTPMethod.POST, {
       domainName,
-    });
+    }) as Promise<PaystackResponse<undefined>>;
   }
 
   /**
@@ -48,12 +50,17 @@ export default class ApplePayClient {
    *
    * @remarks This feature is available to businesses in all markets except South Africa.
    *
-   * @param options : {@link GetDomainsOptions} let's you customize the data in the response to
+   * @param options : {@link GetDomainsOptions} lets you customize the data in the response to
    * be returned.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getDomains(options?: GetDomainsOptions): Promise<PaystackResponse> {
-    return this.client.call("/apple-pay/domain", HTTPMethod.GET, null, options);
+  getDomains(options?: GetDomainsOptions) {
+    return this.client.call(
+      "/apple-pay/domain",
+      HTTPMethod.GET,
+      null,
+      options,
+    ) as Promise<PaystackResponse<ApplePayDomains>>;
   }
 
   /**
@@ -64,9 +71,9 @@ export default class ApplePayClient {
    * @param domainName : The domain name to be unregistered.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  unregisterDomain(domainName: string): Promise<PaystackResponse> {
+  unregisterDomain(domainName: string) {
     return this.client.call("/apple-pay/domain", HTTPMethod.DELETE, {
       domainName,
-    });
+    }) as Promise<PaystackResponse<undefined>>;
   }
 }
