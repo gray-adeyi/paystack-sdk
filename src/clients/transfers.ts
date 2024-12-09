@@ -3,8 +3,9 @@ import type {
   GetTransferOptions,
   InitiateTransferPayload,
   TransferInstruction,
-} from "../types/clients/transfers.ts";
+} from "../types/clients/index.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import type { BulkTransferItem, Transfer } from "../types/models.ts";
 
 /**
  * TransferClient provides methods that lets you interface with Paystack's
@@ -36,8 +37,10 @@ export default class TransferClient {
    * to initiate a transfer.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  initiate(payload: InitiateTransferPayload): Promise<PaystackResponse> {
-    return this.client.call("/transfer", HTTPMethod.POST, payload);
+  initiate(payload: InitiateTransferPayload) {
+    return this.client.call("/transfer", HTTPMethod.POST, payload) as Promise<
+      PaystackResponse<Transfer>
+    >;
   }
 
   /**
@@ -47,11 +50,11 @@ export default class TransferClient {
    * @param otp : one time password.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  finalize(transferCode: string, otp: string): Promise<PaystackResponse> {
+  finalize(transferCode: string, otp: string) {
     return this.client.call("/transfer/finalize_transfer", HTTPMethod.POST, {
       transferCode,
       otp,
-    });
+    }) as Promise<PaystackResponse<Transfer>>;
   }
 
   /**
@@ -64,11 +67,11 @@ export default class TransferClient {
   bulkTransfer(
     transfers: TransferInstruction[],
     source = "balance",
-  ): Promise<PaystackResponse> {
+  ) {
     return this.client.call("transfer/bulk", HTTPMethod.POST, {
       transfers,
       source,
-    });
+    }) as Promise<PaystackResponse<BulkTransferItem[]>>;
   }
 
   /**
@@ -78,8 +81,13 @@ export default class TransferClient {
    * be returned in the response
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getTransfers(options?: GetTransferOptions): Promise<PaystackResponse> {
-    return this.client.call("/transfer", HTTPMethod.GET, null, options);
+  getTransfers(options?: GetTransferOptions) {
+    return this.client.call(
+      "/transfer",
+      HTTPMethod.GET,
+      null,
+      options,
+    ) as Promise<PaystackResponse<Transfer[]>>;
   }
 
   /**
@@ -88,8 +96,11 @@ export default class TransferClient {
    * @param idOrCode : transfer ID or code.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getTransfer(idOrCode: string): Promise<PaystackResponse> {
-    return this.client.call(`/transfer/${idOrCode}/`, HTTPMethod.GET);
+  getTransfer(idOrCode: string) {
+    return this.client.call(
+      `/transfer/${idOrCode}/`,
+      HTTPMethod.GET,
+    ) as Promise<PaystackResponse<Transfer>>;
   }
 
   /**
@@ -98,7 +109,10 @@ export default class TransferClient {
    * @param reference : a reference for the transfer.
    * @returns A promise containing  a {@link PaystackResponse}
    */
-  verify(reference: string): Promise<PaystackResponse> {
-    return this.client.call(`transfer/verify/${reference}`, HTTPMethod.GET);
+  verify(reference: string) {
+    return this.client.call(
+      `transfer/verify/${reference}`,
+      HTTPMethod.GET,
+    ) as Promise<PaystackResponse<Transfer>>;
   }
 }
