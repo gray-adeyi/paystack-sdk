@@ -3,8 +3,9 @@ import type {
   GetSplitsOptions,
   TransactionSplitCreatePayload,
   UpdateTxSplitPayload,
-} from "../types/clients/transactionSplit.ts";
+} from "../types/clients/index.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import type { TransactionSplit } from "../types/models.ts";
 
 /**
  * TransactionSplitClient provides methods lets you interface with Paystack's
@@ -36,8 +37,10 @@ export default class TransactionSplitClient {
    * paystack to create a transaction split.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: TransactionSplitCreatePayload): Promise<PaystackResponse> {
-    return this.client.call("/split", HTTPMethod.POST, payload);
+  create(payload: TransactionSplitCreatePayload) {
+    return this.client.call("/split", HTTPMethod.POST, payload) as Promise<
+      PaystackResponse<TransactionSplit>
+    >;
   }
 
   /**
@@ -47,8 +50,10 @@ export default class TransactionSplitClient {
    * to be returned in the response.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getSplits(options?: GetSplitsOptions): Promise<PaystackResponse> {
-    return this.client.call("/split", HTTPMethod.GET, null, options);
+  getSplits(options?: GetSplitsOptions) {
+    return this.client.call("/split", HTTPMethod.GET, null, options) as Promise<
+      PaystackResponse<TransactionSplit[]>
+    >;
   }
 
   /**
@@ -57,8 +62,10 @@ export default class TransactionSplitClient {
    * @param id : The id of the split.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getSplit(id: string): Promise<PaystackResponse> {
-    return this.client.call(`/split/${id}`, HTTPMethod.GET);
+  getSplit(id: string) {
+    return this.client.call(`/split/${id}`, HTTPMethod.GET) as Promise<
+      PaystackResponse<TransactionSplit>
+    >;
   }
 
   /**
@@ -69,8 +76,10 @@ export default class TransactionSplitClient {
    * update the transaction split.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  update(id: string, payload: UpdateTxSplitPayload): Promise<PaystackResponse> {
-    return this.client.call(`/split/${id}`, HTTPMethod.PUT, payload);
+  update(id: string, payload: UpdateTxSplitPayload) {
+    return this.client.call(`/split/${id}`, HTTPMethod.PUT, payload) as Promise<
+      PaystackResponse<TransactionSplit>
+    >;
   }
 
   /**
@@ -86,11 +95,11 @@ export default class TransactionSplitClient {
     id: string,
     subaccount: string,
     share: number,
-  ): Promise<PaystackResponse> {
+  ) {
     return this.client.call(`/split/${id}/subaccount/add`, HTTPMethod.POST, {
       subaccount,
       share,
-    });
+    }) as Promise<PaystackResponse<TransactionSplit>>;
   }
 
   /**
@@ -101,9 +110,9 @@ export default class TransactionSplitClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  remove(id: string, subaccount: string): Promise<PaystackResponse> {
+  remove(id: string, subaccount: string) {
     return this.client.call(`/split/${id}/subaccount/remove`, HTTPMethod.POST, {
       subaccount,
-    });
+    }) as Promise<PaystackResponse<TransactionSplit>>;
   }
 }
