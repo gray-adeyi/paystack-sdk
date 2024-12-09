@@ -7,6 +7,7 @@ import type {
   ValidatePayload,
 } from "../types/clients/customer.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import type {Customer} from "../types/models.ts";
 
 /**
  * CustomerClient provides methods that lets you interface with Paystack's
@@ -38,8 +39,8 @@ export default class CustomerClient {
    * information.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: CreateCustomerPayload): Promise<PaystackResponse> {
-    return this.client.call("/customer/", HTTPMethod.POST, payload);
+  create(payload: CreateCustomerPayload) {
+    return this.client.call("/customer/", HTTPMethod.POST, payload) as Promise<PaystackResponse<Customer>>;
   }
 
   /**
@@ -49,8 +50,8 @@ export default class CustomerClient {
    * response to be returned.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getCustomers(options?: GetCustomersOptions): Promise<PaystackResponse> {
-    return this.client.call("/customer/", HTTPMethod.GET, null, options);
+  getCustomers(options?: GetCustomersOptions) {
+    return this.client.call("/customer/", HTTPMethod.GET, null, options) as Promise<PaystackResponse<Customer[]>>;
   }
 
   /**
@@ -59,8 +60,8 @@ export default class CustomerClient {
    * @param emailOrCode : An email or customer code for the customer you want to fetch
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getCustomer(emailOrCode: string): Promise<PaystackResponse> {
-    return this.client.call(`/customer/${emailOrCode}`, HTTPMethod.GET);
+  getCustomer(emailOrCode: string) {
+    return this.client.call(`/customer/${emailOrCode}`, HTTPMethod.GET) as Promise<PaystackResponse<Customer>>;
   }
 
   /**
@@ -74,8 +75,8 @@ export default class CustomerClient {
   update(
     code: string,
     payload: UpdateCustomerPayload,
-  ): Promise<PaystackResponse> {
-    return this.client.call(`/customer/${code}`, HTTPMethod.PUT, payload);
+  ) {
+    return this.client.call(`/customer/${code}`, HTTPMethod.PUT, payload) as Promise<PaystackResponse<Customer>>;
   }
 
   /**
@@ -88,12 +89,12 @@ export default class CustomerClient {
   validate(
     emailOrCode: string,
     payload: ValidatePayload,
-  ): Promise<PaystackResponse> {
+  ) {
     return this.client.call(
       `/customer/${emailOrCode}/identification`,
       HTTPMethod.POST,
       payload,
-    );
+    ) as Promise<PaystackResponse<undefined>>;
   }
 
   /**
@@ -103,11 +104,11 @@ export default class CustomerClient {
    * @param riskAction : One of the possible risk actions from the RiskAction enum e.g `RiskAction.DEFAULT`
    * @returns A promise containing a {@link PaystackResponse}
    */
-  flag(emailOrCode: string, riskAction: RiskAction): Promise<PaystackResponse> {
+  flag(emailOrCode: string, riskAction: RiskAction) {
     return this.client.call("/customer/set_risk_action", HTTPMethod.POST, {
       customer: emailOrCode,
       riskAction,
-    });
+    }) as Promise<PaystackResponse<Customer>>;
   }
 
   /**
@@ -116,11 +117,11 @@ export default class CustomerClient {
    * @param authorizationCode : Authorization code to be deactivated.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  deactivate(authorizationCode: string): Promise<PaystackResponse> {
+  deactivate(authorizationCode: string) {
     return this.client.call(
       "/customer/deactivate_authorization",
       HTTPMethod.POST,
       { authorizationCode },
-    );
+    ) as Promise<PaystackResponse<undefined>>;
   }
 }
