@@ -24,6 +24,7 @@ export enum Country {
   KENYA = "KE",
   COTE_D_IVOIRE = "CI",
   EGYPT = "EG",
+  RWANDA = "RW",
 }
 
 /**
