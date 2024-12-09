@@ -2,8 +2,9 @@ import RestClient, { HTTPMethod } from "../restClient.ts";
 import type {
   GetTerminalsOptions,
   SendEventPayload,
-} from "../types/clients/terminals.ts";
+} from "../types/clients/index.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import type { Terminal } from "../types/models.ts";
 
 /**
  * TerminalClient provides methods that lets you interface with Paystack's
@@ -39,12 +40,12 @@ export default class TerminalClient {
   sendEvent(
     terminalId: string,
     payload: SendEventPayload,
-  ): Promise<PaystackResponse> {
+  ) {
     return this.client.call(
       `/terminal/${terminalId}/event`,
       HTTPMethod.POST,
       payload,
-    );
+    ) as Promise<PaystackResponse<{ readonly id: string }>>;
   }
 
   /**
@@ -58,11 +59,11 @@ export default class TerminalClient {
   getEventStatus(
     terminalId: string,
     eventId: string,
-  ): Promise<PaystackResponse> {
+  ) {
     return this.client.call(
       `/terminal/${terminalId}/event/${eventId}`,
       HTTPMethod.GET,
-    );
+    ) as Promise<PaystackResponse<{ readonly delivered: boolean }>>;
   }
 
   /**
@@ -71,8 +72,16 @@ export default class TerminalClient {
    * @param terminalId : The ID of the Terminal you want to check
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getTerminalStatus(terminalId: string): Promise<PaystackResponse> {
-    return this.client.call(`/terminal/${terminalId}/presence`, HTTPMethod.GET);
+  getTerminalStatus(terminalId: string) {
+    return this.client.call(
+      `/terminal/${terminalId}/presence`,
+      HTTPMethod.GET,
+    ) as Promise<
+      PaystackResponse<{
+        readonly online: boolean;
+        readonly available: boolean;
+      }>
+    >;
   }
 
   /**
@@ -82,8 +91,13 @@ export default class TerminalClient {
    * returned in the response.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getTerminals(options?: GetTerminalsOptions): Promise<PaystackResponse> {
-    return this.client.call("/terminal", HTTPMethod.GET, null, options);
+  getTerminals(options?: GetTerminalsOptions) {
+    return this.client.call(
+      "/terminal",
+      HTTPMethod.GET,
+      null,
+      options,
+    ) as Promise<PaystackResponse<Terminal[]>>;
   }
 
   /**
@@ -92,8 +106,11 @@ export default class TerminalClient {
    * @param terminalId : The ID of the Terminal to be retrieved.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getTerminal(terminalId: string): Promise<PaystackResponse> {
-    return this.client.call(`/terminal/${terminalId}`, HTTPMethod.GET);
+  getTerminal(terminalId: string) {
+    return this.client.call(
+      `/terminal/${terminalId}`,
+      HTTPMethod.GET,
+    ) as Promise<PaystackResponse<Terminal>>;
   }
 
   /**
@@ -106,11 +123,11 @@ export default class TerminalClient {
     terminalId: string,
     name: string,
     address: string,
-  ): Promise<PaystackResponse> {
+  ) {
     return this.client.call(`/terminal/${terminalId}`, HTTPMethod.PUT, {
       name,
       address,
-    });
+    }) as Promise<PaystackResponse<undefined>>;
   }
 
   /**
@@ -119,10 +136,10 @@ export default class TerminalClient {
    * @param serialNumber : Device serial number
    * @returns A promise containing a {@link PaystackResponse}
    */
-  commissionTerminal(serialNumber: string): Promise<PaystackResponse> {
+  commissionTerminal(serialNumber: string) {
     return this.client.call("/terminal/commission_device", HTTPMethod.POST, {
       serialNumber,
-    });
+    }) as Promise<PaystackResponse<undefined>>;
   }
 
   /**
@@ -131,9 +148,9 @@ export default class TerminalClient {
    * @param serialNumber : Device serial number
    * @returns A promise containing a {@link PaystackResponse}
    */
-  decommissionTerminal(serialNumber: string): Promise<PaystackResponse> {
+  decommissionTerminal(serialNumber: string) {
     return this.client.call("/terminal/decommission_device", HTTPMethod.POST, {
       serialNumber,
-    });
+    }) as Promise<PaystackResponse<undefined>>;
   }
 }
