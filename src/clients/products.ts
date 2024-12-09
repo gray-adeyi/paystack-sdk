@@ -5,6 +5,7 @@ import type {
   UpdateProductPayload,
 } from "../types/clients/products.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import { Product } from "../types/models.ts";
 
 /**
  * ProductClient provides methods that lets you interface with Paystack's
@@ -36,8 +37,10 @@ export default class ProductClient {
    * create a product.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: CreateProductPayload): Promise<PaystackResponse> {
-    return this.client.call("/product", HTTPMethod.POST, payload);
+  create(payload: CreateProductPayload) {
+    return this.client.call("/product", HTTPMethod.POST, payload) as Promise<
+      PaystackResponse<Product>
+    >;
   }
 
   /**
@@ -47,8 +50,13 @@ export default class ProductClient {
    * the response.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getProducts(options?: GetProductsOptions): Promise<PaystackResponse> {
-    return this.client.call("/product", HTTPMethod.GET, null, options);
+  getProducts(options?: GetProductsOptions) {
+    return this.client.call(
+      "/product",
+      HTTPMethod.GET,
+      null,
+      options,
+    ) as Promise<PaystackResponse<Product[]>>;
   }
 
   /**
@@ -58,8 +66,10 @@ export default class ProductClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getProduct(id: string): Promise<PaystackResponse> {
-    return this.client.call(`/product/${id}`, HTTPMethod.GET);
+  getProduct(id: string) {
+    return this.client.call(`/product/${id}`, HTTPMethod.GET) as Promise<
+      PaystackResponse<Product>
+    >;
   }
 
   /**
@@ -68,7 +78,11 @@ export default class ProductClient {
    * the product.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  update(id: string, payload: UpdateProductPayload): Promise<PaystackResponse> {
-    return this.client.call(`/product/${id}`, HTTPMethod.PUT, payload);
+  update(id: string, payload: UpdateProductPayload) {
+    return this.client.call(
+      `/product/${id}`,
+      HTTPMethod.PUT,
+      payload,
+    ) as Promise<PaystackResponse<Product>>;
   }
 }
