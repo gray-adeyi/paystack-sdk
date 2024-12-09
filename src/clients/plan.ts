@@ -5,6 +5,7 @@ import type {
   UpdatePlanPayload,
 } from "../types/clients/plan.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import type { Plan } from "../types/models.ts";
 
 /**
  * PlanClient provides methods that lets you interface with Paystack's
@@ -37,8 +38,10 @@ export default class PlanClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: CreatePlanPayload): Promise<PaystackResponse> {
-    return this.client.call("/plan", HTTPMethod.POST, payload);
+  create(payload: CreatePlanPayload) {
+    return this.client.call("/plan", HTTPMethod.POST, payload) as Promise<
+      PaystackResponse<Plan>
+    >;
   }
 
   /**
@@ -48,8 +51,10 @@ export default class PlanClient {
    * returned in the response
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getPlans(options?: GetPlansOptions): Promise<PaystackResponse> {
-    return this.client.call("/plan", HTTPMethod.GET, null, options);
+  getPlans(options?: GetPlansOptions) {
+    return this.client.call("/plan", HTTPMethod.GET, null, options) as Promise<
+      PaystackResponse<Plan[]>
+    >;
   }
 
   /**
@@ -59,8 +64,10 @@ export default class PlanClient {
    * @param idOrCode : The plan ID or code.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getPlan(idOrCode: string): Promise<PaystackResponse> {
-    return this.client.call(`/plan/${idOrCode}`, HTTPMethod.GET);
+  getPlan(idOrCode: string) {
+    return this.client.call(`/plan/${idOrCode}`, HTTPMethod.GET) as Promise<
+      PaystackResponse<Plan>
+    >;
   }
 
   /**
@@ -74,7 +81,11 @@ export default class PlanClient {
   update(
     idOrCode: string,
     payload: UpdatePlanPayload,
-  ): Promise<PaystackResponse> {
-    return this.client.call(`/plan/${idOrCode}`, HTTPMethod.PUT, payload);
+  ) {
+    return this.client.call(
+      `/plan/${idOrCode}`,
+      HTTPMethod.PUT,
+      payload,
+    ) as Promise<PaystackResponse<undefined>>;
   }
 }
