@@ -4,6 +4,7 @@ import type {
   SubmitAddressPayload,
 } from "../types/clients/charge.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import type { Transaction } from "../types/models.ts";
 
 /**
  * ChargeClient provides methods that lets you interface with Paystack's
@@ -35,8 +36,10 @@ export default class ChargeClient {
    * initiate a charge.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  charge(payload: ChargePayload): Promise<PaystackResponse> {
-    return this.client.call("/charge", HTTPMethod.POST, payload);
+  charge(payload: ChargePayload) {
+    return this.client.call("/charge", HTTPMethod.POST, payload) as Promise<
+      PaystackResponse<Transaction>
+    >;
   }
 
   /**
@@ -46,11 +49,11 @@ export default class ChargeClient {
    * @param reference : Reference for the transaction that requested pin
    * @returns A promise containing a {@link PaystackResponse}
    */
-  submitPin(pin: string, reference: string): Promise<PaystackResponse> {
+  submitPin(pin: string, reference: string) {
     return this.client.call("charge/submit_pin", HTTPMethod.POST, {
       pin,
       reference,
-    });
+    }) as Promise<PaystackResponse<Transaction>>;
   }
 
   /**
@@ -60,11 +63,11 @@ export default class ChargeClient {
    * @param reference : Reference for ongoing transaction.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  submitOtp(otp: string, reference: string): Promise<PaystackResponse> {
+  submitOtp(otp: string, reference: string) {
     return this.client.call("/charge/submit_otp", HTTPMethod.POST, {
       otp,
       reference,
-    });
+    }) as Promise<PaystackResponse<Transaction>>;
   }
 
   /**
@@ -74,11 +77,11 @@ export default class ChargeClient {
    * @param reference : Reference for ongoing transaction
    * @returns A promise containing a {@link PaystackResponse}
    */
-  submitPhone(phone: string, reference: string): Promise<PaystackResponse> {
+  submitPhone(phone: string, reference: string) {
     return this.client.call("/charge/submit_phone", HTTPMethod.POST, {
       phone,
       reference,
-    });
+    }) as Promise<PaystackResponse<Transaction>>;
   }
 
   /**
@@ -91,11 +94,11 @@ export default class ChargeClient {
   submitBirthday(
     birthday: string,
     reference: string,
-  ): Promise<PaystackResponse> {
+  ) {
     return this.client.call("/charge/submit_birthday", HTTPMethod.POST, {
       birthday,
       reference,
-    });
+    }) as Promise<PaystackResponse<Transaction>>;
   }
 
   /**
@@ -105,8 +108,12 @@ export default class ChargeClient {
    * that is sent to paystack.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  submitAddress(payload: SubmitAddressPayload): Promise<PaystackResponse> {
-    return this.client.call("/charge/submit_address", HTTPMethod.POST, payload);
+  submitAddress(payload: SubmitAddressPayload) {
+    return this.client.call(
+      "/charge/submit_address",
+      HTTPMethod.POST,
+      payload,
+    ) as Promise<PaystackResponse<Transaction>>;
   }
 
   /**
@@ -118,7 +125,9 @@ export default class ChargeClient {
    * @param reference: The reference to check.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  checkPendingCharge(reference: string): Promise<PaystackResponse> {
-    return this.client.call(`/charge/${reference}`, HTTPMethod.GET);
+  checkPendingCharge(reference: string) {
+    return this.client.call(`/charge/${reference}`, HTTPMethod.GET) as Promise<
+      PaystackResponse<Transaction>
+    >;
   }
 }
