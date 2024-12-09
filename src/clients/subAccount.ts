@@ -3,8 +3,9 @@ import type {
   CreateSubAccountPayload,
   GetSubAccountsOptions,
   UpdateSubAccountPayload,
-} from "../types/clients/subAccount.ts";
+} from "../types/clients/index.ts";
 import { PaystackResponse } from "../types/global.ts";
+import type { SubAccount } from "../types/models.ts";
 
 /**
  * SubAccountClient provides methods that lets you interface with Paystack's
@@ -37,8 +38,10 @@ export default class SubAccountClient {
    * create a sub account.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: CreateSubAccountPayload): Promise<PaystackResponse> {
-    return this.client.call("/subaccount", HTTPMethod.POST, payload);
+  create(payload: CreateSubAccountPayload) {
+    return this.client.call("/subaccount", HTTPMethod.POST, payload) as Promise<
+      PaystackResponse<SubAccount>
+    >;
   }
 
   /**
@@ -48,8 +51,13 @@ export default class SubAccountClient {
    * data that is returned in the response.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getSubAccounts(options?: GetSubAccountsOptions): Promise<PaystackResponse> {
-    return this.client.call("/subaccount", HTTPMethod.GET, null, options);
+  getSubAccounts(options?: GetSubAccountsOptions) {
+    return this.client.call(
+      "/subaccount",
+      HTTPMethod.GET,
+      null,
+      options,
+    ) as Promise<PaystackResponse<SubAccount[]>>;
   }
 
   /**
@@ -58,8 +66,11 @@ export default class SubAccountClient {
    * @param idOrCode : The subaccount ``ID`` or ``code`` you want to fetch
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getSubAccount(idOrCode: string): Promise<PaystackResponse> {
-    return this.client.call(`/subaccount/${idOrCode}`, HTTPMethod.GET);
+  getSubAccount(idOrCode: string) {
+    return this.client.call(
+      `/subaccount/${idOrCode}`,
+      HTTPMethod.GET,
+    ) as Promise<PaystackResponse<SubAccount>>;
   }
 
   /**
@@ -73,7 +84,11 @@ export default class SubAccountClient {
   update(
     idOrCode: string,
     payload: UpdateSubAccountPayload,
-  ): Promise<PaystackResponse> {
-    return this.client.call(`/subaccount/${idOrCode}`, HTTPMethod.PUT, payload);
+  ) {
+    return this.client.call(
+      `/subaccount/${idOrCode}`,
+      HTTPMethod.PUT,
+      payload,
+    ) as Promise<PaystackResponse<SubAccount>>;
   }
 }
