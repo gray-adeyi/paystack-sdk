@@ -198,3 +198,44 @@ export enum Resolution {
   MERCHANT_ACCEPTED = "merchant-accepted",
   DECLINED = "declined",
 }
+
+export enum Domain {
+  LIVE = "live",
+  TEST = "test",
+}
+
+export enum BulkChargeStatus {
+  ACTIVE = "active",
+  PAUSED = "paused",
+  COMPLETE = "complete",
+}
+
+export enum SupportedCountryRelationshipType {
+  CURRENCY = "currency",
+  INTEGRATION_FEATURE = "integration_feature",
+  INTEGRATION_TYPE = "integration_type",
+  PAYMENT_METHOD = "payment_method",
+}
+
+export enum PaystackPaymentMethod {
+  PAYM_001 = "PAYM_001",
+  PAYM_002 = "PAYM_002",
+  PAYM_003 = "PAYM_003",
+  PAYM_004 = "PAYM_004",
+}
+
+export enum PaystackIntegrationType {
+  ITYPE_001 = "ITYPE_001",
+  ITYPE_002 = "ITYPE_002",
+  ITYPE_003 = "ITYPE_003",
+  ITYPE_004 = "ITYPE_004",
+  ITYPE_005 = "ITYPE_005",
+  ITYPE_006 = "ITYPE_006",
+  ITYPE_007 = "ITYPE_007",
+  ITYPE_008 = "ITYPE_008",
+  ITYPE_009 = "ITYPE_009",
+  ITYPE_010 = "ITYPE_010",
+  ITYPE_011 = "ITYPE_011",
+  ITYPE_012 = "ITYPE_012",
+  ITYPE_013 = "ITYPE_013",
+}
