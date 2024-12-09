@@ -63,6 +63,7 @@ export enum Currency {
   KES = "KES",
   XOF = "XOF",
   EGP = "EGP",
+  RWF = "RWF",
 }
 
 /**
