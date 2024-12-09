@@ -5,6 +5,7 @@ import type {
   UpdatePaymentRequestPayload,
 } from "../types/clients/paymentRequest.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import { PaymentRequest, PaymentRequestStat } from "../types/models.ts";
 
 /**
  * PaymentRequestClient provides method that lets you interface with Paystack's
@@ -36,8 +37,12 @@ export default class PaymentRequestClient {
    * to create a payment request.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: CreatePaymentRequestPayload): Promise<PaystackResponse> {
-    return this.client.call("/paymentrequest", HTTPMethod.POST, payload);
+  create(payload: CreatePaymentRequestPayload) {
+    return this.client.call(
+      "/paymentrequest",
+      HTTPMethod.POST,
+      payload,
+    ) as Promise<PaystackResponse<PaymentRequest>>;
   }
 
   /**
@@ -49,8 +54,13 @@ export default class PaymentRequestClient {
    */
   getPaymentRequests(
     options?: GetPaymentRequestsOptions,
-  ): Promise<PaystackResponse> {
-    return this.client.call("/paymentrequest", HTTPMethod.GET, null, options);
+  ) {
+    return this.client.call(
+      "/paymentrequest",
+      HTTPMethod.GET,
+      null,
+      options,
+    ) as Promise<PaystackResponse<PaymentRequest[]>>;
   }
 
   /**
@@ -59,8 +69,11 @@ export default class PaymentRequestClient {
    * @param idOrCode : The payment request ID or code you want to fetch
    * @returns  A promise containing a {@link PaystackResponse}
    */
-  getPaymentRequest(idOrCode: string): Promise<PaystackResponse> {
-    return this.client.call(`/paymentrequest/${idOrCode}`, HTTPMethod.GET);
+  getPaymentRequest(idOrCode: string) {
+    return this.client.call(
+      `/paymentrequest/${idOrCode}`,
+      HTTPMethod.GET,
+    ) as Promise<PaystackResponse<PaymentRequest>>;
   }
 
   /**
@@ -69,11 +82,11 @@ export default class PaymentRequestClient {
    * @param idOrCode : The payment request ID or code
    * @returns A promise containing a {@link PaystackResponse}
    */
-  verify(idOrCode: string): Promise<PaystackResponse> {
+  verify(idOrCode: string) {
     return this.client.call(
       `/paymentrequest/verify/${idOrCode}`,
       HTTPMethod.GET,
-    );
+    ) as Promise<PaystackResponse<PaymentRequest>>;
   }
 
   /**
@@ -82,11 +95,11 @@ export default class PaymentRequestClient {
    * @param idOrCode : The payment request ID or code
    * @returns A promise containing a {@link PaystackResponse}
    */
-  sendNotification(idOrCode: string): Promise<PaystackResponse> {
+  sendNotification(idOrCode: string) {
     return this.client.call(
       `/paymentrequest/notify/${idOrCode}`,
       HTTPMethod.POST,
-    );
+    ) as Promise<PaystackResponse<undefined>>;
   }
 
   /**
@@ -94,8 +107,11 @@ export default class PaymentRequestClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getTotal(): Promise<PaystackResponse> {
-    return this.client.call("/paymentrequest/totals", HTTPMethod.GET);
+  getTotal() {
+    return this.client.call(
+      "/paymentrequest/totals",
+      HTTPMethod.GET,
+    ) as Promise<PaystackResponse<PaymentRequestStat>>;
   }
 
   /**
@@ -104,11 +120,11 @@ export default class PaymentRequestClient {
    * @param idOrCode : The payment request ID or code
    * @returns A promise containing a {@link PaystackResponse}
    */
-  finalize(idOrCode: string): Promise<PaystackResponse> {
+  finalize(idOrCode: string) {
     return this.client.call(
       `/paymentrequest/finalize/${idOrCode}`,
       HTTPMethod.GET,
-    );
+    ) as Promise<PaystackResponse<PaymentRequest>>;
   }
 
   /**
@@ -122,12 +138,12 @@ export default class PaymentRequestClient {
   update(
     idOrCode: string,
     payload: UpdatePaymentRequestPayload,
-  ): Promise<PaystackResponse> {
+  ) {
     return this.client.call(
       `/paymentrequest/${idOrCode}`,
       HTTPMethod.PUT,
       payload,
-    );
+    ) as Promise<PaystackResponse<PaymentRequest>>;
   }
 
   /**
@@ -137,10 +153,10 @@ export default class PaymentRequestClient {
    * @param idOrCode : The payment request ID or code
    * @returns A promise containing a {@link PaystackResponse}
    */
-  archive(idOrCode: string): Promise<PaystackResponse> {
+  archive(idOrCode: string) {
     return this.client.call(
       `/paymentrequest/archive/${idOrCode}`,
       HTTPMethod.POST,
-    );
+    ) as Promise<PaystackResponse<undefined>>;
   }
 }
