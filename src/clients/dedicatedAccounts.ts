@@ -4,8 +4,9 @@ import type {
   CreateDedicatedAccountPayload,
   GetDedicatedAccountsOptions,
   SplitPayload,
-} from "../types/clients/dedicatedAccounts.ts";
+} from "../types/clients/index.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import type {DedicatedAccount, DedicatedAccountProvider} from "../types/models.ts";
 
 /**
  * DedicatedAccountClient provides methods that lets you interface with Paystack's
@@ -43,12 +44,12 @@ export default class DedicatedAccountClient {
    * create the dedicated virtual account.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: CreateDedicatedAccountPayload): Promise<PaystackResponse> {
+  create(payload: CreateDedicatedAccountPayload) {
     return this.client.call(
       "/dedicated_account",
       HTTPMethod.POST,
       payload,
-    );
+    ) as Promise<PaystackResponse<DedicatedAccount>>;
   }
 
   /**
@@ -60,12 +61,12 @@ export default class DedicatedAccountClient {
    * @param payload : The data sent to paystack.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  assign(payload: AssignDedicatedAccountPayload): Promise<PaystackResponse> {
+  assign(payload: AssignDedicatedAccountPayload) {
     return this.client.call(
       "/dedicated_account/assign",
       HTTPMethod.POST,
       payload,
-    );
+    ) as Promise<PaystackResponse<undefined>>;
   }
 
   /**
@@ -79,13 +80,13 @@ export default class DedicatedAccountClient {
    */
   getDedicatedAccounts(
     options?: GetDedicatedAccountsOptions,
-  ): Promise<PaystackResponse> {
+  ) {
     return this.client.call(
       "/dedicated_account",
       HTTPMethod.GET,
       null,
       options,
-    );
+    ) as Promise<PaystackResponse<DedicatedAccount[]>>;
   }
 
   /**
@@ -97,11 +98,11 @@ export default class DedicatedAccountClient {
    * @param dedicatedAccountId : ID of the dedicated virtual account.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getDedicatedAccount(dedicatedAccountId: string): Promise<PaystackResponse> {
+  getDedicatedAccount(dedicatedAccountId: string) {
     return this.client.call(
       `/dedicated_account/${dedicatedAccountId}`,
       HTTPMethod.GET,
-    );
+    ) as Promise<PaystackResponse<DedicatedAccount>>;
   }
 
   /**
@@ -120,13 +121,13 @@ export default class DedicatedAccountClient {
     accountNumber: string,
     providerSlug: string,
     date?: string,
-  ): Promise<PaystackResponse> {
+  ) {
     return this.client.call(
       "dedicated_account",
       HTTPMethod.GET,
       null,
       { accountNumber, providerSlug, date },
-    );
+    ) as Promise<PaystackResponse<undefined>>;
   }
 
   /**
@@ -138,11 +139,11 @@ export default class DedicatedAccountClient {
    * @param dedicatedAccountId : ID of the dedicated virtual account.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  deactivate(dedicatedAccountId: string): Promise<PaystackResponse> {
+  deactivate(dedicatedAccountId: string) {
     return this.client.call(
       `dedicated_account/${dedicatedAccountId}`,
       HTTPMethod.DELETE,
-    );
+    ) as Promise<PaystackResponse<DedicatedAccount>>;
   }
 
   /**
@@ -154,12 +155,12 @@ export default class DedicatedAccountClient {
    * @param payload : {@link SplitPayload}
    * @returns A promise containing a {@link PaystackResponse}
    */
-  split(payload: SplitPayload): Promise<PaystackResponse> {
+  split(payload: SplitPayload) {
     return this.client.call(
       "/dedicated_account/split",
       HTTPMethod.POST,
       payload,
-    );
+    ) as Promise<PaystackResponse<DedicatedAccount>>;
   }
 
   /**
@@ -174,12 +175,12 @@ export default class DedicatedAccountClient {
    * @param accountNumber : Dedicated virtual account number
    * @returns A promise containing a {@link PaystackResponse}
    */
-  removeSplit(accountNumber: string): Promise<PaystackResponse> {
+  removeSplit(accountNumber: string) {
     return this.client.call(
       "/dedicated_account/split",
       HTTPMethod.DELETE,
       { accountNumber },
-    );
+    ) as Promise<PaystackResponse<DedicatedAccount>>;
   }
 
   /**
@@ -187,10 +188,10 @@ export default class DedicatedAccountClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getProviders(): Promise<PaystackResponse> {
+  getProviders() {
     return this.client.call(
       "/dedicated_account/available_providers",
       HTTPMethod.GET,
-    );
+    ) as Promise<PaystackResponse<DedicatedAccountProvider[]>>;
   }
 }
