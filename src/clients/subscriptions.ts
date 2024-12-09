@@ -2,8 +2,9 @@ import RestClient, { HTTPMethod } from "../restClient.ts";
 import type {
   CreateSubscriptionPayload,
   GetSubscriptionsOptions,
-} from "../types/clients/subscriptions.ts";
+} from "../types/clients/index.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import type { Subscription } from "../types/models.ts";
 
 /**
  * SubscriptionClient provides methods that lets you interface with Paystack's
@@ -36,8 +37,12 @@ export default class SubscriptionClient {
    * to create a subscription
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: CreateSubscriptionPayload): Promise<PaystackResponse> {
-    return this.client.call("/subscription", HTTPMethod.POST, payload);
+  create(payload: CreateSubscriptionPayload) {
+    return this.client.call(
+      "/subscription",
+      HTTPMethod.POST,
+      payload,
+    ) as Promise<PaystackResponse<Subscription>>;
   }
 
   /**
@@ -49,8 +54,13 @@ export default class SubscriptionClient {
    */
   getSubscriptions(
     options?: GetSubscriptionsOptions,
-  ): Promise<PaystackResponse> {
-    return this.client.call("/subscription", HTTPMethod.GET, null, options);
+  ) {
+    return this.client.call(
+      "/subscription",
+      HTTPMethod.GET,
+      null,
+      options,
+    ) as Promise<PaystackResponse<Subscription>>;
   }
 
   /**
@@ -59,8 +69,11 @@ export default class SubscriptionClient {
    * @param idOrCode: The subscription ``ID`` or ``code`` you want to fetch
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getSubscription(idOrCode: string): Promise<PaystackResponse> {
-    return this.client.call(`/subscription/${idOrCode}`, HTTPMethod.GET);
+  getSubscription(idOrCode: string) {
+    return this.client.call(
+      `/subscription/${idOrCode}`,
+      HTTPMethod.GET,
+    ) as Promise<PaystackResponse<Subscription>>;
   }
 
   /**
@@ -70,11 +83,11 @@ export default class SubscriptionClient {
    * @param token: Email token
    * @returns A promise containing a {@link PaystackResponse}
    */
-  enable(code: string, token: string): Promise<PaystackResponse> {
+  enable(code: string, token: string) {
     return this.client.call("/subscription/enable", HTTPMethod.POST, {
       code,
       token,
-    });
+    }) as Promise<PaystackResponse<undefined>>;
   }
 
   /**
@@ -84,11 +97,11 @@ export default class SubscriptionClient {
    * @param token: Email token
    * @returns A promise containing a {@link PaystackResponse}
    */
-  disable(code: string, token: string): Promise<PaystackResponse> {
+  disable(code: string, token: string) {
     return this.client.call("/subscription/disable", HTTPMethod.POST, {
       code,
       token,
-    });
+    }) as Promise<PaystackResponse<undefined>>;
   }
 
   /**
@@ -97,11 +110,15 @@ export default class SubscriptionClient {
    * @param code: Subscription code
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getUpdateLink(code: string): Promise<PaystackResponse> {
+  getUpdateLink(code: string) {
     return this.client.call(
       `/subscription/${code}/manage/link`,
       HTTPMethod.GET,
-    );
+    ) as Promise<
+      PaystackResponse<{
+        readonly link: string;
+      }>
+    >;
   }
 
   /**
@@ -110,10 +127,10 @@ export default class SubscriptionClient {
    * @param code : Subscription code
    * @returns A promise containing a {@link PaystackResponse}
    */
-  sendUpdateLink(code: string): Promise<PaystackResponse> {
+  sendUpdateLink(code: string) {
     return this.client.call(
       `/subscription/${code}/manage/email/`,
       HTTPMethod.POST,
-    );
+    ) as Promise<PaystackResponse<undefined>>;
   }
 }
