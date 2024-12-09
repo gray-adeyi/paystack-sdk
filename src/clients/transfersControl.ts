@@ -1,6 +1,8 @@
 import type { Reason } from "../enums.ts";
 import RestClient, { HTTPMethod } from "../restClient.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import type { Currency } from "../enums.ts";
+import type { BalanceLedgerItem } from "../types/models.ts";
 
 /**
  * TransferControlClient provides methods lets you interface with Paystack's
@@ -30,8 +32,13 @@ export default class TransferControlClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  checkBalance(): Promise<PaystackResponse> {
-    return this.client.call("/balance", HTTPMethod.GET);
+  checkBalance() {
+    return this.client.call("/balance", HTTPMethod.GET) as Promise<
+      PaystackResponse<{
+        readonly currency: Currency;
+        readonly balance: number;
+      }[]>
+    >;
   }
 
   /**
@@ -39,8 +46,10 @@ export default class TransferControlClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getBalanceLedger(): Promise<PaystackResponse> {
-    return this.client.call("/balance/ledger", HTTPMethod.GET);
+  getBalanceLedger() {
+    return this.client.call("/balance/ledger", HTTPMethod.GET) as Promise<
+      PaystackResponse<BalanceLedgerItem[]>
+    >;
   }
 
   /**
@@ -50,11 +59,11 @@ export default class TransferControlClient {
    * @param reason :  Any value from the reason enum
    * @returns A promise containing a {@link PaystackResponse}
    */
-  resendOtp(transferCode: string, reason: Reason): Promise<PaystackResponse> {
+  resendOtp(transferCode: string, reason: Reason) {
     return this.client.call("/transfer/resend_otp", HTTPMethod.POST, {
       transferCode,
       reason,
-    });
+    }) as Promise<PaystackResponse<undefined>>;
   }
 
   /**
@@ -64,8 +73,11 @@ export default class TransferControlClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  disableOtp(): Promise<PaystackResponse> {
-    return this.client.call("/transfer/disable_otp", HTTPMethod.POST);
+  disableOtp() {
+    return this.client.call(
+      "/transfer/disable_otp",
+      HTTPMethod.POST,
+    ) as Promise<PaystackResponse<undefined>>;
   }
 
   /**
@@ -74,10 +86,10 @@ export default class TransferControlClient {
    * @param otp : One time password
    * @returns A promise containing a {@link PaystackResponse}
    */
-  finalizeDisableOtp(otp: string): Promise<PaystackResponse> {
+  finalizeDisableOtp(otp: string) {
     return this.client.call("/transfer/disable_otp_finalize", HTTPMethod.POST, {
       otp,
-    });
+    }) as Promise<PaystackResponse<undefined>>;
   }
 
   /**
@@ -87,7 +99,10 @@ export default class TransferControlClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  enableOtp(): Promise<PaystackResponse> {
-    return this.client.call("/transfer/enable_otp/", HTTPMethod.POST);
+  enableOtp() {
+    return this.client.call(
+      "/transfer/enable_otp/",
+      HTTPMethod.POST,
+    ) as Promise<PaystackResponse<undefined>>;
   }
 }
