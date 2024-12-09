@@ -3,8 +3,9 @@ import type {
   CreatePaymentPagePayload,
   GetPagesOptions,
   UpdatePaymentPagePayload,
-} from "../types/clients/paymentPages.ts";
+} from "../types/clients/index.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import type { PaymentPage } from "../types/models.ts";
 
 /**
  * PaymentPageClient provides method that lets you interface with Paystack's
@@ -36,8 +37,10 @@ export default class PaymentPageClient {
    * create a payment page.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: CreatePaymentPagePayload): Promise<PaystackResponse> {
-    return this.client.call("/page", HTTPMethod.POST, payload);
+  create(payload: CreatePaymentPagePayload) {
+    return this.client.call("/page", HTTPMethod.POST, payload) as Promise<
+      PaystackResponse<PaymentPage>
+    >;
   }
 
   /**
@@ -47,8 +50,10 @@ export default class PaymentPageClient {
    * returned in the response
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getPages(options?: GetPagesOptions): Promise<PaystackResponse> {
-    return this.client.call("/page", HTTPMethod.GET, null, options);
+  getPages(options?: GetPagesOptions) {
+    return this.client.call("/page", HTTPMethod.GET, null, options) as Promise<
+      PaystackResponse<PaymentPage[]>
+    >;
   }
 
   /**
@@ -57,8 +62,10 @@ export default class PaymentPageClient {
    * @param idOrSlug : The page ``ID`` or ``slug`` you want to fetch
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getPage(idOrSlug: string): Promise<PaystackResponse> {
-    return this.client.call(`/page/${idOrSlug}`, HTTPMethod.GET);
+  getPage(idOrSlug: string) {
+    return this.client.call(`/page/${idOrSlug}`, HTTPMethod.GET) as Promise<
+      PaystackResponse<PaymentPage>
+    >;
   }
 
   /**
@@ -72,8 +79,12 @@ export default class PaymentPageClient {
   update(
     idOrSlug: string,
     payload: UpdatePaymentPagePayload,
-  ): Promise<PaystackResponse> {
-    return this.client.call(`/page/${idOrSlug}`, HTTPMethod.PUT, payload);
+  ) {
+    return this.client.call(
+      `/page/${idOrSlug}`,
+      HTTPMethod.PUT,
+      payload,
+    ) as Promise<PaystackResponse<PaymentPage>>;
   }
 
   /**
@@ -82,11 +93,11 @@ export default class PaymentPageClient {
    * @param slug : URL slug to be confirmed
    * @returns A promise containing a {@link PaystackResponse}
    */
-  checkSlugAvailable(slug: string): Promise<PaystackResponse> {
+  checkSlugAvailable(slug: string) {
     return this.client.call(
       `/page/check_slug_availability/${slug}`,
       HTTPMethod.GET,
-    );
+    ) as Promise<PaystackResponse<undefined>>;
   }
 
   /**
@@ -96,7 +107,9 @@ export default class PaymentPageClient {
    * @param products : An array of the IDs of the products to be added.
    * @returns
    */
-  addProducts(id: string, products: string[]): Promise<PaystackResponse> {
-    return this.client.call(`/page/${id}/product`, HTTPMethod.POST, {products});
+  addProducts(id: string, products: string[]) {
+    return this.client.call(`/page/${id}/product`, HTTPMethod.POST, {
+      products,
+    }) as Promise<PaystackResponse<PaymentPage>>;
   }
 }
