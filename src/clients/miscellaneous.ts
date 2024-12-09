@@ -1,7 +1,8 @@
 import { Country } from "../enums.ts";
 import RestClient, { HTTPMethod } from "../restClient.ts";
-import type { GetBanksOptions } from "../types/clients/miscellaneous.ts";
+import type { GetBanksOptions } from "../types/clients/index.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import type { Bank, PaystackSupportedCountry } from "../types/models.ts";
 
 /**
  * MiscellaneousClient provides methods that lets you interface with Paystack's
@@ -34,7 +35,7 @@ export default class MiscellaneousClient {
    * in that country supported by Paystack
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getBanks(options: GetBanksOptions): Promise<PaystackResponse> {
+  getBanks(options: GetBanksOptions) {
     const countryFullNameMap: Record<Country, string> = {
       [Country.NIGERIA]: "nigeria",
       [Country.GHANA]: "ghana",
@@ -44,7 +45,9 @@ export default class MiscellaneousClient {
       [Country.EGYPT]: "egypt",
     };
     const params = { ...options, country: countryFullNameMap[options.country] };
-    return this.client.call("/bank", HTTPMethod.GET, null, params);
+    return this.client.call("/bank", HTTPMethod.GET, null, params) as Promise<
+      PaystackResponse<Bank[]>
+    >;
   }
 
   /**
@@ -52,8 +55,10 @@ export default class MiscellaneousClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getCountries(): Promise<PaystackResponse> {
-    return this.client.call("/country", HTTPMethod.GET);
+  getCountries() {
+    return this.client.call("/country", HTTPMethod.GET) as Promise<
+      PaystackResponse<PaystackSupportedCountry>
+    >;
   }
 
   /**
@@ -62,10 +67,16 @@ export default class MiscellaneousClient {
    * @param country :  The country from which to filter the states
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getStates(country: Country): Promise<PaystackResponse> {
+  getStates(country: Country) {
     return this.client.call(
       `address_verification/states?country=${country}`,
       HTTPMethod.GET,
-    );
+    ) as Promise<
+      PaystackResponse<{
+        readonly name: string;
+        readonly slug: string;
+        readonly abbreviation: string;
+      }>
+    >;
   }
 }
