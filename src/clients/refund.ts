@@ -4,6 +4,7 @@ import type {
   GetRefundsOptions,
 } from "../types/clients/refund.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import type { Refund } from "../types/models.ts";
 
 /**
  * RefundClient provides methods that lets you interface with Paystack's
@@ -35,8 +36,10 @@ export default class RefundClient {
    * to initiate a refund.
    * @returns A promise containing  a {@link PaystackResponse}
    */
-  create(payload: CreateRefundPayload): Promise<PaystackResponse> {
-    return this.client.call("/refund", HTTPMethod.POST, payload);
+  create(payload: CreateRefundPayload) {
+    return this.client.call("/refund", HTTPMethod.POST, payload) as Promise<
+      PaystackResponse<Refund>
+    >;
   }
 
   /**
@@ -46,8 +49,13 @@ export default class RefundClient {
    * returned in the response.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getRefunds(options?: GetRefundsOptions): Promise<PaystackResponse> {
-    return this.client.call("/refund", HTTPMethod.GET, null, options);
+  getRefunds(options?: GetRefundsOptions) {
+    return this.client.call(
+      "/refund",
+      HTTPMethod.GET,
+      null,
+      options,
+    ) as Promise<PaystackResponse<Refund[]>>;
   }
 
   /**
@@ -56,7 +64,9 @@ export default class RefundClient {
    * @param reference Identifier for transaction to be refunded
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getRefund(reference: string): Promise<PaystackResponse> {
-    return this.client.call(`/refund/${reference}`, HTTPMethod.GET);
+  getRefund(reference: string) {
+    return this.client.call(`/refund/${reference}`, HTTPMethod.GET) as Promise<
+      PaystackResponse<Refund>
+    >;
   }
 }
