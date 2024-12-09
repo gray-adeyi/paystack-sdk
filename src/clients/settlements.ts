@@ -2,8 +2,9 @@ import RestClient, { HTTPMethod } from "../restClient.ts";
 import type {
   GetSettlementsOptions,
   GetSettlementTransactionsOptions,
-} from "../types/clients/settlements.ts";
+} from "../types/clients/index.ts";
 import type { PaystackResponse } from "../types/global.ts";
+import type { Settlement, Transaction } from "../types/models.ts";
 
 /**
  * SettlementClient provides methods that lets you interface with Paystack's
@@ -35,8 +36,13 @@ export default class SettlementClient {
    * that is returned in the response
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getSettlements(options?: GetSettlementsOptions): Promise<PaystackResponse> {
-    return this.client.call("/settlement", HTTPMethod.GET, null, options);
+  getSettlements(options?: GetSettlementsOptions) {
+    return this.client.call(
+      "/settlement",
+      HTTPMethod.GET,
+      null,
+      options,
+    ) as Promise<PaystackResponse<Settlement>>;
   }
 
   /**
@@ -50,12 +56,12 @@ export default class SettlementClient {
   getSettlementTransactions(
     id: string,
     options?: GetSettlementTransactionsOptions,
-  ): Promise<PaystackResponse> {
+  ) {
     return this.client.call(
       `/settlement/${id}/transactions`,
       HTTPMethod.GET,
       null,
       options,
-    );
+    ) as Promise<PaystackResponse<Transaction>>;
   }
 }
