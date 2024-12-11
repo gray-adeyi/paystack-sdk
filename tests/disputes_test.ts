@@ -31,5 +31,5 @@ describe("PaystackClient.disputes", () => {
 
   it.skip("PaystackClient.disputes.resolveDispute", async () => {});
 
-  it.skip("PaystackClient.disputes.exportDisputes",async () => {});
+  it.skip("PaystackClient.disputes.exportDisputes", async () => {});
 });

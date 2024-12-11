@@ -8,14 +8,14 @@ describe("PaystackClient.dedicatedAccounts", () => {
 
   beforeAll(async () => {
     await load({ envPath: "../.env", export: true });
-    client = new PaystackClient()
+    client = new PaystackClient();
   });
 
   it.skip("PaystackClient.dedicatedAccounts.create", async () => {});
 
   it.skip("PaystackClient.dedicatedAccounts.assign", async () => {});
 
-  it.skip("PaystackClient.dedicatedAccounts.getDedicatedAccounts",async () => {
+  it.skip("PaystackClient.dedicatedAccounts.getDedicatedAccounts", async () => {
   });
 
   it.skip("PaystackClient.dedicatedAccounts.getDedicatedAccount", async () => {});

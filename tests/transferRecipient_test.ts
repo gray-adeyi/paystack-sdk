@@ -46,8 +46,8 @@ describe("PaystackClient.transferRecipient", () => {
       },
     ];
     const response = await client.transferRecipients.bulkCreate(payload);
-    assertEquals(response.statusCode, HttpStatusCode.Ok)
-    assertEquals(response.message, 'Recipients added successfully')
+    assertEquals(response.statusCode, HttpStatusCode.Ok);
+    assertEquals(response.message, "Recipients added successfully");
   });
 
   it("PaystackClient.transferRecipient.getTransferRecipients", async () => {

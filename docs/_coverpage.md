@@ -7,5 +7,4 @@
 - Built with Typescript
 - Supports multiple Javascript runtime (Node, Bun, Deno)
 
-[GitHub](https://github.com/gray-adeyi/paystack-sdk)
-[Get Started](/get-started)
+[GitHub](https://github.com/gray-adeyi/paystack-sdk) [Get Started](/get-started)
