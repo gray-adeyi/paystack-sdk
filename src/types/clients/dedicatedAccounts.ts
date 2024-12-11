@@ -117,7 +117,7 @@ export type GetDedicatedAccountsOptions = {
 };
 
 /**
- * A representation of data sent to Paystack to Split a dedicated virtual 
+ * A representation of data sent to Paystack to Split a dedicated virtual
  * account transaction with one or more accounts
  */
 export type SplitPayload = {

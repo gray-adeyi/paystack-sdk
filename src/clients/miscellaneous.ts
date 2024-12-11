@@ -35,7 +35,9 @@ export default class MiscellaneousClient {
    * in that country supported by Paystack
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getBanks(options: GetBanksOptions) {
+  getBanks(options: GetBanksOptions): Promise<
+    PaystackResponse<Bank[]>
+  > {
     const countryFullNameMap: Record<Country, string> = {
       [Country.NIGERIA]: "nigeria",
       [Country.GHANA]: "ghana",
@@ -43,6 +45,7 @@ export default class MiscellaneousClient {
       [Country.KENYA]: "kenya",
       [Country.COTE_D_IVOIRE]: "côte d'ivoire",
       [Country.EGYPT]: "egypt",
+      [Country.RWANDA]: "rwanda",
     };
     const params = { ...options, country: countryFullNameMap[options.country] };
     return this.client.call("/bank", HTTPMethod.GET, null, params) as Promise<
@@ -55,7 +58,9 @@ export default class MiscellaneousClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getCountries() {
+  getCountries(): Promise<
+    PaystackResponse<PaystackSupportedCountry>
+  > {
     return this.client.call("/country", HTTPMethod.GET) as Promise<
       PaystackResponse<PaystackSupportedCountry>
     >;
@@ -67,7 +72,13 @@ export default class MiscellaneousClient {
    * @param country :  The country from which to filter the states
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getStates(country: Country) {
+  getStates(country: Country): Promise<
+    PaystackResponse<{
+      readonly name: string;
+      readonly slug: string;
+      readonly abbreviation: string;
+    }>
+  > {
     return this.client.call(
       `address_verification/states?country=${country}`,
       HTTPMethod.GET,

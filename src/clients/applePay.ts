@@ -2,7 +2,7 @@ import RestClient, { HTTPMethod } from "../restClient.ts";
 import type { GetDomainsOptions } from "../types/clients/applePay.ts";
 import type { PaystackResponse } from "../types/global.ts";
 
-import type {ApplePayDomains} from "../types/models.ts";
+import type { ApplePayDomains } from "../types/models.ts";
 
 /**
  * ApplePayClient provides methods that lets you interface with Paystack's
@@ -39,7 +39,7 @@ export default class ApplePayClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  registerDomain(domainName: string) {
+  registerDomain(domainName: string): Promise<PaystackResponse<undefined>> {
     return this.client.call("/apple-pay/domain", HTTPMethod.POST, {
       domainName,
     }) as Promise<PaystackResponse<undefined>>;
@@ -54,7 +54,9 @@ export default class ApplePayClient {
    * be returned.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getDomains(options?: GetDomainsOptions) {
+  getDomains(
+    options?: GetDomainsOptions,
+  ): Promise<PaystackResponse<ApplePayDomains>> {
     return this.client.call(
       "/apple-pay/domain",
       HTTPMethod.GET,
@@ -71,7 +73,7 @@ export default class ApplePayClient {
    * @param domainName : The domain name to be unregistered.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  unregisterDomain(domainName: string) {
+  unregisterDomain(domainName: string): Promise<PaystackResponse<undefined>> {
     return this.client.call("/apple-pay/domain", HTTPMethod.DELETE, {
       domainName,
     }) as Promise<PaystackResponse<undefined>>;

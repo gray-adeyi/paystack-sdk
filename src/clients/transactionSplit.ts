@@ -37,7 +37,9 @@ export default class TransactionSplitClient {
    * paystack to create a transaction split.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: TransactionSplitCreatePayload) {
+  create(payload: TransactionSplitCreatePayload): Promise<
+    PaystackResponse<TransactionSplit>
+  > {
     return this.client.call("/split", HTTPMethod.POST, payload) as Promise<
       PaystackResponse<TransactionSplit>
     >;
@@ -50,7 +52,9 @@ export default class TransactionSplitClient {
    * to be returned in the response.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getSplits(options?: GetSplitsOptions) {
+  getSplits(options?: GetSplitsOptions): Promise<
+    PaystackResponse<TransactionSplit[]>
+  > {
     return this.client.call("/split", HTTPMethod.GET, null, options) as Promise<
       PaystackResponse<TransactionSplit[]>
     >;
@@ -62,7 +66,9 @@ export default class TransactionSplitClient {
    * @param id : The id of the split.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getSplit(id: string) {
+  getSplit(id: string): Promise<
+    PaystackResponse<TransactionSplit>
+  > {
     return this.client.call(`/split/${id}`, HTTPMethod.GET) as Promise<
       PaystackResponse<TransactionSplit>
     >;
@@ -76,7 +82,9 @@ export default class TransactionSplitClient {
    * update the transaction split.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  update(id: string, payload: UpdateTxSplitPayload) {
+  update(id: string, payload: UpdateTxSplitPayload): Promise<
+    PaystackResponse<TransactionSplit>
+  > {
     return this.client.call(`/split/${id}`, HTTPMethod.PUT, payload) as Promise<
       PaystackResponse<TransactionSplit>
     >;
@@ -95,7 +103,7 @@ export default class TransactionSplitClient {
     id: string,
     subaccount: string,
     share: number,
-  ) {
+  ): Promise<PaystackResponse<TransactionSplit>> {
     return this.client.call(`/split/${id}/subaccount/add`, HTTPMethod.POST, {
       subaccount,
       share,
@@ -110,7 +118,10 @@ export default class TransactionSplitClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  remove(id: string, subaccount: string) {
+  remove(
+    id: string,
+    subaccount: string,
+  ): Promise<PaystackResponse<TransactionSplit>> {
     return this.client.call(`/split/${id}/subaccount/remove`, HTTPMethod.POST, {
       subaccount,
     }) as Promise<PaystackResponse<TransactionSplit>>;

@@ -37,7 +37,9 @@ export default class ProductClient {
    * create a product.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: CreateProductPayload) {
+  create(payload: CreateProductPayload): Promise<
+    PaystackResponse<Product>
+  > {
     return this.client.call("/product", HTTPMethod.POST, payload) as Promise<
       PaystackResponse<Product>
     >;
@@ -50,7 +52,9 @@ export default class ProductClient {
    * the response.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getProducts(options?: GetProductsOptions) {
+  getProducts(
+    options?: GetProductsOptions,
+  ): Promise<PaystackResponse<Product[]>> {
     return this.client.call(
       "/product",
       HTTPMethod.GET,
@@ -66,7 +70,9 @@ export default class ProductClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getProduct(id: string) {
+  getProduct(id: string): Promise<
+    PaystackResponse<Product>
+  > {
     return this.client.call(`/product/${id}`, HTTPMethod.GET) as Promise<
       PaystackResponse<Product>
     >;
@@ -78,7 +84,10 @@ export default class ProductClient {
    * the product.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  update(id: string, payload: UpdateProductPayload) {
+  update(
+    id: string,
+    payload: UpdateProductPayload,
+  ): Promise<PaystackResponse<Product>> {
     return this.client.call(
       `/product/${id}`,
       HTTPMethod.PUT,

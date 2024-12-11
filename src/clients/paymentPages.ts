@@ -37,7 +37,9 @@ export default class PaymentPageClient {
    * create a payment page.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: CreatePaymentPagePayload) {
+  create(payload: CreatePaymentPagePayload): Promise<
+    PaystackResponse<PaymentPage>
+  > {
     return this.client.call("/page", HTTPMethod.POST, payload) as Promise<
       PaystackResponse<PaymentPage>
     >;
@@ -50,7 +52,9 @@ export default class PaymentPageClient {
    * returned in the response
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getPages(options?: GetPagesOptions) {
+  getPages(options?: GetPagesOptions): Promise<
+    PaystackResponse<PaymentPage[]>
+  > {
     return this.client.call("/page", HTTPMethod.GET, null, options) as Promise<
       PaystackResponse<PaymentPage[]>
     >;
@@ -62,7 +66,9 @@ export default class PaymentPageClient {
    * @param idOrSlug : The page ``ID`` or ``slug`` you want to fetch
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getPage(idOrSlug: string) {
+  getPage(idOrSlug: string): Promise<
+    PaystackResponse<PaymentPage>
+  > {
     return this.client.call(`/page/${idOrSlug}`, HTTPMethod.GET) as Promise<
       PaystackResponse<PaymentPage>
     >;
@@ -79,7 +85,7 @@ export default class PaymentPageClient {
   update(
     idOrSlug: string,
     payload: UpdatePaymentPagePayload,
-  ) {
+  ): Promise<PaystackResponse<PaymentPage>> {
     return this.client.call(
       `/page/${idOrSlug}`,
       HTTPMethod.PUT,
@@ -93,7 +99,7 @@ export default class PaymentPageClient {
    * @param slug : URL slug to be confirmed
    * @returns A promise containing a {@link PaystackResponse}
    */
-  checkSlugAvailable(slug: string) {
+  checkSlugAvailable(slug: string): Promise<PaystackResponse<undefined>> {
     return this.client.call(
       `/page/check_slug_availability/${slug}`,
       HTTPMethod.GET,
@@ -107,7 +113,10 @@ export default class PaymentPageClient {
    * @param products : An array of the IDs of the products to be added.
    * @returns
    */
-  addProducts(id: string, products: string[]) {
+  addProducts(
+    id: string,
+    products: string[],
+  ): Promise<PaystackResponse<PaymentPage>> {
     return this.client.call(`/page/${id}/product`, HTTPMethod.POST, {
       products,
     }) as Promise<PaystackResponse<PaymentPage>>;

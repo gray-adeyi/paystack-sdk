@@ -36,7 +36,9 @@ export default class SettlementClient {
    * that is returned in the response
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getSettlements(options?: GetSettlementsOptions) {
+  getSettlements(
+    options?: GetSettlementsOptions,
+  ): Promise<PaystackResponse<Settlement>> {
     return this.client.call(
       "/settlement",
       HTTPMethod.GET,
@@ -56,7 +58,7 @@ export default class SettlementClient {
   getSettlementTransactions(
     id: string,
     options?: GetSettlementTransactionsOptions,
-  ) {
+  ): Promise<PaystackResponse<Transaction>> {
     return this.client.call(
       `/settlement/${id}/transactions`,
       HTTPMethod.GET,

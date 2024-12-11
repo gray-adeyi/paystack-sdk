@@ -36,7 +36,9 @@ export default class RefundClient {
    * to initiate a refund.
    * @returns A promise containing  a {@link PaystackResponse}
    */
-  create(payload: CreateRefundPayload) {
+  create(payload: CreateRefundPayload): Promise<
+    PaystackResponse<Refund>
+  > {
     return this.client.call("/refund", HTTPMethod.POST, payload) as Promise<
       PaystackResponse<Refund>
     >;
@@ -49,7 +51,7 @@ export default class RefundClient {
    * returned in the response.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getRefunds(options?: GetRefundsOptions) {
+  getRefunds(options?: GetRefundsOptions): Promise<PaystackResponse<Refund[]>> {
     return this.client.call(
       "/refund",
       HTTPMethod.GET,
@@ -64,7 +66,9 @@ export default class RefundClient {
    * @param reference Identifier for transaction to be refunded
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getRefund(reference: string) {
+  getRefund(reference: string): Promise<
+    PaystackResponse<Refund>
+  > {
     return this.client.call(`/refund/${reference}`, HTTPMethod.GET) as Promise<
       PaystackResponse<Refund>
     >;

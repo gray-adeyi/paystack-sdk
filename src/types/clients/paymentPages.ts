@@ -48,7 +48,7 @@ export type CreatePaymentPagePayload = {
  */
 export type GetPagesOptions = PaginationAndDateFilterOptions;
 
-/** 
+/**
  * A representation of the data sent to paystack to update a payment page.
  */
 export type UpdatePaymentPagePayload = {

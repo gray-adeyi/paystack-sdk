@@ -37,7 +37,9 @@ export default class SubscriptionClient {
    * to create a subscription
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: CreateSubscriptionPayload) {
+  create(
+    payload: CreateSubscriptionPayload,
+  ): Promise<PaystackResponse<Subscription>> {
     return this.client.call(
       "/subscription",
       HTTPMethod.POST,
@@ -54,7 +56,7 @@ export default class SubscriptionClient {
    */
   getSubscriptions(
     options?: GetSubscriptionsOptions,
-  ) {
+  ): Promise<PaystackResponse<Subscription>> {
     return this.client.call(
       "/subscription",
       HTTPMethod.GET,
@@ -69,7 +71,7 @@ export default class SubscriptionClient {
    * @param idOrCode: The subscription ``ID`` or ``code`` you want to fetch
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getSubscription(idOrCode: string) {
+  getSubscription(idOrCode: string): Promise<PaystackResponse<Subscription>> {
     return this.client.call(
       `/subscription/${idOrCode}`,
       HTTPMethod.GET,
@@ -83,7 +85,7 @@ export default class SubscriptionClient {
    * @param token: Email token
    * @returns A promise containing a {@link PaystackResponse}
    */
-  enable(code: string, token: string) {
+  enable(code: string, token: string): Promise<PaystackResponse<undefined>> {
     return this.client.call("/subscription/enable", HTTPMethod.POST, {
       code,
       token,
@@ -97,7 +99,7 @@ export default class SubscriptionClient {
    * @param token: Email token
    * @returns A promise containing a {@link PaystackResponse}
    */
-  disable(code: string, token: string) {
+  disable(code: string, token: string): Promise<PaystackResponse<undefined>> {
     return this.client.call("/subscription/disable", HTTPMethod.POST, {
       code,
       token,
@@ -110,7 +112,11 @@ export default class SubscriptionClient {
    * @param code: Subscription code
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getUpdateLink(code: string) {
+  getUpdateLink(code: string): Promise<
+    PaystackResponse<{
+      readonly link: string;
+    }>
+  > {
     return this.client.call(
       `/subscription/${code}/manage/link`,
       HTTPMethod.GET,
@@ -127,7 +133,7 @@ export default class SubscriptionClient {
    * @param code : Subscription code
    * @returns A promise containing a {@link PaystackResponse}
    */
-  sendUpdateLink(code: string) {
+  sendUpdateLink(code: string): Promise<PaystackResponse<undefined>> {
     return this.client.call(
       `/subscription/${code}/manage/email/`,
       HTTPMethod.POST,

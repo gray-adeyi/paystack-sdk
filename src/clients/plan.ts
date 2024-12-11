@@ -38,7 +38,9 @@ export default class PlanClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: CreatePlanPayload) {
+  create(payload: CreatePlanPayload): Promise<
+    PaystackResponse<Plan>
+  > {
     return this.client.call("/plan", HTTPMethod.POST, payload) as Promise<
       PaystackResponse<Plan>
     >;
@@ -51,7 +53,9 @@ export default class PlanClient {
    * returned in the response
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getPlans(options?: GetPlansOptions) {
+  getPlans(options?: GetPlansOptions): Promise<
+    PaystackResponse<Plan[]>
+  > {
     return this.client.call("/plan", HTTPMethod.GET, null, options) as Promise<
       PaystackResponse<Plan[]>
     >;
@@ -64,7 +68,9 @@ export default class PlanClient {
    * @param idOrCode : The plan ID or code.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getPlan(idOrCode: string) {
+  getPlan(idOrCode: string): Promise<
+    PaystackResponse<Plan>
+  > {
     return this.client.call(`/plan/${idOrCode}`, HTTPMethod.GET) as Promise<
       PaystackResponse<Plan>
     >;
@@ -81,7 +87,7 @@ export default class PlanClient {
   update(
     idOrCode: string,
     payload: UpdatePlanPayload,
-  ) {
+  ): Promise<PaystackResponse<undefined>> {
     return this.client.call(
       `/plan/${idOrCode}`,
       HTTPMethod.PUT,

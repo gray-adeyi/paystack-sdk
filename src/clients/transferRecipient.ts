@@ -38,7 +38,9 @@ export default class TransferRecipientClient {
    * paystack to create a transfer recipient.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: CreateTransferRecipientPayload) {
+  create(
+    payload: CreateTransferRecipientPayload,
+  ): Promise<PaystackResponse<TransferRecipient>> {
     return this.client.call(
       "/transferrecipient",
       HTTPMethod.POST,
@@ -54,12 +56,17 @@ export default class TransferRecipientClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  bulkCreate(batch: Recipient[]) {
+  bulkCreate(batch: Recipient[]): Promise<
+    PaystackResponse<
+      // deno-lint-ignore no-explicit-any
+      { readonly success: TransferRecipient[]; readonly errors: Array<any> }
+    >
+  > {
     return this.client.call("/transferrecipient/bulk", HTTPMethod.POST, {
       batch,
-      // deno-lint-ignore no-explicit-any
     }) as Promise<
       PaystackResponse<
+        // deno-lint-ignore no-explicit-any
         { readonly success: TransferRecipient[]; readonly errors: Array<any> }
       >
     >;
@@ -74,7 +81,7 @@ export default class TransferRecipientClient {
    */
   getTransferRecipients(
     options?: GetTransferRecipientsOptions,
-  ) {
+  ): Promise<PaystackResponse<TransferRecipient[]>> {
     return this.client.call(
       "/transferrecipient",
       HTTPMethod.GET,
@@ -90,7 +97,9 @@ export default class TransferRecipientClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getTransferRecipient(idOrCode: string) {
+  getTransferRecipient(
+    idOrCode: string,
+  ): Promise<PaystackResponse<TransferRecipient>> {
     return this.client.call(
       `/transferrecipient/${idOrCode}`,
       HTTPMethod.GET,
@@ -111,7 +120,7 @@ export default class TransferRecipientClient {
     idOrCode: string,
     name: string,
     email?: string,
-  ) {
+  ): Promise<PaystackResponse<TransferRecipient>> {
     return this.client.call(`/transferrecipient/${idOrCode}`, HTTPMethod.PUT, {
       name,
       email,
@@ -124,7 +133,7 @@ export default class TransferRecipientClient {
    * @param idOrCode : An ID or code for the recipient who you want to delete.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  delete(idOrCode: string) {
+  delete(idOrCode: string): Promise<PaystackResponse<undefined>> {
     return this.client.call(
       `/transferrecipient/${idOrCode}`,
       HTTPMethod.DELETE,

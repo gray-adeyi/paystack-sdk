@@ -24,18 +24,18 @@ export type InitializeTransactionPayload = {
    */
   readonly currency?: Currency;
   /**
-   * Unique transaction reference. Only ``-, ., =`` and 
+   * Unique transaction reference. Only ``-, ., =`` and
    * alphanumeric characters allowed.
    */
   readonly reference?: string;
   /**
-   * Fully qualified url, e.g. ``https://example.com/`` . 
+   * Fully qualified url, e.g. ``https://example.com/`` .
    * Use this to override the callback url
    * provided on the dashboard for this transaction
    */
   readonly callbackUrl?: string;
   /**
-   * If transaction is to create a subscription to a 
+   * If transaction is to create a subscription to a
    * predefined plan, provide plan code here.
    * This would invalidate the value provided in ``amount``
    */
@@ -51,7 +51,7 @@ export type InitializeTransactionPayload = {
   // deno-lint-ignore no-explicit-any
   readonly metadata?: Record<string, any>;
   /**
-   * An array of {@link Channel} enum values to control what channels 
+   * An array of {@link Channel} enum values to control what channels
    * you want to make available to the user to make a payment with
    */
   readonly channels?: Channel[];
@@ -64,8 +64,8 @@ export type InitializeTransactionPayload = {
    */
   readonly subaccount?: string;
   /**
-   * An amount used to override the split configuration for a single 
-   * split payment. If set, the amount specified goes to the main 
+   * An amount used to override the split configuration for a single
+   * split payment. If set, the amount specified goes to the main
    * account regardless of the split configuration.
    */
   readonly transferCharge?: number;
@@ -127,12 +127,12 @@ export type TransactionChargePayload = {
    * you would like the fields to be added to your transaction when
    * displayed on the dashboard.
    * Sample: ``{"customFields":[{"displayName":"Cart ID",
-   * "variableName": "cartId","value": "8393"}]}`` 
+   * "variableName": "cartId","value": "8393"}]}``
    */
   // deno-lint-ignore no-explicit-any
   readonly metadata?: Record<string, any>;
   /**
-   * A array of {@link Channel} enum values to control what channels you 
+   * A array of {@link Channel} enum values to control what channels you
    * want to make available to the user to make a payment with
    */
   readonly channels?: Channel[];
@@ -167,24 +167,23 @@ export type TransactionChargePayload = {
  */
 export type TotalsOptions = PaginationAndDateFilterOptions;
 
-
 /**
  * Lets you customize how exports are retrieved.
  * @see {@link PaginationAndDateFilterOptions}
  */
 export type ExportOptions = PaginationAndDateFilterOptions & {
   /**
-   * Specify an ID for the customer whose transactions you want 
+   * Specify an ID for the customer whose transactions you want
    * to retrieve
    */
   readonly customer?: string;
   /**
-   * Filter transactions by status. Any value from 
+   * Filter transactions by status. Any value from
    * the {@link TransactionStatus} enum
    */
   readonly status?: TransactionStatus;
   /**
-   * Specify the transaction currency to export. 
+   * Specify the transaction currency to export.
    * Any value from the {@link Currency} enum
    */
   readonly currency?: Currency;
@@ -208,7 +207,6 @@ export type ExportOptions = PaginationAndDateFilterOptions & {
    */
   readonly paymentPage?: string;
 };
-
 
 /**
  * A representation of the data sent to Paystack to initiate a

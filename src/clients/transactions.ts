@@ -1,14 +1,20 @@
 import RestClient, { HTTPMethod } from "../restClient.ts";
 import type {
-  TransactionChargePayload,
   ExportOptions,
   GetTransactionsOptions,
   InitializeTransactionPayload,
   PartialDebitPayload,
   TotalsOptions,
+  TransactionChargePayload,
 } from "../types/clients/index.ts";
 import type { PaystackResponse } from "../types/global.ts";
-import type {InitTransaction, Transaction, TransactionExport, TransactionLog, TransactionTotal} from "../types/models.ts";
+import type {
+  InitTransaction,
+  Transaction,
+  TransactionExport,
+  TransactionLog,
+  TransactionTotal,
+} from "../types/models.ts";
 
 /**
  * TransactionClient provides methods that lets you interface with Paystack's
@@ -40,7 +46,9 @@ export default class TransactionClient {
    * to initialize a transaction.
    * @returns A promise containing a {@link PaystackResponse<InitTransaction>}
    */
-  initialize(payload: InitializeTransactionPayload) {
+  initialize(
+    payload: InitializeTransactionPayload,
+  ): Promise<PaystackResponse<InitTransaction>> {
     return this.client.call(
       "/transaction/initialize",
       HTTPMethod.POST,
@@ -54,8 +62,11 @@ export default class TransactionClient {
    * @param reference : The transaction reference used to initiate the transaction
    * @returns A promise containing a {@link PaystackResponse<Transaction>}
    */
-  verify(reference: string) {
-    return this.client.call(`/transaction/verify/${reference}`, HTTPMethod.GET) as Promise<PaystackResponse<Transaction>>;
+  verify(reference: string): Promise<PaystackResponse<Transaction>> {
+    return this.client.call(
+      `/transaction/verify/${reference}`,
+      HTTPMethod.GET,
+    ) as Promise<PaystackResponse<Transaction>>;
   }
 
   /**
@@ -65,8 +76,15 @@ export default class TransactionClient {
    * data to be returned in the response.
    * @returns A promise containing a {@link PaystackResponse<Transaction[]>}
    */
-  getTransactions(options?: GetTransactionsOptions) {
-    return this.client.call(`/transaction`, HTTPMethod.GET, null, options) as Promise<PaystackResponse<Transaction[]>>;
+  getTransactions(
+    options?: GetTransactionsOptions,
+  ): Promise<PaystackResponse<Transaction[]>> {
+    return this.client.call(
+      `/transaction`,
+      HTTPMethod.GET,
+      null,
+      options,
+    ) as Promise<PaystackResponse<Transaction[]>>;
   }
 
   /**
@@ -75,8 +93,10 @@ export default class TransactionClient {
    * @param id : An ID for the transaction to fetch
    * @returns A promise containing a {@link PaystackResponse<Transaction>}
    */
-  getTransaction(id: string) {
-    return this.client.call(`/transaction/${id}`, HTTPMethod.GET) as Promise<PaystackResponse<Transaction>>;
+  getTransaction(id: string): Promise<PaystackResponse<Transaction>> {
+    return this.client.call(`/transaction/${id}`, HTTPMethod.GET) as Promise<
+      PaystackResponse<Transaction>
+    >;
   }
 
   /**
@@ -87,7 +107,9 @@ export default class TransactionClient {
    * customer.
    * @returns A promise containing a {@link PaystackResponse<Transaction>}
    */
-  charge(payload: TransactionChargePayload) {
+  charge(
+    payload: TransactionChargePayload,
+  ): Promise<PaystackResponse<Transaction>> {
     return this.client.call(
       "/transaction/charge_authorization",
       HTTPMethod.POST,
@@ -101,8 +123,11 @@ export default class TransactionClient {
    * @param idOrRef : The ID or the reference of the transaction
    * @returns A promise containing a {@link PaystackResponse<TransactionLog>}
    */
-  getTimeline(idOrRef: string) {
-    return this.client.call(`/transaction/timeline/${idOrRef}`, HTTPMethod.GET) as Promise<PaystackResponse<TransactionLog>>;
+  getTimeline(idOrRef: string): Promise<PaystackResponse<TransactionLog>> {
+    return this.client.call(
+      `/transaction/timeline/${idOrRef}`,
+      HTTPMethod.GET,
+    ) as Promise<PaystackResponse<TransactionLog>>;
   }
 
   /**
@@ -112,7 +137,7 @@ export default class TransactionClient {
    * retrieved in the response.
    * @returns A promise containing a {@link PaystackResponse<TransactionTotal>}
    */
-  totals(options?: TotalsOptions)  {
+  totals(options?: TotalsOptions): Promise<PaystackResponse<TransactionTotal>> {
     return this.client.call(
       "/transaction/totals",
       HTTPMethod.GET,
@@ -127,7 +152,9 @@ export default class TransactionClient {
    * @param options : {@link ExportOptions} lets you customize the export
    * @returns A promise containing a {@link PaystackResponse<TransactionExport>}
    */
-  export(options?: ExportOptions) {
+  export(
+    options?: ExportOptions,
+  ): Promise<PaystackResponse<TransactionExport>> {
     return this.client.call(
       "/transaction/export",
       HTTPMethod.GET,
@@ -143,7 +170,9 @@ export default class TransactionClient {
    * to initiate a partial debit
    * @returns A promise containing a {@link PaystackResponse<Transaction>}
    */
-  partialDebit(payload: PartialDebitPayload) {
+  partialDebit(
+    payload: PartialDebitPayload,
+  ): Promise<PaystackResponse<Transaction>> {
     return this.client.call(
       "/transaction/partial_debit",
       HTTPMethod.POST,

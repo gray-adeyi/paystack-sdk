@@ -37,7 +37,12 @@ export default class VerificationClient {
   resolveAccountNumber(
     accountNumber: string,
     bankCode: string,
-  ) {
+  ): Promise<
+    PaystackResponse<{
+      readonly accountNumber: string;
+      readonly accountName: string;
+    }>
+  > {
     return this.client.call(
       `/bank/resolve?account_number=${accountNumber}&bank_code=${bankCode}`,
       HTTPMethod.GET,
@@ -56,7 +61,12 @@ export default class VerificationClient {
    * to validate the account
    * @returns A promise containing a {@link PaystackResponse}
    */
-  validateAccount(payload: ValidateAccountPayload) {
+  validateAccount(payload: ValidateAccountPayload): Promise<
+    PaystackResponse<{
+      readonly verified: boolean;
+      readonly verificationMessage: string;
+    }>
+  > {
     return this.client.call(
       "/bank/validate",
       HTTPMethod.POST,
@@ -75,7 +85,9 @@ export default class VerificationClient {
    * @param bin : First 6 characters of card
    * @returns  A promise containing a {@link PaystackResponse}
    */
-  resolveCardBin(bin: string) {
+  resolveCardBin(bin: string): Promise<
+    PaystackResponse<CardBin>
+  > {
     return this.client.call(`/decision/bin/${bin}`, HTTPMethod.GET) as Promise<
       PaystackResponse<CardBin>
     >;

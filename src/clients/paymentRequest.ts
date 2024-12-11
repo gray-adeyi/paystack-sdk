@@ -37,7 +37,9 @@ export default class PaymentRequestClient {
    * to create a payment request.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: CreatePaymentRequestPayload) {
+  create(
+    payload: CreatePaymentRequestPayload,
+  ): Promise<PaystackResponse<PaymentRequest>> {
     return this.client.call(
       "/paymentrequest",
       HTTPMethod.POST,
@@ -54,7 +56,7 @@ export default class PaymentRequestClient {
    */
   getPaymentRequests(
     options?: GetPaymentRequestsOptions,
-  ) {
+  ): Promise<PaystackResponse<PaymentRequest[]>> {
     return this.client.call(
       "/paymentrequest",
       HTTPMethod.GET,
@@ -69,7 +71,9 @@ export default class PaymentRequestClient {
    * @param idOrCode : The payment request ID or code you want to fetch
    * @returns  A promise containing a {@link PaystackResponse}
    */
-  getPaymentRequest(idOrCode: string) {
+  getPaymentRequest(
+    idOrCode: string,
+  ): Promise<PaystackResponse<PaymentRequest>> {
     return this.client.call(
       `/paymentrequest/${idOrCode}`,
       HTTPMethod.GET,
@@ -82,7 +86,7 @@ export default class PaymentRequestClient {
    * @param idOrCode : The payment request ID or code
    * @returns A promise containing a {@link PaystackResponse}
    */
-  verify(idOrCode: string) {
+  verify(idOrCode: string): Promise<PaystackResponse<PaymentRequest>> {
     return this.client.call(
       `/paymentrequest/verify/${idOrCode}`,
       HTTPMethod.GET,
@@ -95,7 +99,7 @@ export default class PaymentRequestClient {
    * @param idOrCode : The payment request ID or code
    * @returns A promise containing a {@link PaystackResponse}
    */
-  sendNotification(idOrCode: string) {
+  sendNotification(idOrCode: string): Promise<PaystackResponse<undefined>> {
     return this.client.call(
       `/paymentrequest/notify/${idOrCode}`,
       HTTPMethod.POST,
@@ -107,7 +111,7 @@ export default class PaymentRequestClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getTotal() {
+  getTotal(): Promise<PaystackResponse<PaymentRequestStat>> {
     return this.client.call(
       "/paymentrequest/totals",
       HTTPMethod.GET,
@@ -120,7 +124,7 @@ export default class PaymentRequestClient {
    * @param idOrCode : The payment request ID or code
    * @returns A promise containing a {@link PaystackResponse}
    */
-  finalize(idOrCode: string) {
+  finalize(idOrCode: string): Promise<PaystackResponse<PaymentRequest>> {
     return this.client.call(
       `/paymentrequest/finalize/${idOrCode}`,
       HTTPMethod.GET,
@@ -138,7 +142,7 @@ export default class PaymentRequestClient {
   update(
     idOrCode: string,
     payload: UpdatePaymentRequestPayload,
-  ) {
+  ): Promise<PaystackResponse<PaymentRequest>> {
     return this.client.call(
       `/paymentrequest/${idOrCode}`,
       HTTPMethod.PUT,
@@ -153,7 +157,7 @@ export default class PaymentRequestClient {
    * @param idOrCode : The payment request ID or code
    * @returns A promise containing a {@link PaystackResponse}
    */
-  archive(idOrCode: string) {
+  archive(idOrCode: string): Promise<PaystackResponse<undefined>> {
     return this.client.call(
       `/paymentrequest/archive/${idOrCode}`,
       HTTPMethod.POST,

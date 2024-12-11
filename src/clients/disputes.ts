@@ -6,7 +6,12 @@ import type {
   ResolveDisputePayload,
 } from "../types/clients/disputes.ts";
 import type { PaystackResponse } from "../types/global.ts";
-import type {Dispute, DisputeEvidence, DisputeExportInfo, DisputeUploadInfo} from "../types/models.ts";
+import type {
+  Dispute,
+  DisputeEvidence,
+  DisputeExportInfo,
+  DisputeUploadInfo,
+} from "../types/models.ts";
 
 /**
  * DisputeClient provides methods that lets you interface with Paystack's
@@ -38,8 +43,15 @@ export default class DisputeClient {
    * in the response to be returned.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getDisputes(options?: GetDisputesOptions) {
-    return this.client.call("/dispute", HTTPMethod.GET, null, options) as Promise<PaystackResponse<Dispute[]>>;
+  getDisputes(
+    options?: GetDisputesOptions,
+  ): Promise<PaystackResponse<Dispute[]>> {
+    return this.client.call(
+      "/dispute",
+      HTTPMethod.GET,
+      null,
+      options,
+    ) as Promise<PaystackResponse<Dispute[]>>;
   }
 
   /**
@@ -49,8 +61,10 @@ export default class DisputeClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getDispute(id: string) {
-    return this.client.call(`/dispute/${id}`, HTTPMethod.GET) as Promise<PaystackResponse<Dispute>>;
+  getDispute(id: string): Promise<PaystackResponse<Dispute>> {
+    return this.client.call(`/dispute/${id}`, HTTPMethod.GET) as Promise<
+      PaystackResponse<Dispute>
+    >;
   }
 
   /**
@@ -59,8 +73,11 @@ export default class DisputeClient {
    * @param id: The transaction id you want to fetch.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getTransactionDisputes(id: string) {
-    return this.client.call(`/dispute/transaction/${id}`, HTTPMethod.GET) as Promise<PaystackResponse<Dispute[]>>;
+  getTransactionDisputes(id: string): Promise<PaystackResponse<Dispute[]>> {
+    return this.client.call(
+      `/dispute/transaction/${id}`,
+      HTTPMethod.GET,
+    ) as Promise<PaystackResponse<Dispute[]>>;
   }
 
   /**
@@ -77,7 +94,7 @@ export default class DisputeClient {
     id: string,
     refundAmount: number,
     uploadedFilename: string,
-  ) {
+  ): Promise<PaystackResponse<Dispute>> {
     return this.client.call(`/dispute/${id}`, HTTPMethod.PUT, {
       refundAmount,
       uploadedFilename,
@@ -95,7 +112,7 @@ export default class DisputeClient {
   addEvidence(
     id: string,
     payload: AddEvidencePayload,
-  ) {
+  ): Promise<PaystackResponse<DisputeEvidence>> {
     return this.client.call(
       `/dispute/${id}/evidence`,
       HTTPMethod.POST,
@@ -110,7 +127,10 @@ export default class DisputeClient {
    * @param uploadFilename : The file name, with its extension, that you want to upload. e.g. filename.pdf
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getUploadUrl(id: string, uploadFilename: string) {
+  getUploadUrl(
+    id: string,
+    uploadFilename: string,
+  ): Promise<PaystackResponse<DisputeUploadInfo>> {
     return this.client.call(`/dispute/${id}/upload_url`, HTTPMethod.GET, null, {
       uploadFilename,
     }) as Promise<PaystackResponse<DisputeUploadInfo>>;
@@ -126,8 +146,12 @@ export default class DisputeClient {
   resolveDispute(
     id: string,
     payload: ResolveDisputePayload,
-  ) {
-    return this.client.call(`/dispute/${id}/resolve`, HTTPMethod.PUT, payload) as Promise<PaystackResponse<Dispute>>;
+  ): Promise<PaystackResponse<Dispute>> {
+    return this.client.call(
+      `/dispute/${id}/resolve`,
+      HTTPMethod.PUT,
+      payload,
+    ) as Promise<PaystackResponse<Dispute>>;
   }
 
   /**
@@ -136,7 +160,14 @@ export default class DisputeClient {
    * @param options : {@link ExportDisputesOptions} let's you customize the export
    * @returns A promise containing a {@link PaystackResponse}
    */
-  exportDisputes(options: ExportDisputesOptions) {
-    return this.client.call("/dispute/export", HTTPMethod.GET, null, options) as Promise<PaystackResponse<DisputeExportInfo>>;
+  exportDisputes(
+    options: ExportDisputesOptions,
+  ): Promise<PaystackResponse<DisputeExportInfo>> {
+    return this.client.call(
+      "/dispute/export",
+      HTTPMethod.GET,
+      null,
+      options,
+    ) as Promise<PaystackResponse<DisputeExportInfo>>;
   }
 }

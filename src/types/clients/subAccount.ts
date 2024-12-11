@@ -11,7 +11,7 @@ export type CreateSubAccountPayload = {
   readonly businessName: string;
   /**
    * Bank Code for the bank. You can get the
-   * list of Bank Codes by calling 
+   * list of Bank Codes by calling
    * ``PaystackClient.miscellaneous.getBanks`` method
    */
   readonly settlementBank: string;
@@ -60,13 +60,13 @@ export type GetSubAccountsOptions = PaginationAndDateFilterOptions;
  * A representation of the data sent to paystack to update a subaccount
  */
 export type UpdateSubAccountPayload = {
- /**
+  /**
    * Name of business for subaccount
    */
   readonly businessName?: string;
   /**
    * Bank Code for the bank. You can get the
-   * list of Bank Codes by calling 
+   * list of Bank Codes by calling
    * ``PaystackClient.miscellaneous.getBanks`` method
    */
   readonly settlementBank?: string;

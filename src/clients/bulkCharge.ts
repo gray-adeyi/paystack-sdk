@@ -37,7 +37,9 @@ export default class BulkChargeClient {
    * charges to be charged.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  initiate(payload: BulkChargeInstruction[]) {
+  initiate(payload: BulkChargeInstruction[]): Promise<
+    PaystackResponse<BulkCharge>
+  > {
     return this.client.call("/bulkcharge", HTTPMethod.POST, payload) as Promise<
       PaystackResponse<BulkCharge>
     >;
@@ -49,7 +51,9 @@ export default class BulkChargeClient {
    * response to be returned.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getBatches(options?: GetBatchesOptions) {
+  getBatches(
+    options?: GetBatchesOptions,
+  ): Promise<PaystackResponse<BulkCharge[]>> {
     return this.client.call(
       "/bulkcharge",
       HTTPMethod.GET,
@@ -66,7 +70,7 @@ export default class BulkChargeClient {
    * @param idOrCode : An ID or code for the charge whose batches you want to retrieve.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getBatch(idOrCode: string) {
+  getBatch(idOrCode: string): Promise<PaystackResponse<BulkCharge>> {
     return this.client.call(
       `/bulkcharge/${idOrCode}`,
       HTTPMethod.GET,
@@ -87,7 +91,7 @@ export default class BulkChargeClient {
   getChargesInBatch(
     idOrCode: string,
     options?: GetChargesInBatchOptions,
-  ) {
+  ): Promise<PaystackResponse<BulkChargeUnitCharge[]>> {
     return this.client.call(
       `/bulkcharge/${idOrCode}/charges`,
       HTTPMethod.GET,
@@ -103,7 +107,7 @@ export default class BulkChargeClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  pauseBatch(batchCode: string) {
+  pauseBatch(batchCode: string): Promise<PaystackResponse<undefined>> {
     return this.client.call(
       `/bulkcharge/pause/${batchCode}`,
       HTTPMethod.GET,
@@ -116,7 +120,7 @@ export default class BulkChargeClient {
    * @param batchCode : The batch code for the bulk charge you want to resume.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  resumeBatch(batchCode: string) {
+  resumeBatch(batchCode: string): Promise<PaystackResponse<undefined>> {
     return this.client.call(
       `/bulkcharge/resume/${batchCode}`,
       HTTPMethod.GET,

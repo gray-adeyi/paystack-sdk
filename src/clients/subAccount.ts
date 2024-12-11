@@ -38,7 +38,9 @@ export default class SubAccountClient {
    * create a sub account.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  create(payload: CreateSubAccountPayload) {
+  create(payload: CreateSubAccountPayload): Promise<
+    PaystackResponse<SubAccount>
+  > {
     return this.client.call("/subaccount", HTTPMethod.POST, payload) as Promise<
       PaystackResponse<SubAccount>
     >;
@@ -51,7 +53,9 @@ export default class SubAccountClient {
    * data that is returned in the response.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getSubAccounts(options?: GetSubAccountsOptions) {
+  getSubAccounts(
+    options?: GetSubAccountsOptions,
+  ): Promise<PaystackResponse<SubAccount[]>> {
     return this.client.call(
       "/subaccount",
       HTTPMethod.GET,
@@ -66,7 +70,7 @@ export default class SubAccountClient {
    * @param idOrCode : The subaccount ``ID`` or ``code`` you want to fetch
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getSubAccount(idOrCode: string) {
+  getSubAccount(idOrCode: string): Promise<PaystackResponse<SubAccount>> {
     return this.client.call(
       `/subaccount/${idOrCode}`,
       HTTPMethod.GET,
@@ -84,7 +88,7 @@ export default class SubAccountClient {
   update(
     idOrCode: string,
     payload: UpdateSubAccountPayload,
-  ) {
+  ): Promise<PaystackResponse<SubAccount>> {
     return this.client.call(
       `/subaccount/${idOrCode}`,
       HTTPMethod.PUT,

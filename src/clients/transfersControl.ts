@@ -32,7 +32,12 @@ export default class TransferControlClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  checkBalance() {
+  checkBalance(): Promise<
+    PaystackResponse<{
+      readonly currency: Currency;
+      readonly balance: number;
+    }[]>
+  > {
     return this.client.call("/balance", HTTPMethod.GET) as Promise<
       PaystackResponse<{
         readonly currency: Currency;
@@ -46,7 +51,9 @@ export default class TransferControlClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getBalanceLedger() {
+  getBalanceLedger(): Promise<
+    PaystackResponse<BalanceLedgerItem[]>
+  > {
     return this.client.call("/balance/ledger", HTTPMethod.GET) as Promise<
       PaystackResponse<BalanceLedgerItem[]>
     >;
@@ -59,7 +66,10 @@ export default class TransferControlClient {
    * @param reason :  Any value from the reason enum
    * @returns A promise containing a {@link PaystackResponse}
    */
-  resendOtp(transferCode: string, reason: Reason) {
+  resendOtp(
+    transferCode: string,
+    reason: Reason,
+  ): Promise<PaystackResponse<undefined>> {
     return this.client.call("/transfer/resend_otp", HTTPMethod.POST, {
       transferCode,
       reason,
@@ -73,7 +83,7 @@ export default class TransferControlClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  disableOtp() {
+  disableOtp(): Promise<PaystackResponse<undefined>> {
     return this.client.call(
       "/transfer/disable_otp",
       HTTPMethod.POST,
@@ -86,7 +96,7 @@ export default class TransferControlClient {
    * @param otp : One time password
    * @returns A promise containing a {@link PaystackResponse}
    */
-  finalizeDisableOtp(otp: string) {
+  finalizeDisableOtp(otp: string): Promise<PaystackResponse<undefined>> {
     return this.client.call("/transfer/disable_otp_finalize", HTTPMethod.POST, {
       otp,
     }) as Promise<PaystackResponse<undefined>>;
@@ -99,7 +109,7 @@ export default class TransferControlClient {
    *
    * @returns A promise containing a {@link PaystackResponse}
    */
-  enableOtp() {
+  enableOtp(): Promise<PaystackResponse<undefined>> {
     return this.client.call(
       "/transfer/enable_otp/",
       HTTPMethod.POST,

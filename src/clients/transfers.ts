@@ -37,7 +37,9 @@ export default class TransferClient {
    * to initiate a transfer.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  initiate(payload: InitiateTransferPayload) {
+  initiate(payload: InitiateTransferPayload): Promise<
+    PaystackResponse<Transfer>
+  > {
     return this.client.call("/transfer", HTTPMethod.POST, payload) as Promise<
       PaystackResponse<Transfer>
     >;
@@ -50,7 +52,10 @@ export default class TransferClient {
    * @param otp : one time password.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  finalize(transferCode: string, otp: string) {
+  finalize(
+    transferCode: string,
+    otp: string,
+  ): Promise<PaystackResponse<Transfer>> {
     return this.client.call("/transfer/finalize_transfer", HTTPMethod.POST, {
       transferCode,
       otp,
@@ -67,7 +72,7 @@ export default class TransferClient {
   bulkTransfer(
     transfers: TransferInstruction[],
     source = "balance",
-  ) {
+  ): Promise<PaystackResponse<BulkTransferItem[]>> {
     return this.client.call("transfer/bulk", HTTPMethod.POST, {
       transfers,
       source,
@@ -81,7 +86,9 @@ export default class TransferClient {
    * be returned in the response
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getTransfers(options?: GetTransferOptions) {
+  getTransfers(
+    options?: GetTransferOptions,
+  ): Promise<PaystackResponse<Transfer[]>> {
     return this.client.call(
       "/transfer",
       HTTPMethod.GET,
@@ -96,7 +103,7 @@ export default class TransferClient {
    * @param idOrCode : transfer ID or code.
    * @returns A promise containing a {@link PaystackResponse}
    */
-  getTransfer(idOrCode: string) {
+  getTransfer(idOrCode: string): Promise<PaystackResponse<Transfer>> {
     return this.client.call(
       `/transfer/${idOrCode}/`,
       HTTPMethod.GET,
@@ -109,7 +116,7 @@ export default class TransferClient {
    * @param reference : a reference for the transfer.
    * @returns A promise containing  a {@link PaystackResponse}
    */
-  verify(reference: string) {
+  verify(reference: string): Promise<PaystackResponse<Transfer>> {
     return this.client.call(
       `transfer/verify/${reference}`,
       HTTPMethod.GET,

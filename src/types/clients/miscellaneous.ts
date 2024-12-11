@@ -5,7 +5,7 @@ import type { BankType, Country, Currency, Gateway } from "../../enums.ts";
  */
 export type GetBanksOptions = {
   /**
-   * The country from which to obtain the list of supported banks. 
+   * The country from which to obtain the list of supported banks.
    * any value from the {@link Country} enum.
    */
   readonly country: Country;
@@ -14,7 +14,7 @@ export type GetBanksOptions = {
    */
   readonly useCursor?: boolean;
   /**
-   * A cursor that indicates your place in the list. 
+   * A cursor that indicates your place in the list.
    * It can be used to fetch the next page of the list
    */
   readonly next?: string;
@@ -38,7 +38,7 @@ export type GetBanksOptions = {
    */
   readonly currency?: Currency;
   /**
-   * A flag to filter for available banks a customer can make a 
+   * A flag to filter for available banks a customer can make a
    * transfer to complete a payment
    */
   readonly payWithBankTransfer?: boolean;
@@ -47,7 +47,7 @@ export type GetBanksOptions = {
    */
   readonly payWithBank?: boolean;
   /**
-   * The number of objects to return per page. Defaults to 50, 
+   * The number of objects to return per page. Defaults to 50,
    * and limited to 100 records per page.
    */
   readonly perPage?: number;

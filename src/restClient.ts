@@ -50,7 +50,10 @@ export default class RestClient {
     // deno-lint-ignore no-explicit-any
     params?: Record<string, any>,
   ): Promise<
-    PaystackResponse<Record<string, any> | Record<string, any>[] | null |  undefined>
+    // deno-lint-ignore no-explicit-any
+    PaystackResponse<
+      Record<string, any> | Record<string, any>[] | null | undefined
+    >
   > {
     const handler = this.getMethodHandler(method);
     let response: AxiosResponse;
@@ -64,7 +67,7 @@ export default class RestClient {
 
   private get baseHeaders() {
     return {
-      "User-Agent": "@gray-adeyi/paystack-sdk 0.1.5",
+      "User-Agent": "@gray-adeyi/paystack-sdk 0.2.0",
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: "",
