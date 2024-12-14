@@ -3,9 +3,9 @@ import type {
   CreatePaymentRequestPayload,
   GetPaymentRequestsOptions,
   UpdatePaymentRequestPayload,
-} from "../types/clients/paymentRequest.ts";
+} from "../types/clients/index.ts";
 import type { PaystackResponse } from "../types/global.ts";
-import { PaymentRequest, PaymentRequestStat } from "../types/models.ts";
+import type { PaymentRequest, PaymentRequestStat } from "../types/models.ts";
 
 /**
  * PaymentRequestClient provides method that lets you interface with Paystack's
@@ -33,9 +33,23 @@ export default class PaymentRequestClient {
   /**
    * Create a payment request for a transaction on your integration
    *
-   * @param payload : {@link CreatePaymentRequestPayload} is the data sent to paystack
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param payload - {@link CreatePaymentRequestPayload} is the data sent to paystack
    * to create a payment request.
-   * @returns A promise containing a {@link PaystackResponse}
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is another object of type {@link PaymentRequest}
    */
   create(
     payload: CreatePaymentRequestPayload,
@@ -50,9 +64,23 @@ export default class PaymentRequestClient {
   /**
    * Fetches the payment requests available on your integration.
    *
-   * @param options {@link GetPaymentRequestsOptions} lets you customize the data
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param options - {@link GetPaymentRequestsOptions} lets you customize the data
    * returned in the response.
-   * @returns A promise containing a {@link PaystackResponse}
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is an array of objects whose type is {@link PaymentRequest}
    */
   getPaymentRequests(
     options?: GetPaymentRequestsOptions,
@@ -68,8 +96,22 @@ export default class PaymentRequestClient {
   /**
    * Get details of a payment request on your integration
    *
-   * @param idOrCode : The payment request ID or code you want to fetch
-   * @returns  A promise containing a {@link PaystackResponse}
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param idOrCode - The payment request ID or code you want to fetch
+   * @returns  A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is another object of type {@link PaymentRequest}
    */
   getPaymentRequest(
     idOrCode: string,
@@ -83,8 +125,22 @@ export default class PaymentRequestClient {
   /**
    * Verify details of a payment request on your integration.
    *
-   * @param idOrCode : The payment request ID or code
-   * @returns A promise containing a {@link PaystackResponse}
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param idOrCode - The payment request ID or code
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is another object of type {@link PaymentRequest}
    */
   verify(idOrCode: string): Promise<PaystackResponse<PaymentRequest>> {
     return this.client.call(
@@ -96,8 +152,22 @@ export default class PaymentRequestClient {
   /**
    * Send notification of a payment request to your customers
    *
-   * @param idOrCode : The payment request ID or code
-   * @returns A promise containing a {@link PaystackResponse}
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param idOrCode - The payment request ID or code
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is `undefined`
    */
   sendNotification(idOrCode: string): Promise<PaystackResponse<undefined>> {
     return this.client.call(
@@ -109,7 +179,21 @@ export default class PaymentRequestClient {
   /**
    * Get payment requests metric
    *
-   * @returns A promise containing a {@link PaystackResponse}
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is another object of type {@link PaymentRequestStat}
    */
   getTotal(): Promise<PaystackResponse<PaymentRequestStat>> {
     return this.client.call(
@@ -121,8 +205,22 @@ export default class PaymentRequestClient {
   /**
    * Finalize a draft payment request
    *
-   * @param idOrCode : The payment request ID or code
-   * @returns A promise containing a {@link PaystackResponse}
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param idOrCode - The payment request ID or code
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is another object of type {@link PaymentRequest}
    */
   finalize(idOrCode: string): Promise<PaystackResponse<PaymentRequest>> {
     return this.client.call(
@@ -134,10 +232,24 @@ export default class PaymentRequestClient {
   /**
    * Update the payment request details on your integration
    *
-   * @param idOrCode : The payment request ID or code
-   * @param payload : {@link UpdatePaymentRequestPayload} is the data sent to paystack
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param idOrCode - The payment request ID or code
+   * @param payload - {@link UpdatePaymentRequestPayload} is the data sent to paystack
    * to update the payment request.
-   * @returns A promise containing a {@link PaystackResponse}
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is another object of type {@link PaymentRequest}
    */
   update(
     idOrCode: string,
@@ -154,8 +266,22 @@ export default class PaymentRequestClient {
    * Used to archive a payment request. A payment
    * request will no longer be fetched on list or returned on verify.
    *
-   * @param idOrCode : The payment request ID or code
-   * @returns A promise containing a {@link PaystackResponse}
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param idOrCode - The payment request ID or code
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is `undefined`
    */
   archive(idOrCode: string): Promise<PaystackResponse<undefined>> {
     return this.client.call(

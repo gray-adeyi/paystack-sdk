@@ -39,9 +39,23 @@ export default class DisputeClient {
   /**
    * Retrieves disputes filed against you
    *
-   * @param options : {@link GetDisputesOptions} let's you customize the data
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param options - {@link GetDisputesOptions} lets you customize the data
    * in the response to be returned.
-   * @returns A promise containing a {@link PaystackResponse}
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is an array of objects whose type is {@link Dispute}
    */
   getDisputes(
     options?: GetDisputesOptions,
@@ -57,9 +71,23 @@ export default class DisputeClient {
   /**
    * Get more details about a dispute.
    *
-   * @param id: The dispute ID you want to fetch
+   * @remarks
    *
-   * @returns A promise containing a {@link PaystackResponse}
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param id - The dispute ID you want to fetch
+   *
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is another object whose type is {@link Dispute}
    */
   getDispute(id: string): Promise<PaystackResponse<Dispute>> {
     return this.client.call(`/dispute/${id}`, HTTPMethod.GET) as Promise<
@@ -70,8 +98,22 @@ export default class DisputeClient {
   /**
    * This method retrieves disputes for a particular transaction
    *
-   * @param id: The transaction id you want to fetch.
-   * @returns A promise containing a {@link PaystackResponse}
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param id - The transaction id you want to fetch.
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property is an array of objects whose type is {@link Dispute}
    */
   getTransactionDisputes(id: string): Promise<PaystackResponse<Dispute[]>> {
     return this.client.call(
@@ -83,12 +125,26 @@ export default class DisputeClient {
   /**
    * Update details of a dispute on your integration
    *
-   * @param id: Dispute ID
-   * @param refundAmount : the amount to refund, in kobo if currency is NGN, pesewas,
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param id - Dispute ID
+   * @param refundAmount - The amount to refund, in kobo if currency is NGN, pesewas,
    * if currency is GHS, and cents, if currency is ZAR
-   * @param uploadedFilename : filename of attachment returned via response from
+   * @param uploadedFilename - filename of attachment returned via response from
    * upload url PaystackClient.disputes.getUploadUrl
-   * @returns A promise containing a {@link PaystackResponse}
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is another object whose type is {@link Dispute}
    */
   updateDispute(
     id: string,
@@ -104,10 +160,24 @@ export default class DisputeClient {
   /**
    * Provide evidence for a dispute.
    *
-   * @param id : Dispute ID
-   * @param payload {@link AddEvidencePayload} is the data sent to paystack containing the
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param id - Dispute ID
+   * @param payload - {@link AddEvidencePayload} is the data sent to paystack containing the
    * evidence.
-   * @returns A promise containing a {@link PaystackResponse}
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is another object whose type is {@link DisputeEvidence}
    */
   addEvidence(
     id: string,
@@ -123,9 +193,23 @@ export default class DisputeClient {
   /**
    * Get URL to upload a dispute evidence.
    *
-   * @param id : Dispute ID
-   * @param uploadFilename : The file name, with its extension, that you want to upload. e.g. filename.pdf
-   * @returns A promise containing a {@link PaystackResponse}
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param id - Dispute ID
+   * @param uploadFilename - The file name, with its extension, that you want to upload. e.g. filename.pdf
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is another object whose type is {@link DisputeUploadInfo}
    */
   getUploadUrl(
     id: string,
@@ -139,9 +223,23 @@ export default class DisputeClient {
   /**
    * Resolve a dispute on your integration
    *
-   * @param id : Dispute ID
-   * @param payload : {@link ResolveDisputePayload} for resolving the dispute
-   * @returns A promise containing a {@link PaystackResponse}
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param id - Dispute ID
+   * @param payload - {@link ResolveDisputePayload} for resolving the dispute
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is another object whose type is {@link Dispute}
    */
   resolveDispute(
     id: string,
@@ -157,8 +255,22 @@ export default class DisputeClient {
   /**
    * Export disputes available on your integration.
    *
-   * @param options : {@link ExportDisputesOptions} let's you customize the export
-   * @returns A promise containing a {@link PaystackResponse}
+   * @remarks
+   *
+   * For typescript users, you may experience inconsistencies in the returned data such as
+   * the data returned doesn't match the method return type or the data returned has
+   * more fields that are not showing up or flagged as errors. This is because no validation
+   * is done to check if the actual returned data matches the return type. The returned data
+   * is just cast as the return type. Also, the return types are based on the seen data as at
+   * the time of implementation and are subject to errors and changes from paystack (e.g.,
+   * paystack adding more fields, which makes the models incorrect). When faced with this issue
+   * in development, you may cast the method return type as `any` and then cast is to a return
+   * type that serves your purpose. Also, please create an issue for it at
+   * https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
+   *
+   * @param options - {@link ExportDisputesOptions} lets you customize the export
+   * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
+   * The data property of the object is another object whose type is {@link DisputeExportInfo}
    */
   exportDisputes(
     options: ExportDisputesOptions,
