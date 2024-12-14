@@ -70,11 +70,8 @@ describe("PaystackClient.paymentRequest", () => {
     };
     const createResponse = await client.paymentRequests.create(createPayload);
     assertEquals(createResponse.statusCode, HttpStatusCode.Ok);
-    type DataOfInterest = { id: string; requestCode: string };
     const err = await assertRejects(() =>
-      client.paymentRequests.finalize(
-        (createResponse.data as DataOfInterest).requestCode,
-      )
+      client.paymentRequests.finalize(createResponse.data.requestCode)
     );
     assertInstanceOf(err, PaystackClientError);
     assertEquals(err.status, HttpStatusCode.NotFound);
@@ -87,13 +84,11 @@ describe("PaystackClient.paymentRequest", () => {
     };
     const createResponse = await client.paymentRequests.create(createPayload);
     assertEquals(createResponse.statusCode, HttpStatusCode.Ok);
-    type DataOfInterest = { id: string; requestCode: string };
     const payload: UpdatePaymentRequestPayload = {
       customer: "CUS_x1hp1dli4mdo1v0",
       amount: 2_000_000,
     };
-    const response = await client.paymentRequests.update(
-      (createResponse.data as DataOfInterest).requestCode,
+    const response = await client.paymentRequests.update(createResponse.data.requestCode,
       payload,
     );
     assertEquals(response.statusCode, HttpStatusCode.Ok);
@@ -107,9 +102,8 @@ describe("PaystackClient.paymentRequest", () => {
     };
     const createResponse = await client.paymentRequests.create(createPayload);
     assertEquals(createResponse.statusCode, HttpStatusCode.Ok);
-    type DataOfInterest = { id: string; requestCode: string };
     const response = await client.paymentRequests.archive(
-      (createResponse.data as DataOfInterest).requestCode,
+      createResponse.data.requestCode,
     );
     assertEquals(response.statusCode, HttpStatusCode.Ok);
     assertEquals(response.message, "Payment request has been archived");
