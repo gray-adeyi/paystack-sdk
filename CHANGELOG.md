@@ -9,7 +9,13 @@ format (I find myself trying too hard to guess the months)
 
 ## [Unreleased]
 
-## [0.2.3] - 13-Dec-2024
+## [0.2.4] - 12-Dec-2024
+
+### Removed
+
+- `jsr:@std/fmt` package from dependencies causing installation issue.
+
+## [0.2.3] - 12-Dec-2024
 
 ### Fixed
 
@@ -123,7 +129,8 @@ format (I find myself trying too hard to guess the months)
 - Github pages doc
 - Documentation for all the sub-client classes
 
-[unreleased]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.2.3...HEAD
+[unreleased]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.2.4...HEAD
+[0.2.4]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.2.3...v0.2.4
 [0.2.3]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.2.0...v0.2.1
