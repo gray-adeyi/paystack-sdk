@@ -172,7 +172,6 @@
   "workspace": {
     "dependencies": [
       "jsr:@deno/dnt@~0.41.3",
-      "jsr:@std/fmt@^1.0.3",
       "npm:axios@^1.7.9",
       "npm:lodash-es@^4.17.21"
     ]
