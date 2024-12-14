@@ -31,6 +31,9 @@ await build({
       "deno",
       "typescript",
     ],
+    scripts: {
+      preinstall: "echo '@jsr:registry=https://npm.jsr.io' >> .npmrc"
+    },
     dependencies: {
       "@std/fmt": "npm:@jsr/std__fmt@^1.0.3",
       axios: "^1.7.9",
