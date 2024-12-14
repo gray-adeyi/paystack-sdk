@@ -13,7 +13,7 @@ format (I find myself trying too hard to guess the months)
 
 ### Fixed
 
-- add both preinstall and postinstall script
+- postinstall script not working. replace with a custom preinstall script
 
 ## [0.2.2] - 12-Dec-2024
 
