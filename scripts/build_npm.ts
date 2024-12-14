@@ -36,9 +36,6 @@ await build({
       "lodash-es": "^4.17.21",
     },
     devDependencies: {
-      "@std/assert": "npm:@jsr/std__assert@^1.0.9",
-      "@std/dotenv": "npm:@jsr/std__dotenv@^0.225.3",
-      "@std/testing": "npm:@jsr/std__testing@^1.0.6",
       "@types/lodash-es": "^4.17.12",
     },
     repository: {
