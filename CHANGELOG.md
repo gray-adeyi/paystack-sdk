@@ -9,6 +9,12 @@ format (I find myself trying too hard to guess the months)
 
 ## [Unreleased]
 
+## [0.2.3] - 13-Dec-2024
+
+### Fixed
+
+- add both preinstall and postinstall script
+
 ## [0.2.2] - 12-Dec-2024
 
 ### Fixed
@@ -117,7 +123,8 @@ format (I find myself trying too hard to guess the months)
 - Github pages doc
 - Documentation for all the sub-client classes
 
-[unreleased]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.2.2...HEAD
+[unreleased]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.2.3...HEAD
+[0.2.3]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/gray-adeyi/paystack-sdk/compare/v0.1.5...v0.2.0
