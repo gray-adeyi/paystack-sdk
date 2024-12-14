@@ -24,7 +24,7 @@ client.charge.charge(payload).then((response: PaystackResponse) => {
 
 ## Handling exceptions
 
-All client methods may throw a `PaystackClientError` exception and it makes
+All client methods may throw a `PaystackClientError` exception, and it makes
 sense to gracefully handle those exceptions.
 
 ```ts

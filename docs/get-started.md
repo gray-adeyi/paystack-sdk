@@ -84,33 +84,19 @@ const response: PaystackResponse = await client.miscellaneous.getBanks({
 
 console.log(response);
 
-// As at the time of this writing, @paystack-sdk/gray-adeyi does not infer the type of the
-// response data, all client methods return a `PaystackResponse` object. To continue
-// to benefit from typescript's type inference, you'll have to explicitly define the
-// types of your response data. for example to use the data of the
-// `client.miscellaneous.getBanks`, we may define a `BankData` type as show below
-
-type BankData = {
-  readonly id: number;
-  readonly name: string;
-  readonly slug: string;
-  readonly code: string;
-  readonly longcode: string;
-  readonly gateway: string | null;
-  readonly payWithBank: boolean;
-  readonly supportsTransfer: boolean;
-  readonly active: boolean;
-  readonly country: string;
-  readonly currency: string;
-  readonly type: string;
-  readonly isDeleted: boolean;
-  readonly createdAt: string | null;
-  readonly updatedAt: string | null;
-};
-
 const res = await client.miscellaneous.getBanks({ country: Country.NIGERIA });
-const data = res.data as BankData[];
-// data now has all the type information.
+const data = res.data; // data is an array of `Bank`. A type that models the structure
+// of paystack's bank resource.
+// you may experience inconsistencies in the returned data such as
+// the data returned doesn't match the method return type or the data returned has
+// more fields that are not showing up or flagged as errors. This is because no validation
+// is done to check if the actual returned data matches the return type. The returned data
+// is just cast as the return type. Also, the return types are based on the seen data as at
+// the time of implementation and are subject to errors and changes from paystack (e.g.,
+// paystack adding more fields, which makes the models incorrect). When faced with this issue
+// in development, you may cast the method return type as `any` and then cast is to a return
+// type that serves your purpose. Also, please create an issue for it at
+// https://github.com/gray-adeyi/paystack-sdk/issues so the issue is fixed in future releases.
 ```
 
 ## CLI
@@ -233,7 +219,7 @@ adding a `--data-only` suffix to any of the CLI command. So to retrieve a `JSON`
 equivalent of the result above, we can run the command below
 
 ```bash
-paystack txn get-txns --pagination 1 --data-only
+paystack txn get-txns --pagination 1 --json
 ```
 
 Which results in
