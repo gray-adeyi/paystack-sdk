@@ -32,6 +32,7 @@ await build({
       "typescript",
     ],
     scripts: {
+      preinstall: "echo '@jsr:registry=https://npm.jsr.io' >> ~/.npmrc",
       postinstall: "echo '@jsr:registry=https://npm.jsr.io' >> ~/.npmrc"
     },
     dependencies: {
