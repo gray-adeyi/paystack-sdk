@@ -3,7 +3,7 @@ import type { Country } from "../enums.ts";
 import type { Currency, Domain, Interval, RiskAction } from "../enums.ts";
 import type { LineItem, Tax } from "./clients/index.ts";
 import type { BulkChargeStatus } from "../enums.ts";
-import {
+import type {
   DisputeStatus,
   PaystackIntegrationType,
   PaystackPaymentMethod,
@@ -14,6 +14,9 @@ export type ApplePayDomains = {
   domainNames: string[];
 };
 
+/**
+ * A model representing paystack bulk charge resource
+ */
 export type BulkCharge = {
   readonly batchCode: string;
   readonly reference?: string;
@@ -27,6 +30,9 @@ export type BulkCharge = {
   readonly updatedAt: string;
 };
 
+/**
+ * A model representing a single bulk charge resource
+ */
 export type BulkChargeUnitCharge = {
   readonly integration: number;
   readonly bulkcharge: number;
@@ -42,6 +48,9 @@ export type BulkChargeUnitCharge = {
   readonly updatedAt: string;
 };
 
+/**
+ * A model representing paystack's customer resource
+ */
 export type Customer = {
   readonly integration: number;
   readonly id: number;
@@ -69,6 +78,9 @@ export type Customer = {
   readonly dedicatedAccounts?: Array<any>;
 };
 
+/**
+ * A model representing paystack's authorization resource
+ */
 export type Authorization = {
   readonly authorizationCode: string;
   readonly bin: string;
@@ -84,23 +96,32 @@ export type Authorization = {
   readonly accountName: string;
 };
 
+/**
+ * A model representing paystack's initiate transaction response
+ */
 export type InitTransaction = {
   readonly authorizationUrl: string;
   readonly accessCode: string;
   readonly reference: string;
 };
 
+/**
+ * A model representing paystack's transaction history resource
+ */
 export type TransactionHistory = {
   readonly type: string;
   readonly message: string;
   readonly time: number;
 };
 
+/**
+ * A model representing paystack's transaction log resource
+ */
 export type TransactionLog = {
-  readonly startTime: 1724318098;
-  readonly timeSpent: 4;
-  readonly attempts: 1;
-  readonly errors: 0;
+  readonly startTime: number;
+  readonly timeSpent: number;
+  readonly attempts: number;
+  readonly errors: number;
   readonly success: true;
   readonly mobile: false;
   // deno-lint-ignore no-explicit-any
@@ -108,19 +129,28 @@ export type TransactionLog = {
   readonly history: TransactionHistory[];
 };
 
+/**
+ * A model representing paystack's transaction total resource
+ */
 export type TransactionTotal = {
   readonly totalTransactions: number;
-  readonly "totalVolume": number;
+  readonly totalVolume: number;
   readonly totalVolumeByCurrency: Money[];
   readonly pendingTransfers: number;
   readonly pendingTransfersByCurrency: Money[];
 };
 
+/**
+ * A model representing paystack's transaction export resource
+ */
 export type TransactionExport = {
   readonly path: string;
   readonly expiresAt: string;
 };
 
+/**
+ * A model representing paystack transaction resource
+ */
 export type Transaction = {
   readonly id: number;
   readonly domain: Domain;
@@ -156,6 +186,9 @@ export type Transaction = {
   readonly posTransactionData: null;
 };
 
+/**
+ * A model representing paystack's transaction split resource
+ */
 export type TransactionSplit = {
   id: number;
   name: string;
@@ -177,6 +210,9 @@ export type TransactionSplit = {
   totalSubaccounts: number;
 };
 
+/**
+ * A model representing paystack's subscription resource
+ */
 export type Subscription = {
   readonly customer: number | Customer;
   readonly plan: number | Plan;
@@ -206,6 +242,9 @@ export type Subscription = {
   readonly invoicesHistory?: Array<any>;
 };
 
+/**
+ * A model representing paystack's invoice resource
+ */
 export type Invoice = {
   readonly subscription: number;
   readonly integration: number;
@@ -229,6 +268,9 @@ export type Invoice = {
   readonly updatedAt: string;
 };
 
+/**
+ * A model representing paystack's payment page resource
+ */
 export type PaymentPage = {
   readonly integration: string;
   readonly plan: string | null;
@@ -257,6 +299,9 @@ export type PaymentPage = {
   readonly products?: Product[];
 };
 
+/**
+ * A model representing paystack's payment request resource.
+ */
 export type PaymentRequest = {
   readonly id: number;
   readonly integration: number;
@@ -296,17 +341,27 @@ export type PaymentRequest = {
   readonly pendingAmount?: number;
 };
 
+/**
+ * A model of paystack's money format
+ */
 export type Money = {
   readonly currency: Currency;
   readonly amount: number;
 };
 
+/**
+ * A model representing paystack's payment request statistics
+ * resource
+ */
 export type PaymentRequestStat = {
   readonly pending: Money[];
   readonly successful: Money[];
   readonly total: Money[];
 };
 
+/**
+ * A model representing paystack's plan subscriber resource
+ */
 export type PlanSubscriber = {
   readonly customerCode: string;
   readonly customerFirstName: string;
@@ -317,12 +372,15 @@ export type PlanSubscriber = {
   readonly customerTotalAmountPaid: number;
 };
 
+/**
+ * A model representing paystack's plan resource
+ */
 export type Plan = {
   readonly subscriptions: Subscription[];
   readonly pages: PaymentPage[];
   readonly domain: Domain;
   readonly name: string;
-  readonly plan_code: string;
+  readonly planCode: string;
   readonly description: string | null;
   readonly amount: number;
   readonly interval: Interval;
@@ -351,6 +409,9 @@ export type Plan = {
   readonly subscribers?: PlanSubscriber[];
 };
 
+/**
+ * A model representing paystack's subaccount resource
+ */
 export type SubAccount = {
   readonly id: number;
   readonly subaccountCode: string;
@@ -377,6 +438,9 @@ export type SubAccount = {
   readonly product?: string;
 };
 
+/**
+ * A model representing paystack's product resource
+ */
 export type Product = {
   readonly id: number;
   readonly name: string;
@@ -392,27 +456,21 @@ export type Product = {
   readonly type: string;
   readonly inStock: boolean;
   readonly unlimited: boolean;
-  // deno-lint-ignore no-explicit-any
   readonly metadata: Record<string, any> | null;
-  // deno-lint-ignore no-explicit-any
   readonly files: Array<any>; // TODO: find the type of files
   readonly filePath?: string | null;
   readonly successMessage: string | null;
   readonly redirectUrl: string | null;
   readonly splitCode: string | null;
-  // deno-lint-ignore no-explicit-any
   readonly notificationEmails: Array<any> | null;
   readonly minimumOrderable: number;
   readonly maximumOrderable: number | null;
   readonly createdAt: string;
   readonly updatedAt: string;
   readonly features?: any | null;
-  // deno-lint-ignore no-explicit-any
   readonly digitalAssets: Array<any>; // TODO: find the type of digitalAssets
-  // deno-lint-ignore no-explicit-any
   readonly variantOptions: Array<any>; // TODO: find the type of variantOptions
   readonly isShippable: boolean;
-  // deno-lint-ignore no-explicit-any
   readonly shippingFields: Record<string, any>;
   readonly integration: number;
   readonly lowStockAlert: number | boolean;
@@ -420,6 +478,9 @@ export type Product = {
   readonly expiresIn?: any | null;
 };
 
+/**
+ * A model representing paystack's terminal resource
+ */
 export type Terminal = {
   readonly id: number;
   readonly serialNumber: string | null;
@@ -432,6 +493,9 @@ export type Terminal = {
   readonly status: string | null; // TODO: Find all the supported status
 };
 
+/**
+ * A model representing paystack's dedicated account resource
+ */
 export type DedicatedAccount = {
   readonly bank: {
     readonly name: string;
@@ -462,6 +526,9 @@ export type DedicatedAccount = {
   } | Record<string, never>;
 };
 
+/**
+ * A model representing paystack's dedicated account provider resource
+ */
 export type DedicatedAccountProvider = {
   readonly providerSlug: string;
   readonly bankId: number;
@@ -469,6 +536,9 @@ export type DedicatedAccountProvider = {
   readonly id: number;
 };
 
+/**
+ * A model representing paystack's settlement resource
+ */
 export type Settlement = {
   readonly id: number;
   readonly domain: Domain;
@@ -486,6 +556,9 @@ export type Settlement = {
   readonly updatedAt: string;
 };
 
+/**
+ * A model representing paystack's transfer recipient resource
+ */
 export type TransferRecipient = {
   readonly active: boolean;
   readonly createdAt: string;
@@ -512,6 +585,9 @@ export type TransferRecipient = {
   };
 };
 
+/**
+ * A model representing paystack's transfer resource
+ */
 export type Transfer = {
   readonly integration: number;
   readonly domain: Domain;
@@ -540,6 +616,9 @@ export type Transfer = {
   readonly gatewayResponse?: any | null;
 };
 
+/**
+ * A model representing paystack's bulk transfer unit
+ */
 export type BulkTransferItem = {
   readonly reference: string;
   readonly recipient: string;
@@ -549,6 +628,9 @@ export type BulkTransferItem = {
   readonly status: string; // TODO: find all the supported status for transfer
 };
 
+/**
+ * A model representing paystack's balance ledger unit.
+ */
 export type BalanceLedgerItem = {
   readonly integration: number;
   readonly domain: Domain;
@@ -563,18 +645,27 @@ export type BalanceLedgerItem = {
   readonly updatedAt: string;
 };
 
+/**
+ * A model representing paystack's dispute history resource
+ */
 export type DisputeHistory = {
   readonly status: DisputeStatus;
   readonly by: string;
   readonly createdAt: string;
 };
 
+/**
+ * A model representing paystack's dispute message resource
+ */
 export type DisputeMessage = {
   readonly sender: string;
   readonly body: string;
   readonly createdAt: string;
 };
 
+/**
+ * A model representing paystack's dispute resource
+ */
 export type Dispute = {
   readonly id: number;
   readonly refundAmount: number | null;
@@ -599,6 +690,9 @@ export type Dispute = {
   readonly updatedAt: string;
 };
 
+/**
+ * A model representing paystack's dispute evidence
+ */
 export type DisputeEvidence = {
   readonly customerEmail: string;
   readonly customerName: string;
@@ -611,16 +705,25 @@ export type DisputeEvidence = {
   readonly updatedAt: string;
 };
 
+/**
+ * A model representing paystack's dispute upload info
+ */
 export type DisputeUploadInfo = {
   readonly signedUrl: string;
   readonly fileName: string;
 };
 
+/**
+ * A model representing paystack's dispute export info
+ */
 export type DisputeExportInfo = {
   readonly path: string;
   readonly expiresAt: string;
 };
 
+/**
+ * A model representing paystack's refund resource
+ */
 export type Refund = {
   readonly integration: number;
   readonly transaction: number;
@@ -650,6 +753,9 @@ export type Refund = {
   readonly collectAccountNumber: boolean;
 };
 
+/**
+ * A model representing paystack's card bin resource
+ */
 export type CardBin = {
   readonly bin: string;
   readonly brand: string;
@@ -661,6 +767,9 @@ export type CardBin = {
   readonly linkedBankId: number;
 };
 
+/**
+ * A model representing paystack's bank resource
+ */
 export type Bank = {
   readonly name: string;
   readonly slug: string;
@@ -679,6 +788,9 @@ export type Bank = {
   readonly updatedAt: string;
 };
 
+/**
+ * A model representing paystack's supported country resource
+ */
 export type PaystackSupportedCountry = {
   readonly id: number;
   readonly activeForDashboardOnboarding: boolean;
