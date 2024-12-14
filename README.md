@@ -43,6 +43,15 @@ bun add @gray-adeyi/paystack-sdk
 deno add @gray-adeyi/paystack-sdk
 ```
 
+### Notice
+
+You may experience issues installing this package in `node` and `bun` runtimes, please create a `.npmrc` file in
+your project root and add `@jsr:registry=https://npm.jsr.io` to it or run before installing this package.
+
+```commandline
+echo '@jsr:registry=https://npm.jsr.io' >> .npmrc
+```
+
 ## Usage
 
 `PaystackClient` from the `@gray-adeyi/paystack-sdk` package provides all that
