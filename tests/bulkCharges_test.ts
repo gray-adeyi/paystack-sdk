@@ -51,7 +51,9 @@ describe("PaystackClient.bulkCharges", () => {
     }];
     const createResponse = await client.bulkCharges.initiate(payload);
     assertEquals(createResponse.statusCode, HttpStatusCode.Ok);
-    const response = await client.bulkCharges.pauseBatch(createResponse.data.batchCode);
+    const response = await client.bulkCharges.pauseBatch(
+      createResponse.data.batchCode,
+    );
     assertEquals(response.statusCode, HttpStatusCode.Ok);
     assertEquals(response.message, "Bulk charge batch has been paused");
   });
@@ -64,9 +66,13 @@ describe("PaystackClient.bulkCharges", () => {
     }];
     const createResponse = await client.bulkCharges.initiate(payload);
     assertEquals(createResponse.statusCode, HttpStatusCode.Ok);
-    const pauseResponse = await client.bulkCharges.pauseBatch(createResponse.data.batchCode);
+    const pauseResponse = await client.bulkCharges.pauseBatch(
+      createResponse.data.batchCode,
+    );
     assertEquals(pauseResponse.statusCode, HttpStatusCode.Ok);
-    const response = await client.bulkCharges.resumeBatch(createResponse.data.batchCode);
+    const response = await client.bulkCharges.resumeBatch(
+      createResponse.data.batchCode,
+    );
     assertEquals(response.statusCode, HttpStatusCode.Ok);
   });
 });

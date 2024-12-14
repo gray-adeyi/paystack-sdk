@@ -60,9 +60,7 @@ describe("PaystackClient.paymentPages", () => {
   it("PaystackClient.paymentPages.addProducts", async () => {
     const productResponse = await client.products.getProducts();
     assertEquals(productResponse.statusCode, HttpStatusCode.Ok);
-    const products = productResponse.data.map((p) =>
-      p.id
-    );
+    const products = productResponse.data.map((p) => p.id);
     const err = await assertRejects(() =>
       client.paymentPages.addProducts("cn7wquoqyu", products)
     );

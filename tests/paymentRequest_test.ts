@@ -88,7 +88,8 @@ describe("PaystackClient.paymentRequest", () => {
       customer: "CUS_x1hp1dli4mdo1v0",
       amount: 2_000_000,
     };
-    const response = await client.paymentRequests.update(createResponse.data.requestCode,
+    const response = await client.paymentRequests.update(
+      createResponse.data.requestCode,
       payload,
     );
     assertEquals(response.statusCode, HttpStatusCode.Ok);

@@ -50,7 +50,6 @@ export default class ApplePayClient {
    *
    * @returns A promise that resolves to an object whose type is {@link PaystackResponse}.
    * The data property of the object is `undefined`.
-   *
    */
   registerDomain(domainName: string): Promise<PaystackResponse<undefined>> {
     return this.client.call("/apple-pay/domain", HTTPMethod.POST, {

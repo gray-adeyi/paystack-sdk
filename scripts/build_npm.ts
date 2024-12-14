@@ -1,13 +1,13 @@
 // ex. scripts/build_npm.ts
 import { build, emptyDir } from "@deno/dnt";
 
-const NPM_ROOT_DIR = './npm'
-const NPMRC_PATH = NPM_ROOT_DIR + '/.npmrc';
-const NPMRC_FILE_CONTENT = "@jsr:registry=https://npm.jsr.io"
+const NPM_ROOT_DIR = "./npm";
+const NPMRC_PATH = NPM_ROOT_DIR + "/.npmrc";
+const NPMRC_FILE_CONTENT = "@jsr:registry=https://npm.jsr.io";
 
 await emptyDir(NPM_ROOT_DIR);
 
-await Deno.writeTextFile(NPMRC_PATH,NPMRC_FILE_CONTENT)
+await Deno.writeTextFile(NPMRC_PATH, NPMRC_FILE_CONTENT);
 
 await build({
   entryPoints: ["./mod.ts"],
