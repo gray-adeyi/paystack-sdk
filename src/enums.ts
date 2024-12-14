@@ -199,6 +199,9 @@ export enum Resolution {
   DECLINED = "declined",
 }
 
+/**
+ * Enum for indicating the context the paystack integration is operating in.
+ */
 export enum Domain {
   LIVE = "live",
   TEST = "test",
