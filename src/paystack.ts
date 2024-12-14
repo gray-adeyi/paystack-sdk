@@ -22,16 +22,12 @@ import TransferClient from "./clients/transfers.ts";
 import TransferControlClient from "./clients/transfersControl.ts";
 import VerificationClient from "./clients/verification.ts";
 import RestClient from "./restClient.ts";
-import { blue, bold, green, yellow } from "@std/fmt/colors";
 
 const SECRET_KEY_PREFIX = "sk_test_";
 
 const PACKAGE_DEV_MODE_MESSAGE = `
-💪🏽 ${
-  blue(bold("Paystack Integration powered by @gray-adeyi/paystack-sdk 0.2.3"))
-} 🔥
-${
-  green(`
+💪🏽 "Paystack Integration powered by @gray-adeyi/paystack-sdk 0.2.4"🔥
+
 Need more guide on how to use this package?
 See documentation at https://gray-adeyi.github.io/paystack-sdk
 
@@ -43,13 +39,10 @@ If this project is useful to you or your company, please consider sponsoring the
 - ✨ Starring it on github at https://github.com/gray-adeyi/paystack-sdk
 - 💻 Contribute to it at https://github.com/gray-adeyi/paystack-sdk
 - ☕ Buy me a coffee at https://buymeacoffee.com/jigani 
-`)
-}
-${
-  yellow(`Note: This message only appears in dev mode. 
+
+Note: This message only appears in dev mode. 
 Set "disablePackageDevModeMessage" flag to true on instantiation
-of PaystackClient to stop seeing this message.`)
-}
+of PaystackClient to stop seeing this message.
 `;
 
 /**
