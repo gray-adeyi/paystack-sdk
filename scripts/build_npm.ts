@@ -2,12 +2,12 @@
 import { build, emptyDir } from "@deno/dnt";
 
 const NPM_ROOT_DIR = "./npm";
-const NPMRC_PATH = NPM_ROOT_DIR + "/.npmrc";
-const NPMRC_FILE_CONTENT = "@jsr:registry=https://npm.jsr.io";
+// const NPMRC_PATH = NPM_ROOT_DIR + "/.npmrc";
+// const NPMRC_FILE_CONTENT = "@jsr:registry=https://npm.jsr.io";
 
 await emptyDir(NPM_ROOT_DIR);
 
-await Deno.writeTextFile(NPMRC_PATH, NPMRC_FILE_CONTENT);
+// await Deno.writeTextFile(NPMRC_PATH, NPMRC_FILE_CONTENT);
 
 await build({
   entryPoints: ["./mod.ts"],
@@ -31,11 +31,7 @@ await build({
       "deno",
       "typescript",
     ],
-    scripts: {
-      preinstall: "grep -qxF '@jsr:registry=https://npm.jsr.io' ~/.npmrc || echo '@jsr:registry=https://npm.jsr.io' >> ~/.npmrc",
-    },
     dependencies: {
-      "@std/fmt": "npm:@jsr/std__fmt@^1.0.3",
       axios: "^1.7.9",
       "lodash-es": "^4.17.21",
     },
