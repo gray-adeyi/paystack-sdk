@@ -24,6 +24,7 @@ export enum Country {
   KENYA = "KE",
   COTE_D_IVOIRE = "CI",
   EGYPT = "EG",
+  RWANDA = "RW",
 }
 
 /**
@@ -63,6 +64,7 @@ export enum Currency {
   KES = "KES",
   XOF = "XOF",
   EGP = "EGP",
+  RWF = "RWF",
 }
 
 /**
@@ -186,6 +188,7 @@ export enum DisputeStatus {
   RESOLVED = "resolved",
   AWAITING_BANK_FEEDBACK = "awaiting-bank-feedback",
   AWAITING_MERCHANT_FEEDBACK = "awaiting-merchant-feedback",
+  ARCHIVED = "archived",
 }
 
 /**
@@ -194,4 +197,48 @@ export enum DisputeStatus {
 export enum Resolution {
   MERCHANT_ACCEPTED = "merchant-accepted",
   DECLINED = "declined",
+}
+
+/**
+ * Enum for indicating the context the paystack integration is operating in.
+ */
+export enum Domain {
+  LIVE = "live",
+  TEST = "test",
+}
+
+export enum BulkChargeStatus {
+  ACTIVE = "active",
+  PAUSED = "paused",
+  COMPLETE = "complete",
+}
+
+export enum SupportedCountryRelationshipType {
+  CURRENCY = "currency",
+  INTEGRATION_FEATURE = "integration_feature",
+  INTEGRATION_TYPE = "integration_type",
+  PAYMENT_METHOD = "payment_method",
+}
+
+export enum PaystackPaymentMethod {
+  PAYM_001 = "PAYM_001",
+  PAYM_002 = "PAYM_002",
+  PAYM_003 = "PAYM_003",
+  PAYM_004 = "PAYM_004",
+}
+
+export enum PaystackIntegrationType {
+  ITYPE_001 = "ITYPE_001",
+  ITYPE_002 = "ITYPE_002",
+  ITYPE_003 = "ITYPE_003",
+  ITYPE_004 = "ITYPE_004",
+  ITYPE_005 = "ITYPE_005",
+  ITYPE_006 = "ITYPE_006",
+  ITYPE_007 = "ITYPE_007",
+  ITYPE_008 = "ITYPE_008",
+  ITYPE_009 = "ITYPE_009",
+  ITYPE_010 = "ITYPE_010",
+  ITYPE_011 = "ITYPE_011",
+  ITYPE_012 = "ITYPE_012",
+  ITYPE_013 = "ITYPE_013",
 }

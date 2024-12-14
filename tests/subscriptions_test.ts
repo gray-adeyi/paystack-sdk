@@ -28,8 +28,7 @@ describe("PaystackClient.subscriptions", () => {
       interval: Interval.MONTHLY,
     };
     const planResponse = await client.plans.create(planPayload);
-    type DataOfInterest = { planCode: string };
-    const planData = planResponse.data as DataOfInterest;
+    const planData = planResponse.data;
     const payload: CreateSubscriptionPayload = {
       customer: "CUS_73cb3biedlkbe4a",
       plan: planData.planCode,

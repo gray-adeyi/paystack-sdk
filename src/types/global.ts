@@ -1,8 +1,27 @@
+// deno-lint-ignore-file no-explicit-any
+export type PageBasedPaginationListResponseMeta = {
+  readonly total: number;
+  readonly skipped: number;
+  readonly perPage: number;
+  readonly page: number;
+  readonly pageCount: number;
+};
+
+export type CursorBasedPaginationListResponseMeta = {
+  readonly next: string | null;
+  readonly previous: string | null;
+  readonly perPage: number;
+};
+
+export type ErrorResolution = {
+  readonly nextStep: string;
+};
+
 /**
  * A representation of the response returned from Paystack from calling any of
  * the client methods that makes an API call
  */
-export type PaystackResponse = {
+export type PaystackResponse<T> = {
   /** The http status code of the response */
   readonly statusCode: number;
   /** Status denotes if the request that led to this response was successful */
@@ -12,10 +31,13 @@ export type PaystackResponse = {
   /** The data returned from Paystack as a result of the request.
    * The keys of the data are transformed to camel case.
    */
-  // deno-lint-ignore no-explicit-any
-  readonly data: Record<string, any> | Record<string, any>[] | null;
+  readonly data: T;
   // Additional information about the response.
-  readonly meta?: Record<string, any>;
+  readonly meta?:
+    | PageBasedPaginationListResponseMeta
+    | CursorBasedPaginationListResponseMeta
+    | ErrorResolution
+    | Record<string, any>;
   //In cases where the response has a status of `False` or the status code
   //is an error status code. the `type` field indicates the type of error e.g. `api_error
   readonly type?: string;
@@ -50,5 +72,6 @@ export type DateFilterOptions = {
  * A representation of options that allows pagination and filtering
  * by date. @see {@link PaginationOptions} and {@link DateFilterOptions}
  */
-export type PaginationAndDateFilterOptions = PaginationOptions &
-  DateFilterOptions;
+export type PaginationAndDateFilterOptions =
+  & PaginationOptions
+  & DateFilterOptions;

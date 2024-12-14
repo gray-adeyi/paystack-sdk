@@ -46,8 +46,8 @@ describe("PaystackClient.transferRecipient", () => {
       },
     ];
     const response = await client.transferRecipients.bulkCreate(payload);
-    assertEquals(response.statusCode, HttpStatusCode.Ok)
-    assertEquals(response.message, 'Recipients added successfully')
+    assertEquals(response.statusCode, HttpStatusCode.Ok);
+    assertEquals(response.message, "Recipients added successfully");
   });
 
   it("PaystackClient.transferRecipient.getTransferRecipients", async () => {
@@ -83,8 +83,7 @@ describe("PaystackClient.transferRecipient", () => {
     const createResponse = await client.transferRecipients.create(
       createPayload,
     );
-    type DataOfInterest = { id: string };
-    const data = createResponse.data as DataOfInterest;
+    const data = createResponse.data;
     const response = await client.transferRecipients.delete(data.id);
     assertEquals(response.statusCode, HttpStatusCode.Ok);
     assertEquals(response.message, "Transfer recipient set as inactive");

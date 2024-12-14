@@ -1,7 +1,13 @@
 // ex. scripts/build_npm.ts
 import { build, emptyDir } from "@deno/dnt";
 
-await emptyDir("./npm");
+const NPM_ROOT_DIR = "./npm";
+const NPMRC_PATH = NPM_ROOT_DIR + "/.npmrc";
+const NPMRC_FILE_CONTENT = "@jsr:registry=https://npm.jsr.io";
+
+await emptyDir(NPM_ROOT_DIR);
+
+await Deno.writeTextFile(NPMRC_PATH, NPMRC_FILE_CONTENT);
 
 await build({
   entryPoints: ["./mod.ts"],
@@ -20,18 +26,20 @@ await build({
     license: "MIT",
     keywords: [
       "paystack",
-      "payment",
-      "naira",
-      "API",
-      "transaction",
-      "Gateway",
-      "paystackcli",
+      "node",
+      "bun",
+      "deno",
+      "typescript",
     ],
     dependencies: {
-      axios: "^1.7.7",
+      "@std/fmt": "npm:@jsr/std__fmt@^1.0.3",
+      axios: "^1.7.9",
       "lodash-es": "^4.17.21",
     },
     devDependencies: {
+      "@std/assert": "npm:@jsr/std__assert@^1.0.9",
+      "@std/dotenv": "npm:@jsr/std__dotenv@^0.225.3",
+      "@std/testing": "npm:@jsr/std__testing@^1.0.6",
       "@types/lodash-es": "^4.17.12",
     },
     repository: {

@@ -32,12 +32,12 @@ export type SendEventPayload = {
 export type GetTerminalsOptions = {
   readonly perPage?: number;
   /**
-   * A cursor that indicates your place in the list. 
+   * A cursor that indicates your place in the list.
    * It should be used to fetch the next page.
    */
   readonly next?: string;
   /**
-   * A cursor that indicates your place in the list. 
+   * A cursor that indicates your place in the list.
    * It should be used to fetch the
    * previous page of the list after an initial next request
    */

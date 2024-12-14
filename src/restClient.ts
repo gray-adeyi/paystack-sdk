@@ -34,11 +34,11 @@ export default class RestClient {
     });
     this.client.interceptors.request.use(
       this.requestPayloadTransformerInterceptor,
-      this.handleRequestError
+      this.handleRequestError,
     );
     this.client.interceptors.response.use(
       this.responsePayloadTransformerInterceptor,
-      this.handleResponseError
+      this.handleResponseError,
     );
   }
 
@@ -48,8 +48,13 @@ export default class RestClient {
     // deno-lint-ignore no-explicit-any
     data?: any,
     // deno-lint-ignore no-explicit-any
-    params?: Record<string, any>
-  ): Promise<PaystackResponse> {
+    params?: Record<string, any>,
+  ): Promise<
+    // deno-lint-ignore no-explicit-any
+    PaystackResponse<
+      Record<string, any> | Record<string, any>[] | null | undefined
+    >
+  > {
     const handler = this.getMethodHandler(method);
     let response: AxiosResponse;
     if ([HTTPMethod.GET, HTTPMethod.DELETE].includes(method)) {
@@ -62,7 +67,7 @@ export default class RestClient {
 
   private get baseHeaders() {
     return {
-      "User-Agent": "@gray-adeyi/paystack-sdk 0.1.5",
+      "User-Agent": "@gray-adeyi/paystack-sdk 0.2.0",
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: "",
@@ -91,7 +96,9 @@ export default class RestClient {
     }
   }
 
-  private deserializeResponse(response: AxiosResponse): PaystackResponse {
+  private deserializeResponse(
+    response: AxiosResponse,
+  ): PaystackResponse<Record<string, any> | Record<string, any>[] | null> {
     return {
       statusCode: response.status,
       status: response.data["status"] || false,
@@ -104,7 +111,7 @@ export default class RestClient {
   }
 
   private requestPayloadTransformerInterceptor(
-    config: InternalAxiosRequestConfig
+    config: InternalAxiosRequestConfig,
   ) {
     config.data = RestClient.camelToSnakeCaseTransformer(config.data);
     config.params = RestClient.camelToSnakeCaseTransformer(config.params);
@@ -150,13 +157,13 @@ export default class RestClient {
 
   private handleRequestError(error: AxiosError) {
     return Promise.reject(
-      new PaystackClientError(error.message, error.status, error.code)
+      new PaystackClientError(error.message, error.status, error.code),
     );
   }
 
   private handleResponseError(error: AxiosError) {
     return Promise.reject(
-      new PaystackClientError(error.message, error.status, error.code, error)
+      new PaystackClientError(error.message, error.status, error.code, error),
     );
   }
 
@@ -167,7 +174,7 @@ export default class RestClient {
     }
     if (!Deno.env.has(RestClient.ENV_SECRET_KEY_NAME)) {
       throw new PaystackClientError(
-        `secret key was not provided on instantiation or set in environmental variables as ${RestClient.ENV_SECRET_KEY_NAME}`
+        `secret key was not provided on instantiation or set in environmental variables as ${RestClient.ENV_SECRET_KEY_NAME}`,
       );
     }
     this.secretKey = Deno.env.get(RestClient.ENV_SECRET_KEY_NAME) as string;

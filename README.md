@@ -1,5 +1,7 @@
 # @gray-adeyi/paystack-sdk
 
+[![JSR @std](https://jsr.io/badges/@gray-adeyi)](https://jsr.io/@gray-adeyi)
+
 A paystack client SDK for the javascript runtime.
 
 ## Features
@@ -96,9 +98,11 @@ See the Project's [Documentation](https://gray-adeyi.github.io/paystack-sdk) for
 more
 
 ## Disclaimer
-This project is an open-source client library for [Paystack](https://paystack.com/).
-It is not officially endorsed or affiliated with [Paystack](https://paystack.com/).
-All trademarks and company names belong to their respective owners.
+
+This project is an open-source client library for
+[Paystack](https://paystack.com/). It is not officially endorsed or affiliated
+with [Paystack](https://paystack.com/). All trademarks and company names belong
+to their respective owners.
 
 ## Limitations
 

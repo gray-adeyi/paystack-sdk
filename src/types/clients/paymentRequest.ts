@@ -31,7 +31,7 @@ export type CreatePaymentRequestPayload = {
    */
   readonly customer: string;
   /**
-   * Payment request amount. It should be used when {@link LineItem} 
+   * Payment request amount. It should be used when {@link LineItem}
    * and {@link Tax} values aren't specified.
    */
   readonly amount: number;

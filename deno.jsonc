@@ -1,13 +1,14 @@
 {
   "name": "@gray-adeyi/paystack-sdk",
   "description": "A paystack client SDK for the javascript runtime.",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "author": "Gbenga Adeyi <adeyigbenga005@gmail.com>",
   "exports": "./mod.ts",
   "license": "MIT",
   "imports": {
     "@deno/dnt": "jsr:@deno/dnt@^0.41.3",
-    "axios": "npm:axios@^1.7.7",
+    "@std/fmt": "jsr:@std/fmt@^1.0.3",
+    "axios": "npm:axios@^1.7.9",
     "lodash-es": "npm:lodash-es@^4.17.21"
   },
   "keywords": [

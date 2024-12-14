@@ -24,8 +24,8 @@ client.charge.charge(payload).then((response: PaystackResponse) => {
 
 ## Handling exceptions
 
-All client methods may throw a `PaystackClientError` exception and it makes sense to
-gracefully handle those exceptions.
+All client methods may throw a `PaystackClientError` exception, and it makes
+sense to gracefully handle those exceptions.
 
 ```ts
 import {
@@ -39,15 +39,17 @@ const payload: ChargePayload = {
   email: "johndoe@example.com",
   amount: 1_000_000,
 };
-client.charge.charge(payload).then(console.log).catch((error: PaystackClientError) =>{
-  // Handle the error
-});
+client.charge.charge(payload).then(console.log).catch(
+  (error: PaystackClientError) => {
+    // Handle the error
+  },
+);
 
 // or using try...catch
-try{
-  const response = await client.charge.charge(payload)
-} catch(e){
-  if(!e instanceof PaystackClientError) throw e;
+try {
+  const response = await client.charge.charge(payload);
+} catch (e) {
+  if ((!e) instanceof PaystackClientError) throw e;
   // Handle the error
 }
 ```

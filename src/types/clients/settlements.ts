@@ -1,6 +1,5 @@
 import type { PaginationAndDateFilterOptions } from "../global.ts";
 
-
 /**
  * Lets you customize how settlements are retrieved.
  * @see {@link PaginationAndDateFilterOptions}

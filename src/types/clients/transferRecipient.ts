@@ -19,7 +19,7 @@ export type Recipient = {
   readonly accountNumber: string;
   /**
    * Required if ``type`` is ``RecipientType.NUBAN`` or ``RecipientType.BASA``.
-   * You can get the list of Bank Codes by calling 
+   * You can get the list of Bank Codes by calling
    * the ``PaystackClient.miscellaneous.getBanks`` method
    */
   readonly bankCode?: string;
