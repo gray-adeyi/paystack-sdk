@@ -28,7 +28,7 @@ const SECRET_KEY_PREFIX = "sk_test_";
 
 const PACKAGE_DEV_MODE_MESSAGE = `
 💪🏽 ${
-  blue(bold("Paystack Integration powered by @gray-adeyi/paystack-sdk 0.2.1"))
+  blue(bold("Paystack Integration powered by @gray-adeyi/paystack-sdk 0.2.2"))
 } 🔥
 ${
   green(`
